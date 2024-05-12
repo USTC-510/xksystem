@@ -10,7 +10,7 @@ public class login extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/main/java/resources/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/main/resources/login.fxml"));
         primaryStage.setTitle("选课系统登录");
         primaryStage.setScene(new Scene(root, 300, 200));
         primaryStage.show();
