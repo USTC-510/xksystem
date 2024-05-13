@@ -24,5 +24,5 @@ public class Administrator
     public void setPassword(String password) {this.password = password;}
 
     @Override
-    public String toString() {return this.name};
+    public String toString() {return this.name;}
 }
