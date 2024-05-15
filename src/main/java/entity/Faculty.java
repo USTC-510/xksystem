@@ -14,5 +14,5 @@ public class Faculty
     public void setCourses(Course[] courses) {this.courses = courses;}
 
     @Override
-    public String toString() {return this.name};
+    public String toString() {return this.name;};
 }

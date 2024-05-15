@@ -4,17 +4,15 @@
     -fx-background-size: cover;
     -fx-background-position: center center;
     -fx-background-repeat: no-repeat;
-    -fx-opacity: 0.8; /* 调整背景透明度 */
 }
-
 /* 设置按钮的背景颜色、文字颜色和字体大小 */
 .button {
     -fx-background-color: #336699;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 18px;
     -fx-border-color: #205072;
     -fx-border-width: 2;
-    -fx-padding: 8 15;
+    -fx-padding: 12 25;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
@@ -31,10 +29,15 @@
 
 /* 设置标签的字体大小和颜色 */
 .label {
-    -fx-font-size: 14px;
+    -fx-font-size: 18px;
     -fx-text-fill: white;
     -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0); /* 添加黑色阴影 */
 }
+.label.login {
+    -fx-font-weight: 900; /* 使用加粗字体 */
+    -fx-padding: 5; /* 内边距 */
+}
+
 
 /* 设置场景的整体字体和颜色 */
 .scene {
