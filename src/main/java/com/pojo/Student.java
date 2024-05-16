@@ -1,11 +1,11 @@
-package entity;
+package com.pojo;
 
 public class Student {
     private String name;    //姓名
     private String id;     //学号
     private char gender;   //性别
-    private Faculty faculty;  //学院
-    private Course[] course;  //课程
+    private com.Faculty faculty;  //学院
+    private com.Course[] course;  //课程
     private String password;  //登录密码
     private String phonenumber;   //电话号码
     private int age;   //年龄
@@ -37,7 +37,7 @@ public class Student {
         this.gender = gender;
     }
 
-    public Faculty getFaculty() {
+    public com.Faculty getFaculty() {
         return faculty;
     }
 
@@ -45,7 +45,7 @@ public class Student {
         this.faculty = faculty;
     }
 
-    public Course[] getCourse() {
+    public com.Course[] getCourse() {
         return course;
     }
 

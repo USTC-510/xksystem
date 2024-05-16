@@ -1,4 +1,4 @@
-package entity;
+package com.pojo;
 
 public class Course
 {
