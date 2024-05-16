@@ -10,6 +10,20 @@ public class Course
     private Student[] students;  //参与学生
     private Faculty[] facultys;  //开设学院
 
+    public Course(){
+
+    }
+
+    public Course(String name, String introduction, String[] spot, String[] date, Teacher[] teachers, Student[] students, Faculty[] facultys) {
+        this.name = name;
+        this.introduction = introduction;
+        this.spot = spot;
+        this.date = date;
+        this.teachers = teachers;
+        this.students = students;
+        this.facultys = facultys;
+    }
+
     public String getName() {return name;}
 
     public void setName(String name) {this.name = name;}

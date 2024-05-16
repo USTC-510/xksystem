@@ -9,6 +9,19 @@ public class Administrator
     private String phonenumber; //电话号码
     private int age;    //年龄
 
+    PUBLIC Administrator(){
+
+    }
+
+    public Administrator(String name, String id, char gender, String password, String phonenumber, int age) {
+        this.name = name;
+        this.id = id;
+        this.gender = gender;
+        this.password = password;
+        this.phonenumber = phonenumber;
+        this.age = age;
+    }
+
     public String getName() {return name;}
 
     public void setName(String name) {this.name = name;}

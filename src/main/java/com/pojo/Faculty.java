@@ -5,6 +5,15 @@ public class Faculty
     private String name;   //学院名
     private com.Course[] courses;  //开设课程
 
+    public Faculty(){
+
+    }
+
+    public Faculty(String name, com.Course[] courses) {
+        this.name = name;
+        this.courses = courses;
+    }
+
     public String getName() {return name;}
 
     public void setName(String name) {this.name = name;}

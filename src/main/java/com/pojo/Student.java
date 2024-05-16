@@ -11,6 +11,22 @@ public class Student {
     private int age;   //年龄
     private int level;  //年级
 
+    public Student(){
+
+    }
+
+    public Student(String name, String id, char gender, com.Faculty faculty, com.Course[] course, String password, String phonenumber, int age, int level) {
+        this.name = name;
+        this.id = id;
+        this.gender = gender;
+        this.faculty = faculty;
+        this.course = course;
+        this.password = password;
+        this.phonenumber = phonenumber;
+        this.age = age;
+        this.level = level;
+    }
+
     //下面是每个属性的get和set方法
 
     public String getName() {
