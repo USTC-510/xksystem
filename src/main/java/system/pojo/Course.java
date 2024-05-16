@@ -1,4 +1,6 @@
-package com.pojo;
+package system.pojo;
+
+import java.util.Arrays;
 
 public class Course
 {
@@ -53,5 +55,15 @@ public class Course
     public void setFacultys(Faculty[] facultys) {this.facultys = facultys;}
 
     @Override
-    public String toString() {return this.name;}
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", spot=" + Arrays.toString(spot) +
+                ", date=" + Arrays.toString(date) +
+                ", teachers=" + Arrays.toString(teachers) +
+                ", students=" + Arrays.toString(students) +
+                ", facultys=" + Arrays.toString(facultys) +
+                '}';
+    }
 }

@@ -1,4 +1,5 @@
-package com.dao;
+package system.dao;
+import system.pojo.*;
 public interface StudentDAO
 {
     Student getStudentbyId(int id);     //通过id查找学生

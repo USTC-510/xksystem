@@ -1,11 +1,13 @@
-package com.pojo;
+package system.pojo;
+
+import java.util.Arrays;
 
 public class Student {
     private String name;    //姓名
     private String id;     //学号
     private char gender;   //性别
-    private com.Faculty faculty;  //学院
-    private com.Course[] course;  //课程
+    private Faculty faculty;  //学院
+    private Course[] course;  //课程
     private String password;  //登录密码
     private String phonenumber;   //电话号码
     private int age;   //年龄
@@ -15,7 +17,7 @@ public class Student {
 
     }
 
-    public Student(String name, String id, char gender, com.Faculty faculty, com.Course[] course, String password, String phonenumber, int age, int level) {
+    public Student(String name, String id, char gender, Faculty faculty, Course[] course, String password, String phonenumber, int age, int level) {
         this.name = name;
         this.id = id;
         this.gender = gender;
@@ -53,7 +55,7 @@ public class Student {
         this.gender = gender;
     }
 
-    public com.Faculty getFaculty() {
+    public Faculty getFaculty() {
         return faculty;
     }
 
@@ -61,7 +63,7 @@ public class Student {
         this.faculty = faculty;
     }
 
-    public com.Course[] getCourse() {
+    public Course[] getCourse() {
         return course;
     }
 
@@ -91,6 +93,18 @@ public class Student {
 
 
     @Override
-    public String toString() {return this.name;}
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", gender=" + gender +
+                ", faculty=" + faculty +
+                ", course=" + Arrays.toString(course) +
+                ", password='" + password + '\'' +
+                ", phonenumber='" + phonenumber + '\'' +
+                ", age=" + age +
+                ", level=" + level +
+                '}';
+    }
 }
 

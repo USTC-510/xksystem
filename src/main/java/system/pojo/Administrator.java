@@ -1,4 +1,4 @@
-package com.pojo;
+package system.pojo;
 
 public class Administrator
 {
@@ -9,7 +9,7 @@ public class Administrator
     private String phonenumber; //电话号码
     private int age;    //年龄
 
-    PUBLIC Administrator(){
+    public Administrator(){
 
     }
 
@@ -45,6 +45,16 @@ public class Administrator
     public int getAge() {return age;}
 
     public void setAge(int age) {this.age = age;}
+
     @Override
-    public String toString() {return this.name;}
+    public String toString() {
+        return "Administrator{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", gender=" + gender +
+                ", password='" + password + '\'' +
+                ", phonenumber='" + phonenumber + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
