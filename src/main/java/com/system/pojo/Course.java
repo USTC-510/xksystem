@@ -1,6 +1,4 @@
-package system.pojo;
-
-import java.util.Arrays;
+package com.system.pojo;
 
 public class Course
 {
@@ -8,22 +6,16 @@ public class Course
     private String introduction;   //课程介绍
     private String[] spot;   //上课地点
     private String[] date;   //上课时间
-    private Teacher[] teachers;  //授课教师
-    private Student[] students;  //参与学生
-    private Faculty[] facultys;  //开设学院
 
     public Course(){
 
     }
 
-    public Course(String name, String introduction, String[] spot, String[] date, Teacher[] teachers, Student[] students, Faculty[] facultys) {
+    public Course(String name, String introduction, String[] spot, String[] date) {
         this.name = name;
         this.introduction = introduction;
         this.spot = spot;
         this.date = date;
-        this.teachers = teachers;
-        this.students = students;
-        this.facultys = facultys;
     }
 
     public String getName() {return name;}
@@ -42,18 +34,6 @@ public class Course
 
     public void setDate(String[] date) {this.date = date;}
 
-    public Teacher[] getTeachers() {return teachers;}
-
-    public void setTeachers(Teacher[] teachers) {this.teachers = teachers;}
-
-    public Student[] getStudents() {return students;}
-
-    public void setStudents(Student[] students) {this.students = students;}
-
-    public Faculty[] getFacultys() {return facultys;}
-
-    public void setFacultys(Faculty[] facultys) {this.facultys = facultys;}
-
     @Override
     public String toString() {
         return "Course{" +
@@ -61,9 +41,6 @@ public class Course
                 ", introduction='" + introduction + '\'' +
                 ", spot=" + Arrays.toString(spot) +
                 ", date=" + Arrays.toString(date) +
-                ", teachers=" + Arrays.toString(teachers) +
-                ", students=" + Arrays.toString(students) +
-                ", facultys=" + Arrays.toString(facultys) +
                 '}';
     }
 }

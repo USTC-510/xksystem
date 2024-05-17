@@ -1,4 +1,4 @@
-package system.dao;
+package com.system.dao;
 import system.pojo.*;
 
 public interface CourseDAO {

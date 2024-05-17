@@ -1,13 +1,8 @@
-package system.pojo;
-
-import java.util.Arrays;
-
+package com.system.pojo;
 public class Student {
     private String name;    //姓名
     private String id;     //学号
     private char gender;   //性别
-    private Faculty faculty;  //学院
-    private Course[] course;  //课程
     private String password;  //登录密码
     private String phonenumber;   //电话号码
     private int age;   //年龄
@@ -17,12 +12,10 @@ public class Student {
 
     }
 
-    public Student(String name, String id, char gender, Faculty faculty, Course[] course, String password, String phonenumber, int age, int level) {
+    public Student(String name, String id, char gender, String password, String phonenumber, int age, int level) {
         this.name = name;
         this.id = id;
         this.gender = gender;
-        this.faculty = faculty;
-        this.course = course;
         this.password = password;
         this.phonenumber = phonenumber;
         this.age = age;
@@ -55,21 +48,6 @@ public class Student {
         this.gender = gender;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
-
-    public Course[] getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course[] course) {
-        this.course = course;
-    }
 
     public String getPassword() {
         return password;
@@ -98,8 +76,6 @@ public class Student {
                 "name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 ", gender=" + gender +
-                ", faculty=" + faculty +
-                ", course=" + Arrays.toString(course) +
                 ", password='" + password + '\'' +
                 ", phonenumber='" + phonenumber + '\'' +
                 ", age=" + age +

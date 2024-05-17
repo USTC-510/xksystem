@@ -1,4 +1,5 @@
-package system.dao;
+package com.system.dao;
+import com.system.pojo.Student;
 import system.pojo.*;
 public interface StudentDAO
 {
