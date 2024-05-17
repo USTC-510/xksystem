@@ -17,8 +17,11 @@ READ ME！！！！！！
 
 controller，service，dao包的编写需要学习Mybatis和Springboot，所以请尽快学习(学习用时不会很长)。  
 
-5月17日更新日志：1.dao包名字改为mapper包，因为我们使用Mybatis框架中的Mapper代理。  
-                 2.新增utils包，内含MybatisUtils类，用于获取SqlSession对象。  
-                 3.在resources文件夹中的com/system/mapper中存放SQL映射xml文件，不要放在其他地方。
+    
+*5月17日更新日志* 
+-----------------
+1.dao包名字改为mapper包，因为我们使用Mybatis框架中的Mapper代理。  
+2.新增utils包，内含MybatisUtils类，用于获取SqlSession对象。  
+3.在resources文件夹中的com/system/mapper中存放SQL映射xml文件，不要放在其他地方。
 
 
