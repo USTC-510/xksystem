@@ -24,4 +24,9 @@ controller，service，dao包的编写需要学习Mybatis和Springboot，所以�
 2.新增utils包，内含MybatisUtils类，用于获取SqlSession对象。  
 3.在resources文件夹中的com/system/mapper中存放SQL映射xml文件，不要放在其他地方，因为我们在mybatis的配置xml文件中使用包检索来加载SQL映射。
 
+*5月18日更新日志*
+-----------------
+1.将原来存放BS架构前端代码的resourses文件夹删除
+2.添加了pages这一文件夹
+
 
