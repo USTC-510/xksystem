@@ -1,7 +1,7 @@
 READ ME！！！！！！  
 
 
-本项目的技术栈：
+本项目的技术栈：  
 后端：Mybatis框架,Springboot框架,Mysql，Junit单元测试(可选)  
 
 前端:HTML5,css,javascript,vue框架(可选)  
