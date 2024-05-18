@@ -20,13 +20,13 @@ controller，service，dao包的编写需要学习Mybatis和Springboot，所以�
     
 *5月17日更新日志* 
 -----------------
-1.dao包名字改为mapper包，因为我们使用Mybatis框架中的Mapper代理。  
-2.新增utils包，内含MybatisUtils类，用于获取SqlSession对象。  
-3.在resources文件夹中的com/system/mapper中存放SQL映射xml文件，不要放在其他地方，因为我们在mybatis的配置xml文件中使用包检索来加载SQL映射。
+1.*dao包名字改为mapper包*，因为我们使用Mybatis框架中的Mapper代理。  
+2.*新增utils包*，内含MybatisUtils类，用于获取SqlSession对象。  
+3.在resources文件夹中的com/system/mapper中存放SQL映射xml文件，*不要放在其他地方*，因为我们在mybatis的配置xml文件中使用包检索来加载SQL映射。
 
 *5月18日更新日志*
 -----------------
-1.将原来BS架构的前端相关代码删除。    
-2.添加了pages这一文件夹，用来存放前端相关代码，目前已经写好登陆页面（loginPage），需要前端提供三个函数来判断用户名（管理员、老师、学生）和密码的匹配问题
+1.将原来BS架构的前端相关代码*删除*。    
+2.添加了pages这一文件夹，用来存放前端相关代码，目前已经写好登陆页面（loginPage），*需要后端提供三个函数来判断用户名（管理员、老师、学生）和密码的匹配问题*
 
 
