@@ -1,5 +1,7 @@
 package com.system.pojo;
 
+import java.util.Arrays;
+
 public class Course
 {
     private String name;   //课程名字
