@@ -35,6 +35,9 @@ input[type="password"], input[type="text"] {
     font-size: 20px; /* 设置文本框内的文字大小 */
 }
 
+.role-selection {
+    font-size: 25px;
+}
 form div {
     margin-bottom: 10px;
 }

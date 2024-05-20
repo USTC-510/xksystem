@@ -9,7 +9,19 @@
 <body>
     <div class="container">
         <h1>选课系统登录</h1>  
-        <form id="loginForm">  
+
+        <form id="loginForm" class="login-form">  
+            <div class="role-selection">
+                <input type="radio" id="student" name="role" value="student" required checked>
+                <label for="student">学生登录</label>
+
+                <input type="radio" id="teacher" name="role" value="teacher" required>
+                <label for="teacher">老师登录</label>
+
+                <input type="radio" id="admin" name="role" value="admin" required>
+                <label for="admin">管理员登录</label>
+            </div>
+
             <div class="login-input-text">  
                 <label class="label" for="username">用户名:</label>
                 <input type="text" id="username" name="username" required>  
@@ -29,3 +41,4 @@
     <script src="login.js"></script>  
 </body>  
 </html>
+
