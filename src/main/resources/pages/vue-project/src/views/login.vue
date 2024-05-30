@@ -42,7 +42,7 @@ export default {
     submit(){
       event.preventDefault();//阻止表单默认提交行为
       this.errorMessage = '';
-      api.getMatch(this.username, this.password)
+      api.getMatch(this.username, this.password, this.identity)
         .then(function (response) {
         switch(response.data.match){
             case 1:
