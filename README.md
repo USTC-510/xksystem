@@ -23,10 +23,4 @@ controller，service，dao包的编写需要学习Mybatis,Springboot和http协�
 2.添加了pages这一文件夹，用来存放前端相关代码，目前已经写好登陆页面（loginPage），`需要后端提供三个函数来判断用户名（管理员、老师、学生）和密码的匹配问题`。  
 3.添加了Springboot的依赖，并且在Controller包中写了Application启动类。  
 
-*5月27日更新日志*
------------------
-1.前端采用vue框架，将原来的前端代码使用vue框架的格式重写。  
-2.登陆匹配逻辑稍有变动，现在我会将用户选择了哪一个按钮传递给后端（student、teacher、admin），需要后端传递一个值给前端，1代表学生匹配成功，2老师，3代表管理员，其余值视为匹配不成功。  
-3.目前前端使用vue-CLI脚手架，服务器即为自己的电脑，在下好配置文件后浏览器上输入http://localhost/即可运行，之后可能考虑进一步使用Tomcat。  
-4.使用了axios来实现数据传输，传输方法统一放在Pages/vue-project/src/api/function.js里，默认axios配置在Pages/vue-project/src/utils/request.js里。  
 
