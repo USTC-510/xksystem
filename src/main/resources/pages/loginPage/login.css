@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    /* 设置背景图片，并使用cover属性使其铺满整个页面 */
+    background-image: url("login.png");
+    background-color: rgba(255, 255, 255, 0.5);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    width: 900px;
+    height: 650px;
+    padding: 5px;
+    background-color: rgba(255, 0, 0, 0);
+    border-radius: 5px;
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="password"], input[type="text"] {
+    width: 200px; /* 设置文本框的宽度 */
+    height: 30px; /* 设置文本框的高度 */
+    padding: 5px; /* 设置文本框内的填充 */
+    border: 1px inset #ccc; /* 设置文本框的边框 */
+    border-radius: 5px; /* 设置文本框的边框半径，使其看起来更圆滑 */
+    font-size: 20px; /* 设置文本框内的文字大小 */
+}
+
+.role-selection {
+    font-size: 25px;
+}
+form div {
+    margin-bottom: 10px;
+}
+
+.login-input-text .label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+}
+
+.login-input-checkbox .label {
+    font-size:18px;
+    width: 100px;
+    text-align: right;
+    font-weight: 400;
+}
+
+input {
+    vertical-align: middle;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+button {
+    width: 100px; /* 设置按钮的宽度 */
+    height: 50px; /* 设置按钮的高度 */
+    background-color: #008CBA; /* 设置按钮的背景颜色 */
+    color: white; /* 设置按钮的文字颜色 */
+    border: none; /* 移除按钮的边框 */
+    cursor: pointer; /* 当鼠标悬停在按钮上时，改变鼠标的样式 */
+    font-size: 16px; /* 设置按钮的文字大小 */
+    border-radius: 5px; /* 设置按钮的边角圆滑 */
+}
+
+button:hover {
+    background-color: #007B9A; /* 设置按钮悬停时的背景颜色为深天蓝色，这样可以给用户反馈，让他们知道他们正在悬停在按钮上 */
+}
