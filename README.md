@@ -30,3 +30,7 @@ controller，service，dao包的编写需要学习Mybatis,Springboot和http协�
 3.目前前端使用vue-CLI脚手架，服务器即为自己的电脑，在下好配置文件后浏览器上输入http://localhost/即可运行，之后可能考虑进一步使用Tomcat。  
 4.使用了axios来实现数据传输，传输方法统一放在Pages/vue-project/src/api/function.js里，默认axios配置在Pages/vue-project/src/utils/request.js里。  
 
+*6月1日更新日志*
+-----------------
+1.新增了service包，用以将Dao和entity类整合起来，进行再次封装，封装成一个方法，我们调用这个方法，就实现了对某个表的增删改查操作。
+2.添加了tk.mybatis的依赖，令各个mapper接口继承Mapper，以方便进行增删查改，但具体使用方法还在学习。
