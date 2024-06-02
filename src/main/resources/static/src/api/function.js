@@ -11,6 +11,13 @@ const api = {
                 identity: identity
             }
         })
+    },
+    getRealName(username){
+        return axios.get(path.baseurl + path.dataOfSomeone, {
+            params: {
+                username:username
+            }
+        })
     }
 }
 

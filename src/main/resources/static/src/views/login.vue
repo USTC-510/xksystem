@@ -47,15 +47,15 @@ export default {
         switch(response.data.match){
             case 1:
                 this.message = '学生登陆成功！';
-                this.$router.push('/content-student');
+                this.$router.push({path:'/content-student', query:{username:this.username}});
                 break;
             case 2:
                 this.message = '老师登陆成功！';
-                this.$router.push('/content-teacher');
+                this.$router.push({path:'/content-teacher', query:{username:this.username}});
                 break;
             case 3:
                 this.message = '管理员登陆成功';
-                this.$router.push('/content-admin');
+                this.$router.push({path:'/content-admin', query:{username:this.username}});
                 break;
             default :
                 alert('用户名或密码错误，或者您所选的登陆身份有误！');

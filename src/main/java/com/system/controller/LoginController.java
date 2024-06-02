@@ -1,17 +1,12 @@
+
 package com.system.controller;
-import com.system.service.AdministratorService;
-import jakarta.annotation.Resource;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-
 public class LoginController
 {
-    @Resource
+    /*@Resource
     private AdministratorService administratorService;
 
     @GetMapping("/user/data")
@@ -25,9 +20,11 @@ public class LoginController
         }
         //
         if(identity==1){
+            return 0;
             //学生登录
         }
         if(identity==2){
+            return 0;
             //教师登录
         }
         if(identity==3){
@@ -37,4 +34,5 @@ public class LoginController
     }
 
     
+*/
 }

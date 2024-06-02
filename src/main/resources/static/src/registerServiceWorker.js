@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> parent of 7a6f14dc (S)
 /* eslint-disable no-console */
 
 import { register } from 'register-service-worker'
@@ -29,4 +33,8 @@ if (process.env.NODE_ENV === 'production') {
       console.error('Error during service worker registration:', error)
     }
   })
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> parent of 7a6f14dc (S)
