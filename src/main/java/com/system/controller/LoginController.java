@@ -1,13 +1,17 @@
-
 package com.system.controller;
-
+import com.system.service.LoginService;
+import jakarta.annotation.Resource;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+
 public class LoginController
 {
-    /*@Resource
-    private AdministratorService administratorService;
+    @Resource
+    private LoginService loginService;
 
     @GetMapping("/user/data")
     public int getDataOfSomeone(
@@ -18,21 +22,12 @@ public class LoginController
         if (ObjectUtils.isEmpty(username) || ObjectUtils.isEmpty(password) || ObjectUtils.isEmpty(identity)) {
             return 0;
         }
-        //
-        if(identity==1){
-            return 0;
-            //学生登录
+        //对输入的数据进行验证
+        else{
+            return loginService.login(username,password,identity);
         }
-        if(identity==2){
-            return 0;
-            //教师登录
-        }
-        if(identity==3){
-            //管理员登录
-            return administratorService.login(username,password);
-        }
+
     }
 
     
-*/
 }
