@@ -6,7 +6,7 @@
 
 
     <select id="selectById" resultType="com.system.pojo.Administrator">
-        select * from administrator where id =#{name};
+        select * from administrator where id = #{username};
     </select>
 
 </mapper>
