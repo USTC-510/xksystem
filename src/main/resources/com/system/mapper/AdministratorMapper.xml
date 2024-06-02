@@ -5,7 +5,8 @@
 <mapper namespace="com.system.mapper.AdministratorMapper">
 
 
-    <select id="findByNameAndPassword" resultType="com.system.pojo.Administrator">
-        select * from administrator where name =#{name} and password =#{password}
+    <select id="selectById" resultType="com.system.pojo.Administrator">
+        select * from administrator where id =#{name};
     </select>
+
 </mapper>

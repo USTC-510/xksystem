@@ -1,6 +1,6 @@
 package com.system.controller;
 
-import com.system.service.AdministratorService;
+import com.system.service.LoginService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/administrator")
 public class AdministratorController {
     @Resource
-    private AdministratorService administratorService;
+    private LoginService administratorService;
 }

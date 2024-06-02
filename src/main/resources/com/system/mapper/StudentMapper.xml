@@ -10,7 +10,7 @@
         select * from student;
     </select>
     <select id="selectbyId" resultType="student">
-        select * from student where id = #{id};
+        select * from student where id = #{username};
     </select>
     <select id="selectbyName" resultType="student">
         select * from student where name = #{name};

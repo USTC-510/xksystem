@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface AdministratorMapper {
 
-    List<Administrator> findByNameAndPassword(@Param("username") String username, @Param("password") String password);
+    List<Administrator> selectById(@Param("username")String username);
 }
