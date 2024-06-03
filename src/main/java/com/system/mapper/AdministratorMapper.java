@@ -16,7 +16,7 @@ public interface AdministratorMapper {
     @Select("select * from administrator where name = #{name}")
     List<Administrator> selectByName(String name);
 
-    @Insert("insert into administrator(name,id,gender,phonenumber,password,age) values(#{name},#{id},#{gender},#{phonenumber},#{password},#{age}")
+    @Insert("insert into administrator(name,id,gender,phonenumber,password,age) values(#{name},#{id},#{gender},#{phonenumber},#{password},#{age})")
     void insertAdministrator(Administrator administrator);
 
     @Delete("delete from administrator where id = #{id}")
@@ -28,6 +28,6 @@ public interface AdministratorMapper {
     @Update("update administrator set phonenumber = #{phonenumber} where id = #{id}")
     void updatePhonenumberById(@Param("phonenumber")String phonenumber, @Param("id")String id);
 
-    @Update("update administrator set password where id = #{id}")
+    @Update("update administrator set password = #{password} where id = #{id}")
     void updatePasswordById(@Param("password")String password, @Param("id")String id);
 }

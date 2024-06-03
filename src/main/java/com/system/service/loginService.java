@@ -21,11 +21,11 @@ public class LoginService {
     @Resource
     private TeacherMapper teacherMapper;
 
-    public int login(String username, String password, int identity) {
+    public int login(String id, String password, int identity) {
         if(identity==1){
             //学生登录
-            List<Student> list=studentMapper.selectbyId(username);
-            if(list!=null&&!list.isEmpty()){
+            List<Student> list=studentMapper.selectbyId(id);
+            if(list!=null && !list.isEmpty()){
                 Student student=list.get(0);
                 if(password.equals(student.getPassword())) {
                     return 1;
@@ -37,11 +37,10 @@ public class LoginService {
             else{
                 return 0;
             }
-
         }
         else if(identity==2){
             //教师登录
-            List<Teacher> list=teacherMapper.selectById(username);
+            List<Teacher> list=teacherMapper.selectById(id);
             if(list!=null&&!list.isEmpty()){
                 Teacher teacher=list.get(0);
                 if(password.equals(teacher.getPassword())) {
@@ -50,7 +49,6 @@ public class LoginService {
                 else{
                     return 0;
                 }
-
             }
             else{
                 return 0;
@@ -58,7 +56,7 @@ public class LoginService {
         }
         else if(identity==3){
             //管理员登录
-            List<Administrator> list= administratorMapper.selectById(username);
+            List<Administrator> list= administratorMapper.selectById(id);
             if(list!=null&&!list.isEmpty()){
                 Administrator administrator=list.get(0);
                 if(password.equals(administrator.getPassword())) {
@@ -67,7 +65,6 @@ public class LoginService {
                 else{
                     return 0;
                 }
-
             }
             else{
                 return 0;
