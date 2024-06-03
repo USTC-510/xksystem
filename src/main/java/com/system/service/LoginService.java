@@ -1,5 +1,4 @@
 package com.system.service;
-
 import com.system.mapper.AdministratorMapper;
 import com.system.mapper.StudentMapper;
 import com.system.mapper.TeacherMapper;
@@ -8,7 +7,6 @@ import com.system.pojo.Student;
 import com.system.pojo.Teacher;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
