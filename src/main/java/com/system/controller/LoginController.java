@@ -1,4 +1,5 @@
 package com.system.controller;
+
 import com.system.service.LoginService;
 import jakarta.annotation.Resource;
 import org.springframework.util.ObjectUtils;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController
 {
-    @Resource
+   @Resource
     private LoginService loginService;
 
     @GetMapping("/user/data")
@@ -25,8 +26,7 @@ public class LoginController
         else{
             return loginService.login(username,password,identity);
         }
-
     }
 
-    
+
 }
