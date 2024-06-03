@@ -32,9 +32,15 @@ controller，service，dao包的编写需要学习Mybatis,Springboot和http协�
 
 *6月1日更新日志*
 -----------------
-1.新增了service包，用以将Dao和entity类整合起来，进行再次封装，封装成一个方法，我们调用这个方法，就实现了对某个表的增删改查操作。
+1.新增了service包，用以将Dao和entity类整合起来，进行再次封装，封装成一个方法，我们调用这个方法，就实现了对某个表的增删改查操作。  
 2.添加了tk.mybatis的依赖，令各个mapper接口继承Mapper，以方便进行增删查改，但具体使用方法还在学习。
 
 *6月2日更新日志*
 -----------------
 1.在LoginController中获取从前端传来的用户名和密码，在LoginService中对用户身份（管理员，学生，教师）进行了验证
+
+*6月3日更新日誌*
+----------------
+1.寫完了學生，老師，管理員的Mapper接口，使用***註解開發***。  
+2.後端的人員請使用 ***curl*** 工具進行HTTP請求與響應的測試，***curl*** 的安裝和用法見b站https://www.bilibili.com/video/BV15x411f7Sm/?spm_id_from=333.337.search-card.all.click&vd_source=e5c3c6df9632109b43734c40eacd4c46  
+3.編寫更新日誌時，***打兩個空格就能換行***。
