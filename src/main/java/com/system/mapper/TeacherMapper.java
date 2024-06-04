@@ -13,10 +13,10 @@ public interface TeacherMapper
     List<Teacher> selectAll();
 
     @Select("select * from teacher where id = #{id}")
-    List<Teacher> selectById(String id);
+    Teacher selectById(String id);
 
     @Select("select * from teacher where name = #{name}")
-    List<Teacher> selectByName(String name);
+    Teacher selectByName(String name);
 
     @Insert("insert into teacher(name,id,gender,phonenumber,password,age) values(#{name},#{id},#{gender},#{phonenumber},#{password},#{age}")
     void insertTeacher(Teacher teacher);

@@ -11,10 +11,10 @@ public interface StudentMapper
     List<Student> selectAll();
 
     @Select("select * from student where id = #{id}")
-    List<Student> selectbyId(String id);
+    Student selectById(String id);
 
     @Select("select * from student where name = #{name}")
-    Student selectbyName(String name);
+    Student selectByName(String name);
 
     @Insert("insert into student(name,id,gender,phonenumber,password,age,level) values(#{name},#{id},#{gender},#{phonenumber},#{password},#{age},#{level}")
     void insertStudent(Student student);

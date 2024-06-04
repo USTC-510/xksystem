@@ -11,10 +11,10 @@ public interface AdministratorMapper {
     @Select("select * from administrator")
     List<Administrator> selectAll();
     @Select("select * from administrator where id = #{id}")
-    List<Administrator> selectById(String id);
+    Administrator selectById(String id);
 
     @Select("select * from administrator where name = #{name}")
-    List<Administrator> selectByName(String name);
+    Administrator selectByName(String name);
 
     @Insert("insert into administrator(name,id,gender,phonenumber,password,age) values(#{name},#{id},#{gender},#{phonenumber},#{password},#{age})")
     void insertAdministrator(Administrator administrator);

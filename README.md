@@ -44,3 +44,15 @@ controller，service，dao包的编写需要学习Mybatis,Springboot和http协�
 1.寫完了學生，老師，管理員的Mapper接口，使用***註解開發***。  
 2.後端的人員請使用 ***curl*** 工具進行HTTP請求與響應的測試，***curl*** 的安裝和用法見b站https://www.bilibili.com/video/BV15x411f7Sm/?spm_id_from=333.337.search-card.all.click&vd_source=e5c3c6df9632109b43734c40eacd4c46  
 3.編寫更新日誌時，***打兩個空格就能換行***。
+
+*6月4日更新日志*
+--------------
+1.写完了登录验证的后端代码。接口的定义，访问地址以及用法见**service**包中的接口。  
+2.加了一个**User**类，**Student**，**Teacher**和**Administrator**类继承自user类。  
+3.加了一个**Result**类，它规定了**controller**层返回给前端的HTTP响应的统一格式  
+格式为{  "code":  
+        "msg":  
+        "data":{}  
+     }  
+其中code是状态码，1代表响应成功，0代表失败；msg是响应失败时返回的错误信息；data是返回的数据。    
+4.对6月2日的**controller**和**service**进行了改写，现在我们根据**pojo**类来命名**controller**和**service**的类。
