@@ -1,8 +1,12 @@
 package com.system.controller;
 
 import com.system.pojo.Result;
+import com.system.pojo.User;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
+import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,10 +17,10 @@ public class UserController
     @Resource
     private UserService userService;
 
-    @RequestMapping("/login")
-    public Result login(/*@RequestBody User user*/)
+    @PostMapping("/login")
+    public Result login(@RequestBody User user)
     {
-        /*String code = user.getCode();
+        String code = user.getCode();
         String password = user.getPassword();
         String identity = user.getIdentity();
         if (ObjectUtils.isEmpty(code) || ObjectUtils.isEmpty(password))
@@ -37,10 +41,8 @@ public class UserController
                 case 3:
                     return Result.success(3);
                 default:
-                    return Result.error("发生了一个意外的错误");
+                    return Result.error("发生了一个意外的错误,请重试。");
             }
-        }*/
-        System.out.println("hello");
-        return Result.success(1);
+        }
     }
 }
