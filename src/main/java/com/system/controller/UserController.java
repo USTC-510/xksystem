@@ -1,9 +1,10 @@
 package com.system.controller;
 
 import com.system.pojo.Result;
-import com.system.pojo.User;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,11 +19,11 @@ public class UserController
     private UserService userService;
 
     @PostMapping("/login")
-    public Result login(@RequestBody User user)
+    public Result login(@RequestBody UserLoginDTO userLoginDTO)
     {
-        String code = user.getCode();
-        String password = user.getPassword();
-        String identity = user.getIdentity();
+        String code = userLoginDTO.getUsername();
+        String password = userLoginDTO.getPassword();
+        String identity = userLoginDTO.getIdentity();
         if (ObjectUtils.isEmpty(code) || ObjectUtils.isEmpty(password))
         {
             return Result.error("请输入账号和密码！");     //验证http请求的参数非空
@@ -45,4 +46,13 @@ public class UserController
             }
         }
     }
+}
+
+@Data
+@AllArgsConstructor
+class UserLoginDTO
+{   //这个DTO类用来封装请求体
+    String username;
+    String password;
+    String identity;
 }

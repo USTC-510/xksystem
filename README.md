@@ -55,4 +55,4 @@ controller，service，dao包的编写需要学习Mybatis,Springboot和http协�
         "data":{}  
      }  
 其中code是状态码，1代表响应成功，0代表失败；msg是响应失败时返回的错误信息；data是返回的数据。    
-4.对6月2日的**controller**和**service**进行了改写，现在我们根据**pojo**类来命名**controller**和**service**的类。
+4.对6月2日的**controller**和**service**进行了改写，现在我们根据**pojo**类来命名**controller**和**service**的类。  
