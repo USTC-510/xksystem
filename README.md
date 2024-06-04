@@ -56,3 +56,6 @@ controller，service，dao包的编写需要学习Mybatis,Springboot和http协�
      }  
 其中code是状态码，1代表响应成功，0代表失败；msg是响应失败时返回的错误信息；data是返回的数据。    
 4.对6月2日的**controller**和**service**进行了改写，现在我们根据**pojo**类来命名**controller**和**service**的类。  
+5.现在，**controller**层的类中需要写**DTO**类来封装HTTP请求的请求体，参考**UserController**。  
+也就是说，DTO类的各个属性名必须与HTTP请求的参数名一致。  
+6.我加入了**lombok**的依赖。现在可以用注解 ***@Data***和 ***@AllArgsConstructor***来简化实体类的编写了。
