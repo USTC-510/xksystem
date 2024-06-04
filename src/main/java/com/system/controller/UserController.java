@@ -1,6 +1,6 @@
 package com.system.controller;
-
 import com.system.pojo.Result;
+import com.system.pojo.User;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.util.ObjectUtils;
@@ -14,15 +14,18 @@ public class UserController
     private UserService userService;
 
     @PostMapping("/login")
-    public Result loginVer(@RequestBody String id, @RequestBody String password, @RequestBody String identity)
+    public Result login(@RequestBody User user)
     {
-        if (ObjectUtils.isEmpty(id) || ObjectUtils.isEmpty(password))
+        String code = user.getCode();
+        String password = user.getPassword();
+        String identity = user.getIdentity();
+        if (ObjectUtils.isEmpty(code) || ObjectUtils.isEmpty(password))
         {
             return Result.error("请输入账号和密码！");     //验证http请求的参数非空
         }
         else
         {
-            int res = userService.login(id,password,identity);
+            int res = userService.login(code,password,identity);
             switch (res)
             {
                 case 0:
