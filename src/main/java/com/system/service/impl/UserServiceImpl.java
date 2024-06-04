@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService
    private TeacherMapper teacherMapper;
    @Resource
    private AdministratorMapper administratorMapper;
-   public int loginVer(String id,String password,String identity)
+   public int login(String id,String password,String identity)
    {
        switch(identity)
        {
