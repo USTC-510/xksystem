@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import hello from "../components/hello.vue"
+import hello from "../components/welcome.vue"
 export default{
     name: student,
     components:{
@@ -22,7 +22,6 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    /* 设置背景图片，并使用cover属性使其铺满整个页面 */
     background-image: url("../assets/login.png");
     background-color: rgba(255, 255, 255, 0.5);
     background-size: cover;

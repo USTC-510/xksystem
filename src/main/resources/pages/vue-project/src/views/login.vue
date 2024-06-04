@@ -3,13 +3,13 @@
         <h1>选课系统登录</h1>  
         <form id="loginForm" class="login-form">  
             <div class="role-selection">
-                <input type="radio" id="student" value="student" v-model="identity" required checked>
+                <input type="radio" id="student" value=1 v-model="identity" required checked>
                 <label for="student">学生登录</label>
 
-                <input type="radio" id="teacher" value="teacher" v-model="identity" required>
+                <input type="radio" id="teacher" value=2 v-model="identity" required>
                 <label for="teacher">老师登录</label>
 
-                <input type="radio" id="admin" value="admin" v-model="identity" required>
+                <input type="radio" id="admin" value=3 v-model="identity" required>
                 <label for="admin">管理员登录</label>
             </div>
             <div class="login-input-text">  
