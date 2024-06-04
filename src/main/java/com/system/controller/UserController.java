@@ -1,5 +1,4 @@
 package com.system.controller;
-
 import com.system.pojo.Result;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/usr")
 public class UserController
 {
     @Resource
@@ -20,7 +19,7 @@ public class UserController
     {
         if (ObjectUtils.isEmpty(id) || ObjectUtils.isEmpty(password))
         {
-            return Result.error("请输入账号和密码！");
+            return Result.error("请输入账号和密码！");     //验证http请求的参数非空
         }
         else
         {
