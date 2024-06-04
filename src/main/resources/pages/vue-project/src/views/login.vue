@@ -78,7 +78,7 @@ body {
     height: 100vh;
     margin: 0;
     /* 设置背景图片，并使用cover属性使其铺满整个页面 */
-    background-image: url("../assets/login.png");
+    background-image: url("../../public/assets/login.png");
     background-color: rgba(255, 255, 255, 0.5);
     background-size: cover;
     background-repeat: no-repeat;
