@@ -1,5 +1,4 @@
 package com.system.mapper;
-
 import com.system.pojo.Administrator;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;

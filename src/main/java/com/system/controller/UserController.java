@@ -1,21 +1,20 @@
 package com.system.controller;
+
 import com.system.pojo.Result;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController
 {
     @Resource
     private UserService userService;
 
-    @RequestMapping("/loginVer")
-    public Result loginVer(@RequestParam("id")String id, @RequestParam("password")String password, @RequestParam("identity")String identity)
+    @PostMapping("/login")
+    public Result loginVer(@RequestBody String id, @RequestBody String password, @RequestBody String identity)
     {
         if (ObjectUtils.isEmpty(id) || ObjectUtils.isEmpty(password))
         {
@@ -23,7 +22,7 @@ public class UserController
         }
         else
         {
-            int res = userService.loginVer(id,password,identity);
+            int res = userService.login(id,password,identity);
             switch (res)
             {
                 case 0:
