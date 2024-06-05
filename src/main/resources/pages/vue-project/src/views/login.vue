@@ -3,13 +3,13 @@
       <h1>选课系统登录</h1>  
       <form id="loginForm" class="login-form" @submit.prevent="submit">  
         <div class="role-selection">
-          <input type="radio" id="student" value="1" v-model="identity" required checked>
+          <input type="radio" id="student" value="1" v-model="identity" checked>
           <label for="student">学生登录</label>
   
-          <input type="radio" id="teacher" value="2" v-model="identity" required>
+          <input type="radio" id="teacher" value="2" v-model="identity">
           <label for="teacher">老师登录</label>
   
-          <input type="radio" id="admin" value="3" v-model="identity" required>
+          <input type="radio" id="admin" value="3" v-model="identity">
           <label for="admin">管理员登录</label>
         </div>
         <div class="login-input-text">  
@@ -32,7 +32,7 @@
     name: 'login',
     data() {
       return {
-        identity: '1',
+        identity: "1",
         username: '',
         password: '',
         message: ''
@@ -139,5 +139,14 @@
   button:hover {
     background-color: #007B9A;
   }
+
+  .message {
+  color: green;
+  font-size: 24px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+
   </style>
   
