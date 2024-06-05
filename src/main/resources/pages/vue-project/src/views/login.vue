@@ -32,7 +32,7 @@
     name: 'login',
     data() {
       return {
-        identity: '',
+        identity: '1',
         username: '',
         password: '',
         message: ''

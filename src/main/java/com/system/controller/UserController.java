@@ -60,7 +60,8 @@ public class UserController
 @AllArgsConstructor
 @NoArgsConstructor
 class UserLoginDTO
-{   //这个DTO类用来封装请求体，它的属性名要与http请求的参数名一致。
+{
+    //这个DTO类用来封装请求体，它的属性名要与http请求的参数名一致。
     String username;
     //用户名username在后端中对应学号和工号code
     String password;
