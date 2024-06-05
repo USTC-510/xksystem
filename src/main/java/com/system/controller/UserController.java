@@ -4,6 +4,7 @@ import com.system.service.UserService;
 import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,6 +58,7 @@ public class UserController
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 class UserLoginDTO
 {   //这个DTO类用来封装请求体，它的属性名要与http请求的参数名一致。
     String username;
