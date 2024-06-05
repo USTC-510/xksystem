@@ -7,6 +7,7 @@ import java.util.List;
 @Repository
 public interface StudentMapper
 {
+    //学生信息的增删改查
     @Select("select * from student")
     List<Student> selectAll();
 

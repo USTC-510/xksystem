@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AdministratorMapper {
+public interface AdministratorMapper
+{
+    //管理员信息的增删改查
     @Select("select * from administrator")
     List<Administrator> selectAll();
     @Select("select * from administrator where code = #{code}")
