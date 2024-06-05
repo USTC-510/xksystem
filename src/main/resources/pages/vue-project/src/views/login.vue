@@ -43,9 +43,7 @@
         this.message = '';
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
-            const data = response.data;
-            console.log(data);
-            switch(data) {
+            switch(response.data) {
               case 1:
                 this.message = '学生登陆成功！';
                 this.$router.push({ path: '/content-student', query: { username: this.username } });
@@ -63,7 +61,6 @@
             }
           })
           .catch(error => {
-            console.log(我不想debug了,bug快消失吧,呜呜)
             console.log(error);
           });
       }

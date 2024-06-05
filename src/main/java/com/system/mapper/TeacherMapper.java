@@ -7,6 +7,7 @@ import java.util.List;
 @Repository
 public interface TeacherMapper
 {
+    //教师信息的增删改查
     @Select("select * from teacher")
     List<Teacher> selectAll();
 
