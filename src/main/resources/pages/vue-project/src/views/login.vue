@@ -46,15 +46,15 @@
             switch(response.data) {
               case 1:
                 this.message = '学生登陆成功！';
-                this.$router.push({ path: '/content-student', query: { username: this.username } });
+                setTimeout(() => {this.$router.push({ path: '/content-student', query: { username: this.username } });}, 800)
                 break;
               case 2:
                 this.message = '老师登陆成功！';
-                this.$router.push({ path: '/content-teacher', query: { username: this.username } });
+                setTimeout(() => {this.$router.push({ path: '/content-teacher', query: { username: this.username } });}, 800)
                 break;
               case 3:
                 this.message = '管理员登陆成功';
-                this.$router.push({ path: '/content-admin', query: { username: this.username } });
+                setTimeout(() => {this.$router.push({ path: '/content-admin', query: { username: this.username } });}, 800)
                 break;
               default:
                 alert('用户名或密码错误，或者您所选的登陆身份有误！');
