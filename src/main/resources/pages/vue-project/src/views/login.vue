@@ -32,7 +32,7 @@
     name: 'login',
     data() {
       return {
-        identity: '',
+        identity: '1',
         username: '',
         password: '',
         message: ''
@@ -43,7 +43,7 @@
         this.message = '';
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
-            console.log(response.data);
+            console.log(this.identity);
             switch(response.data.data) {
               case 1:
                 this.message = '学生登陆成功！';

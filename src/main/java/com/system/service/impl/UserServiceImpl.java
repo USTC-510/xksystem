@@ -22,17 +22,17 @@ public class UserServiceImpl implements UserService
    {
        switch(identity)
        {
-           case "student":
+           case "1":
                Student student = studentMapper.selectByCode(code);
                if (student == null) {return 0;}
                else if (student.getPassword().equals(password)) {return 1;}
                else {return 0;}
-           case "teacher":
+           case "2":
                Teacher teacher = teacherMapper.selectByCode(code);
                if (teacher == null) {return 0;}
                else if (teacher.getPassword().equals(password)) {return 2;}
                else {return 0;}
-           case "administrator":
+           case "3":
                Administrator admin = administratorMapper.selectByCode(code);
                if (admin == null) {return 0;}
                else if (admin.getPassword().equals(password)) {return 3;}
