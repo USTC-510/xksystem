@@ -54,13 +54,13 @@
       border: none;
     }
     #inforID{
-      background-image: url("information.jpg");
+      background-image: url("../../public/assets/information.jpg");
     }
     #chooseID{
-      background-image: url("choose.jpg");
+      background-image: url("../../public/assets/choose.jpg");
     }
     #myTableID{
-      background-image: url("myTable.jpg");
+      background-image: url("../../public/assets/mytable.jpg");
     }
     .text {
       font-size: 16px;
