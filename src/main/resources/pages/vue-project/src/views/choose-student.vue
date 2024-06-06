@@ -2,7 +2,7 @@
 
 </template>
 <script>
-default export{
+export default{
     name: choose_student
 }
 </script>

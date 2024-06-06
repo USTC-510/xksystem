@@ -2,7 +2,7 @@
 
 </template>
 <script>
-default export{
+export default{
     name: myTable_student
 }
 </script>
