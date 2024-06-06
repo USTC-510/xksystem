@@ -22,7 +22,7 @@
         </div>
         <button type="submit">登录</button>  
       </form>  
-      <p calss="massage">{{ message }}</p>  
+      <p class="message">{{ message }}</p>  
     </div>  
   </template>
   
@@ -46,21 +46,25 @@
             switch(response.data.data) {
               case 'student':
                 this.message = '学生登陆成功！';
-                setTimeout(() => {this.$router.push({ path: '/content-student', query: { username: this.username } }).catch(
-                  err => alert("跳转页面失败：",err)
-                );}, 800)
+                setTimeout(
+                  () => {
+                    this.$router.push({ path: '/content-student', query: { username: this.username } }).
+                    catch(
+                      err => alert("跳转页面失败：" + err)
+                    );
+                  }, 800);
                 break;
               case 'teacher':
                 this.message = '老师登陆成功！';
                 setTimeout(() => {this.$router.push({ path: '/content-teacher', query: { username: this.username } }).catch(
-                  err => alert("跳转页面失败：",err)
-                );}, 800)
+                  err => alert("跳转页面失败：" + err)
+                );}, 800);
                 break;
               case 'administrator':
                 this.message = '管理员登陆成功';
                 setTimeout(() => {this.$router.push({ path: '/content-admin', query: { username: this.username } }).catch(
-                  err => alert("跳转页面失败：",err)
-                );}, 800)
+                  err => alert("跳转页面失败：" + err)
+                );}, 800);
                 break;
               default:
                 alert('用户名或密码错误，或者您所选的登陆身份有误！');
@@ -68,6 +72,7 @@
           })
           .catch(error => {
             console.log(error);
+            this.message = '登陆失败，请稍后再试';
           });
       }
     }
@@ -75,7 +80,6 @@
   </script>
   
   <style scoped>
-  
   .container {
     width: 900px;
     height: 650px;
@@ -135,7 +139,7 @@
   }
 
   .message {
-  color: green;
+  color: black;
   font-size: 24px;
   margin-top: 10px;
   text-align: center;
