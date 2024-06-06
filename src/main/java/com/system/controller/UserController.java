@@ -22,7 +22,6 @@ public class UserController
     private UserService userService;
     //获得service层接口的代理
 
-    public static User this_User = new User();
 
     @PostMapping("/login")
     public Result login(@RequestBody UserLoginDTO userLoginDTO, HttpSession session)
