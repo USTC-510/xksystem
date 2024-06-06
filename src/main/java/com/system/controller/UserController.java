@@ -1,7 +1,10 @@
 package com.system.controller;
+
 import com.system.pojo.Result;
+import com.system.pojo.User;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +22,10 @@ public class UserController
     private UserService userService;
     //获得service层接口的代理
 
+    public static User this_User = new User();
+
     @PostMapping("/login")
-    public Result login(@RequestBody UserLoginDTO userLoginDTO)
+    public Result login(@RequestBody UserLoginDTO userLoginDTO, HttpSession session)
     //实现登录验证
     {
         String code = userLoginDTO.getUsername();
@@ -36,23 +41,27 @@ public class UserController
 
         else
         {
-            int res = userService.login(code,password,identity);
-            //调用service层的方法处理业务
-
-            switch (res)
+            User this_User = userService.login(code,password,identity);
+            //调用service层的方法获得当前用户的信息
+            if (this_User == null){return Result.error("账号或密码错误！");}
+            else
             {
-                case 0:
-                    return Result.error("账号或密码错误！");
-                case 1:
-                    return Result.success(1);
-                case 2:
-                    return Result.success(2);
-                case 3:
-                    return Result.success(3);
-                default:
-                    return Result.error("发生了一个意外的错误,请重试。");
+                session.setAttribute("user",this_User);
+                return Result.success(this_User.getIdentity());
             }
         }
+    }
+
+    @PostMapping("/realName")
+    public Result realName(HttpSession session)
+    {
+        //获取当前用户的名字
+        User this_User = (User) session.getAttribute("user");
+        if (this_User != null)
+        {
+            return Result.success(this_User.getName());
+        }
+        return Result.error("用户未登录！");
     }
 }
 

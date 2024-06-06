@@ -12,7 +12,6 @@ public class Result
     private String msg;  //錯誤信息
     private Object data; //要傳給前端的數據
 
-
     public static Result success(){
         return new Result(1,null,null);
     }
