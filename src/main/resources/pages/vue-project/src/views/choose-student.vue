@@ -3,7 +3,7 @@
 </template>
 <script>
 export default{
-    name: choose_student
+    name: 'choose_student'
 }
 </script>
 <style>
