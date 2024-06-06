@@ -4,15 +4,14 @@ axios.defaults.headers.common['Content-Type'] = 'application/json';
 const api = {
     //详情
     getMatch(username,password,identity){
-        return axios.post(path.baseurl + path.dataOfSomeone, {
+        return axios.post(path.baseurl + path.login, {
                 username: username,
                 password: password,
                 identity: identity
         })
     },
-    getRealName(username){
-        return axios.post(path.baseurl + path.dataOfSomeone, {
-                username:username
+    getRealName(){
+        return axios.post(path.baseurl + path.realName, {
         })
     }
 }

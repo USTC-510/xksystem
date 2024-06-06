@@ -3,13 +3,13 @@
       <h1>选课系统登录</h1>  
       <form id="loginForm" class="login-form" @submit.prevent="submit">  
         <div class="role-selection">
-          <input type="radio" id="student" value="1" v-model="identity" checked>
+          <input type="radio" id="student" value='1' v-model="identity" checked>
           <label for="student">学生登录</label>
   
-          <input type="radio" id="teacher" value="2" v-model="identity">
+          <input type="radio" id="teacher" value='2' v-model="identity">
           <label for="teacher">老师登录</label>
   
-          <input type="radio" id="admin" value="3" v-model="identity">
+          <input type="radio" id="admin" value='3' v-model="identity">
           <label for="admin">管理员登录</label>
         </div>
         <div class="login-input-text">  
@@ -22,7 +22,7 @@
         </div>
         <button type="submit">登录</button>  
       </form>  
-      <p>{{ message }}</p>  
+      <p calss="massage">{{ message }}</p>  
     </div>  
   </template>
   
@@ -32,7 +32,7 @@
     name: 'login',
     data() {
       return {
-        identity: "1",
+        identity: '1',
         username: '',
         password: '',
         message: ''
@@ -44,17 +44,23 @@
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
             switch(response.data.data) {
-              case 1:
+              case 'student':
                 this.message = '学生登陆成功！';
-                setTimeout(() => {this.$router.push({ path: '/content-student', query: { username: this.username } });}, 800)
+                setTimeout(() => {this.$router.push({ path: '/content-student', query: { username: this.username } }).catch(
+                  err => alert("跳转页面失败：",err)
+                );}, 800)
                 break;
-              case 2:
+              case 'teacher':
                 this.message = '老师登陆成功！';
-                setTimeout(() => {this.$router.push({ path: '/content-teacher', query: { username: this.username } });}, 800)
+                setTimeout(() => {this.$router.push({ path: '/content-teacher', query: { username: this.username } }).catch(
+                  err => alert("跳转页面失败：",err)
+                );}, 800)
                 break;
-              case 3:
+              case 'administrator':
                 this.message = '管理员登陆成功';
-                setTimeout(() => {this.$router.push({ path: '/content-admin', query: { username: this.username } });}, 800)
+                setTimeout(() => {this.$router.push({ path: '/content-admin', query: { username: this.username } }).catch(
+                  err => alert("跳转页面失败：",err)
+                );}, 800)
                 break;
               default:
                 alert('用户名或密码错误，或者您所选的登陆身份有误！');
@@ -69,18 +75,6 @@
   </script>
   
   <style scoped>
-  body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-image: url("../../public/assets/login.png");
-    background-color: rgba(255, 255, 255, 0.5);
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
   
   .container {
     width: 900px;

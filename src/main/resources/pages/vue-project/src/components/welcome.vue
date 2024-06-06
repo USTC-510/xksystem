@@ -21,9 +21,9 @@
     },
     methods: {
       fetchUserName() {
-        api.getRealName(this.username)
+        api.getRealName()
           .then(response => {
-            this.realName = response.data;  // 假设后端返回的数据中包含 realName 字段
+            this.realName = response.data.realName;  // 假设后端返回的数据中包含 realName 字段
           })
           .catch(error => {
             console.error('获取用户信息失败:', error);
@@ -35,12 +35,17 @@
   
   <style scoped>
   .welcome {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+      color: #f5f5f5;
+      font-size: 40px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 45vh;
+      width: 55vw;
+    }
   </style>
   
