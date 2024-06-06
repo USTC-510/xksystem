@@ -32,10 +32,10 @@ const instance = axios.create({
     timeout: 5000
 });
 
-// 请求拦截器
+ 请求拦截器
 instance.interceptors.request.use(
     config => {
-        if (config.method === "post") {
+        if (config.methods === "post") {
             config.data = querystring.stringify(config.data);
         }
         return config;
@@ -69,3 +69,4 @@ instance.interceptors.response.use(
 );
 
 export default instance;
+
