@@ -2,6 +2,7 @@
     <div class="welcome">
       <p v-if="realName">欢迎，{{ realName }}！</p>
       <p v-else>加载中……</p>
+      <!--如果暂时没有获取到姓名则显示加载中-->
     </div>
   </template>
   
@@ -16,14 +17,13 @@
       }
     },
     created() {
-      this.username = this.$route.query.username;
       this.fetchUserName();
     },
     methods: {
       fetchUserName() {
         api.getRealName()
           .then(response => {
-            this.realName = response.data.realName;  // 假设后端返回的数据中包含 realName 字段
+            this.realName = response.data;
           })
           .catch(error => {
             console.error('获取用户信息失败:', error);

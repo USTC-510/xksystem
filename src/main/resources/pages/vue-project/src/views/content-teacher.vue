@@ -9,9 +9,9 @@
     <button class="img" id="chooseID" @click="handleChoose"></button>
     <p class="text">学生选课</p>
   </div>
-  <div class="myTable">
+  <div class="mytable">
     <button class="img" id="myTableID" @click="handleMyTable"></button>
-    <p class="text">我的课表</p>
+    <p class="text">我的任课</p>
   </div>
     </div>
   </template>
@@ -20,7 +20,7 @@
   import welcome from "../components/welcome.vue";
   
   export default {
-    name: 'content_student',
+    name: 'content_teacher',
     components: {
       welcome
     },
@@ -31,12 +31,12 @@
         );
       },
       handleChoose(){
-        this.$router.push({ path: '/choose-student', query: { username: this.username } }).catch(
+        this.$router.push({ path: '/choose-teacher', query: { username: this.username } }).catch(
           err => alert("跳转页面失败：",err)
         );
       },
       handleMyTable(){
-        this.$router.push({ path: '/myTable-student', query: { username: this.username } }).catch(
+        this.$router.push({ path: '/myTable-teacher', query: { username: this.username } }).catch(
           err => alert("跳转页面失败：",err)
         );
       }

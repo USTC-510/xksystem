@@ -7,11 +7,11 @@
   </div>
   <div class="choose">
     <button class="img" id="chooseID" @click="handleChoose"></button>
-    <p class="text">学生选课</p>
+    <p class="text">课程管理</p>
   </div>
-  <div class="myTable">
+  <div class="mytable">
     <button class="img" id="myTableID" @click="handleMyTable"></button>
-    <p class="text">我的课表</p>
+    <p class="text">人员管理</p>
   </div>
     </div>
   </template>
@@ -31,12 +31,12 @@
         );
       },
       handleChoose(){
-        this.$router.push({ path: '/choose-student', query: { username: this.username } }).catch(
+        this.$router.push({ path: '/choose-admin', query: { username: this.username } }).catch(
           err => alert("跳转页面失败：",err)
         );
       },
       handleMyTable(){
-        this.$router.push({ path: '/myTable-student', query: { username: this.username } }).catch(
+        this.$router.push({ path: '/myTable-admin', query: { username: this.username } }).catch(
           err => alert("跳转页面失败：",err)
         );
       }
