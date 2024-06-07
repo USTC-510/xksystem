@@ -12,7 +12,7 @@ const api = {
         })
     },
     getRealName(){
-        return axios.post(path.baseurl + path.realName, {
+        return axios.get(path.baseurl + path.realName, {
         })
     }
 }

@@ -43,6 +43,7 @@
         this.message = '';
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
+            console.log(response.data);
             switch(response.data) {
               case "student":
                 this.message = '学生登陆成功！';

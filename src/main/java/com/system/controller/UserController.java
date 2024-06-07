@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "http://114.214.234.245:8080", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
+@CrossOrigin(origins = {"http://localhost:8080","http://114.214.234.245:8080"}, methods = {RequestMethod.GET, RequestMethod.POST})
 public class UserController
 {
     @Resource
@@ -43,8 +43,7 @@ public class UserController
             User this_User = userService.login(code,password,identity);
             //调用service层的方法获得当前用户的信息
 
-            response.setHeader("X-Content-Type-Options", "nosniff");
-            //设置响应头
+            response.setHeader("X-Content-Type-Options","nosniff");
 
             if (this_User == null){return Result.error("账号或密码错误！","notFound");}
             else
@@ -55,7 +54,7 @@ public class UserController
         }
     }
 
-    @PostMapping("/realName")
+    @GetMapping("/realName")
     public Result realName(HttpSession session)
     {
         //获取当前用户的名字
