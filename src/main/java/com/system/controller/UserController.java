@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "http://localhost:8080", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "http://114.214.234.245:8080", methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE,RequestMethod.PUT})
 public class UserController
 {
     @Resource
@@ -34,7 +34,7 @@ public class UserController
 
         if (ObjectUtils.isEmpty(code) || ObjectUtils.isEmpty(password) || ObjectUtils.isEmpty(identity))
         {
-            return Result.error("请输入账号和密码！");
+            return Result.error("请输入账号和密码！","notFound");
         }
         //验证http请求的参数非空,否则返回错误信息
 
@@ -46,7 +46,7 @@ public class UserController
             response.setHeader("X-Content-Type-Options", "nosniff");
             //设置响应头
 
-            if (this_User == null){return Result.error("账号或密码错误！");}
+            if (this_User == null){return Result.error("账号或密码错误！","notFound");}
             else
             {
                 session.setAttribute("user",this_User);
@@ -64,7 +64,7 @@ public class UserController
         {
             return Result.success(this_User.getName());
         }
-        return Result.error("用户未登录！");
+        return Result.error("用户未登录！","notFound");
     }
 }
 
