@@ -11,11 +11,16 @@ const api = {
         })
     },
     getRealName(){
-        return axios.post(path.baseurl + path.realName, {
+        return axios.get(path.baseurl + path.realName, {
         })
     },
     getInfor(){
-        return axios.post(path.baseurl + path.infor, {
+        return axios.get(path.baseurl + path.infor, {
+        })
+    },
+    changePassword(password){
+        return axios.post(path.baseurl + path.changePassword, {
+            password: password
         })
     }
 }

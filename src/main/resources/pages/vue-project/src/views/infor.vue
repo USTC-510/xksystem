@@ -3,13 +3,13 @@
       <div class="card">
         <img :src="person.photo" alt="student photo" class="student-photo"/>
         <h2>{{ person.realName }}</h2>
-        <p>身份：{{ person.identity }}</p>
-        <p>年龄: {{ person.age }}</p>
-        <p>性别: {{ person.gender }}</p>
-        <p>学院：{{ person.faculty }}</p>
-        <p>专业：{{ person.major }}</p>
-        <p>班级: {{ person.class }}</p>
-        <a href="../components/forgetPassword.vue" @click.prevent="showCard = true">修改密码</a>
+        <p>{{ person.identity }}</p>
+        <p>{{ person.age }}</p>
+        <p>{{ person.gender }}</p>
+        <p>{{ person.faculty }}</p>
+        <p>{{ person.major }}</p>
+        <p>{{ person.class }}</p>
+        <a href="../components/changePassword.vue" @click.prevent="showCard = true">修改密码</a>
         <forgetPassword v-if="showCard" @close="showCard = false" />
       </div>
     </div>
@@ -17,11 +17,11 @@
   
   <script>
   import api from '../api/function.js'
-  import forgetPassword from '../components/forgetPassword.vue'
+  import changePassword from '../components/changePassword.vue'
   export default {
-    name: 'infor_student',
+    name: 'infor',
     components: {
-        forgetPassword
+        changePassword
     },
     data() {
       return {
@@ -40,12 +40,12 @@
     },
     created() {
         api.getInfor().then(response => {
-            this.person.realName = response.data.realName;
-            this.person.age = response.data.age;
-            this.person.gender = response.data.gender;
-            this.person.faculty = response.data.faculty;
-            this.person.major = response.data.major;
-            this.person.class = response.data.class
+            this.person.realName = "姓名：" + response.data.realName;
+            this.person.age = "年龄：" + response.data.age;
+            this.person.gender = "性别：" + response.data.gender;
+            this.person.faculty = "学院：" + response.data.faculty;
+            this.person.major = "专业/研究方向：" + response.data.major;
+            this.person.class = "班级：" + response.data.class;
         })
     }
   }

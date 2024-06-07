@@ -26,7 +26,7 @@
     },
     methods: {
       handleInfor(){
-        this.$router.push({ path: '/infor-student', query: { username: this.username } }).catch(
+        this.$router.push({ path: '/infor', query: { username: this.username } }).catch(
           err => alert("跳转页面失败：",err)
         );
       },
