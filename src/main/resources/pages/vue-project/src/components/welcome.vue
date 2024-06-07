@@ -16,14 +16,13 @@
       }
     },
     created() {
-      this.username = this.$route.query.username;
       this.fetchUserName();
     },
     methods: {
       fetchUserName() {
         api.getRealName()
           .then(response => {
-            this.realName = response.data.realName;  // 假设后端返回的数据中包含 realName 字段
+            this.realName = response.data;  // 假设后端返回的数据中包含 realName 字段
           })
           .catch(error => {
             console.error('获取用户信息失败:', error);
