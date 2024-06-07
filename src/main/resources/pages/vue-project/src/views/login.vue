@@ -45,7 +45,7 @@
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
             switch(response.data) {
-              case 'student':
+              case "student":
                 this.message = '学生登陆成功！';
                 this.isError = false;
                 setTimeout(
@@ -56,7 +56,7 @@
                     );
                   }, 800);
                 break;
-              case 'teacher':
+              case "teacher":
                 this.message = '老师登陆成功！';
                 setTimeout(
                   () => {
@@ -66,7 +66,7 @@
                     );
                   }, 800);
                 break;
-              case 'administrator':
+              case "administrator":
                 this.message = '管理员登陆成功';
                 setTimeout(
                   () => {
