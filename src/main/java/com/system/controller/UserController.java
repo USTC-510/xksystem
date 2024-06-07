@@ -4,18 +4,18 @@ import com.system.pojo.Result;
 import com.system.pojo.User;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "http://localhost:8080", methods = {RequestMethod.GET, RequestMethod.POST})
 public class UserController
 {
     @Resource
@@ -24,7 +24,7 @@ public class UserController
 
 
     @PostMapping("/login")
-    public Result login(@RequestBody UserLoginDTO userLoginDTO, HttpSession session)
+    public Result login(@RequestBody UserLoginDTO userLoginDTO, HttpSession session, HttpServletRequest request, HttpServletResponse response)
     //实现登录验证
     {
         String code = userLoginDTO.getUsername();
@@ -42,6 +42,10 @@ public class UserController
         {
             User this_User = userService.login(code,password,identity);
             //调用service层的方法获得当前用户的信息
+
+            response.setHeader("X-Content-Type-Options", "nosniff");
+            //设置响应头
+
             if (this_User == null){return Result.error("账号或密码错误！");}
             else
             {
