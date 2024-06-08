@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = {"http://115.236.153.170","http://localhost:8080","http://114.214.234.245:8080","http://92o66n2830.goho.co"}, methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = {"http://localhost:1969","http://114.214.234.245:1969","http://localhost:8080","http://114.214.234.245:8080","http://92o66n2830.goho.co"}, methods = {RequestMethod.GET, RequestMethod.POST})
 public class UserController {
     @Resource
     private UserService userService;
@@ -74,17 +74,17 @@ public class UserController {
         else {return Result.error("请输入正确的用户名或身份！","notFound");}
     }
 
-    @PostMapping("/changePassword")
-    public Result changePassword(@RequestBody ChangePasswordDTO dto,HttpServletRequest request,HttpServletResponse response)
-    {
-        //修改密码
-
-        String username = dto.getUsername();
-        String identity = dto.getIdentity();
-        String originalPassword = dto.getOriginalPassword();
-        String newPassword = dto.getNewPassword();
-        //获取请求体中的参数
-    }
+//    @PostMapping("/changePassword")
+//    public Result changePassword(@RequestBody ChangePasswordDTO dto,HttpServletRequest request,HttpServletResponse response)
+//    {
+//        //修改密码
+//
+//        String username = dto.getUsername();
+//        String identity = dto.getIdentity();
+//        String originalPassword = dto.getOriginalPassword();
+//        String newPassword = dto.getNewPassword();
+//        //获取请求体中的参数
+//    }
 }
 
 
