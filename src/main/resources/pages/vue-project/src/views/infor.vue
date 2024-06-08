@@ -33,7 +33,7 @@
           faculty: '',
           major: '',
           class: '',
-          photo: 'photo.jpeg',
+          photo: 'http://114.214.234.245:8080/public/assets/photo.jpeg',
         },
         showCard: false
       }
@@ -46,7 +46,8 @@
             this.person.faculty = "学院：" + response.data.faculty;
             this.person.major = "专业/研究方向：" + response.data.major;
             this.person.class = "班级：" + response.data.class;
-        })
+        }).catch(error => {
+    console.log(error)})
     }
   }
   </script>
