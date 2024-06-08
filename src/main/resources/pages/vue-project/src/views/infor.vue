@@ -39,7 +39,9 @@
       }
     },
     created() {
-        api.getInfor().
+        const username = localStorage.getItem(username);
+        const identity = localStorage.getItem(identity);
+        api.getInfor(username, identity).
         then(response => {
             this.person.realName = "姓名：" + response.data.realName;
             this.person.age = "年龄：" + response.data.age;
