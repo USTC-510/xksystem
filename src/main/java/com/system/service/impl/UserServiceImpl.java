@@ -44,4 +44,19 @@ public class UserServiceImpl implements UserService
                return null;
        }
    }
+
+   public String realName(String username,String identity)
+   {
+        switch(identity)
+        {
+            case "1":
+                return studentMapper.selectByCode(username).getName();
+            case "2":
+                return teacherMapper.selectByCode(username).getName();
+            case "3":
+                return administratorMapper.selectByCode(username).getName();
+            default:
+                return null;
+        }
+   }
 }

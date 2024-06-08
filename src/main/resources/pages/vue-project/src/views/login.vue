@@ -42,7 +42,7 @@
     methods: {
       submit() {
         this.message = '';
-        localStorage.setItem(username, this.username);
+        localStorage.setItem('username', this.username);
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
             console.log(response.data);

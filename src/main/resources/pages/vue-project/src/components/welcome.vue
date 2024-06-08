@@ -20,7 +20,7 @@
     },
     methods: {
       fetchUserName() {
-        const username = localStorage.getItem(username)
+        const username = localStorage.getItem("username");
         api.getRealName(username)
           .then(response => {
             this.realName = response.data;
