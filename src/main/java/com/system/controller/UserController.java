@@ -15,15 +15,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(origins = {"http://115.236.153.170","http://localhost:8080","http://114.214.234.245:8080","http://92o66n2830.goho.co"}, methods = {RequestMethod.GET, RequestMethod.POST})
-public class UserController
-{
+public class UserController {
     @Resource
     private UserService userService;
     //获得service层接口的代理
 
     @PostMapping("/login")
-    public Result login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request, HttpServletResponse response)
-    {
+    public Result login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request, HttpServletResponse response) {
         //实现登录验证
 
         String code = userLoginDTO.getUsername();
@@ -31,33 +29,40 @@ public class UserController
         String identity = userLoginDTO.getIdentity();
         //获得HTTP请求的参数
 
-        if (ObjectUtils.isEmpty(code) || ObjectUtils.isEmpty(password) || ObjectUtils.isEmpty(identity))
-        {
-            return Result.error("请输入账号和密码！","notFound");
+        if (ObjectUtils.isEmpty(code) || ObjectUtils.isEmpty(password) || ObjectUtils.isEmpty(identity)) {
+            return Result.error("请输入账号和密码！", "notFound");
         }
         //验证http请求的参数非空,否则返回错误信息
 
-        else
-        {
-            User this_User = userService.login(code,password,identity);
+        else {
+            User this_User = userService.login(code, password, identity);
             //调用service层的方法获得当前用户的信息
 
-            response.setHeader("X-Content-Type-Options","nosniff");
+            response.setHeader("X-Content-Type-Options", "nosniff");
             //设置请求头
 
-            if (this_User == null){return Result.error("账号或密码错误！","notFound");}
-            else {return Result.success(this_User.getIdentity());}
+            if (this_User == null) {
+                return Result.error("账号或密码错误！", "notFound");
+            } else {
+                return Result.success(this_User.getIdentity());
+            }
         }
     }
 
-//    @GetMapping("/realName")
-//    public Result realName(@RequestParam String username,HttpServletRequest request, HttpServletResponse response)
-//    {
-//        //获取当前用户的姓名
-//
-//
-//    }
+    @GetMapping("/realName")
+    public Result realName(@RequestParam String username, @RequestParam String identity, HttpServletRequest request, HttpServletResponse response) {
+        //获取当前用户的姓名
+
+        if (ObjectUtils.isEmpty(username) || ObjectUtils.isEmpty(identity)) {return Result.error("发生了意料之外的错误！", "notFound");}
+        //检查请求非空
+
+        String name = userService.realName(username, identity);
+        //调用service获取结果
+        if (name != null) {return Result.success(name);}
+        else {return Result.error("请输入正确的用户名或身份！", "notFound");}
+    }
 }
+
 
 @Data
 @AllArgsConstructor
