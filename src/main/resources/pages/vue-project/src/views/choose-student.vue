@@ -46,7 +46,7 @@
     },
     methods: {
       searchCourses() {
-        // 搜索功能，已经使用了 computed 属性 filteredCourses 来自动过滤课程
+        
       },
       submitCourses() {
         if (this.confirmSelection) {
