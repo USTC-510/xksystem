@@ -1,6 +1,7 @@
 
 const base = {
-    baseurl:"http://localhost:1969/",
+    //baseurl:"http://localhost:1969/",
+    baseurl:"http://106.53.28.91/",
     login:"api/user/login",
     realName:"api/user/realName",
     infor:"api/user/infor",

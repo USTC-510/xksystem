@@ -9,7 +9,7 @@
     <button class="img" id="chooseID" @click="handleChoose"></button>
     <p class="text">学生选课</p>
   </div>
-  <div class="mytable">
+  <div class="myTable">
     <button class="img" id="myTableID" @click="handleMyTable"></button>
     <p class="text">我的课表</p>
   </div>
