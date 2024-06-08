@@ -21,12 +21,12 @@ public class UserController {
     //获得service层接口的代理
 
     @PostMapping("/login")
-    public Result login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request, HttpServletResponse response) {
+    public Result login(@RequestBody LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response) {
         //实现登录验证
 
-        String code = userLoginDTO.getUsername();
-        String password = userLoginDTO.getPassword();
-        String identity = userLoginDTO.getIdentity();
+        String code = loginDTO.getUsername();
+        String identity = loginDTO.getIdentity();
+        String password = loginDTO.getPassword();
         //获得HTTP请求的参数
 
         if (ObjectUtils.isEmpty(code) || ObjectUtils.isEmpty(password) || ObjectUtils.isEmpty(identity)) {
@@ -35,17 +35,15 @@ public class UserController {
         //验证http请求的参数非空,否则返回错误信息
 
         else {
-            User this_User = userService.login(code, password, identity);
+            User user = userService.getUser(code,identity);
             //调用service层的方法获得当前用户的信息
 
             response.setHeader("X-Content-Type-Options", "nosniff");
             //设置请求头
 
-            if (this_User == null) {
-                return Result.error("账号或密码错误！", "notFound");
-            } else {
-                return Result.success(this_User.getIdentity());
-            }
+            if (user == null) {return Result.error("账号错误！", "notFound");}
+            else if(!user.getPassword().equals(password)) {return Result.error("密码错误！","notFound");}
+            else {return Result.success(user.getIdentity());}
         }
     }
 
@@ -55,11 +53,37 @@ public class UserController {
 
         if (ObjectUtils.isEmpty(username) || ObjectUtils.isEmpty(identity)) {return Result.error("发生了意料之外的错误！", "notFound");}
         //检查请求非空
-
-        String name = userService.realName(username, identity);
+        String name = userService.getUser(username, identity).getName();
         //调用service获取结果
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
         if (name != null) {return Result.success(name);}
         else {return Result.error("请输入正确的用户名或身份！", "notFound");}
+    }
+
+    @GetMapping("/getInfor")
+    public Result getInfor(@RequestParam String username,@RequestParam String identity,HttpServletRequest request,HttpServletResponse response)
+    {
+        //获取当前用户的各项信息
+
+        User user = userService.getUser(username,identity);
+        //调用service的方法
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+        if (user != null) {return Result.success(user);}
+        else {return Result.error("请输入正确的用户名或身份！","notFound");}
+    }
+
+    @PostMapping("/changePassword")
+    public Result changePassword(@RequestBody ChangePasswordDTO dto,HttpServletRequest request,HttpServletResponse response)
+    {
+        //修改密码
+
+        String username = dto.getUsername();
+        String identity = dto.getIdentity();
+        String originalPassword = dto.getOriginalPassword();
+        String newPassword = dto.getNewPassword();
+        //获取请求体中的参数
     }
 }
 
@@ -67,11 +91,20 @@ public class UserController {
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-class UserLoginDTO
+class LoginDTO
 {
-    //这个DTO类用来封装请求体，它的属性名要与http请求的参数名一致。
-    String username;
-    //用户名username在后端中对应学号和工号code
-    String password;
-    String identity;
+    private String username;
+    private String password;
+    private String identity;
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+class ChangePasswordDTO
+{
+    private String username;
+    private String identity;
+    private String originalPassword;
+    private String newPassword;
 }

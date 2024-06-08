@@ -17,7 +17,7 @@ public interface TeacherMapper
     @Select("select * from teacher where name = #{name}")
     Teacher selectByName(String name);
 
-    @Insert("insert into teacher(name,code,gender,phonenumber,password,age) values(#{name},#{code},#{gender},#{phonenumber},#{password},#{age}")
+    @Insert("insert into teacher(name,code,gender,phonenumber,password,age,major,faculty) values(#{name},#{code},#{gender},#{phonenumber},#{password},#{age},#{major},#{faculty}")
     void insertTeacher(Teacher teacher);
 
     @Delete("delete from teacher where code = #{code}")
