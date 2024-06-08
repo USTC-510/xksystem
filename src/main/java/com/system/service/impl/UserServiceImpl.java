@@ -33,17 +33,17 @@ public class UserServiceImpl implements UserService
        }
    }
 
-   public int changePassword(String username,String identity,String originalPassword,String newPassword)
-   {
-        User user = getUser(username,identity);
-        if (user == null) {return 0;}
-        else if (!user.getPassword().equals(originalPassword)) {return 0;}
-        else
-        {
-            switch(identity)
-            {
-                case
-            }
-        }
-   }
+//   public int changePassword(String username,String identity,String originalPassword,String newPassword)
+//   {
+//        User user = getUser(username,identity);
+//        if (user == null) {return 0;}
+//        else if (!user.getPassword().equals(originalPassword)) {return 0;}
+//        else
+//        {
+//            switch(identity)
+//            {
+//                case
+//            }
+//        }
+//   }
 }
