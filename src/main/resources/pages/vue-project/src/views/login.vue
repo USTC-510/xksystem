@@ -46,8 +46,7 @@
         localStorage.setItem(identity, this.identity);
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
-            console.log(response.data);
-            switch(response.data) {
+            switch(response.data.username) {
               case "student":
                 this.message = '学生登陆成功！';
                 this.isError = false;

@@ -30,7 +30,7 @@
         const identity = localStorage.getItem(identity);
         api.changePassword(username, this.originalPassword, identity).
         then(response => {
-          if(response.data == 0){
+          if(response.data.isError == 0){
             alert("修改成功");
           }
           else{
