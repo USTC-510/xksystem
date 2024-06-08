@@ -13,26 +13,25 @@ const api = {
     getRealName(username, identity){
         return axios.get(path.baseurl + path.realName, {
             params: { 
-                username,
-                identity
+                username: username,
+                identity: identity
             }
         })
     },
     getInfor(username, identity){
         return axios.get(path.baseurl + path.infor, {
             params: { 
-                username,
-                identity
+                username: username,
+                identity: identity
             }
         })
     },
-    changePassword(username, password, identity){
-        return axios.get(path.baseurl + path.changePassword, {
-            params: { 
-                username,
-                password,
-                identity
-            }
+    changePassword(username, originalPassword, newPassword, identity){
+        return axios.post(path.baseurl + path.changePassword, {
+                username: username,
+                originalPassword: originalPassword,
+                newPassword: newPassword,
+                identity: identity
         })
     }
 }

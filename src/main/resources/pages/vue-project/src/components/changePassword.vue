@@ -28,9 +28,9 @@
       submit() {//需要和后端存的密码匹配
         const username = localStorage.getItem('username');
         const identity = localStorage.getItem('identity');
-        api.changePassword(username, this.originalPassword, identity).
+        api.changePassword(username, this.originalPassword, this.newPassword, identity).
         then(response => {
-          if(response.data == 0){
+          if(response.data.isError == 0){
             alert("修改成功");
           }
           else{

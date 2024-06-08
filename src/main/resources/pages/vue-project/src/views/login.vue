@@ -48,8 +48,7 @@
 
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
-            console.log(response.data);
-            switch(response.data) {
+            switch(response.data.username) {
               case "student":
                 this.message = '学生登陆成功！';
                 this.isError = false;
@@ -65,7 +64,7 @@
                 this.message = '老师登陆成功！';
                 setTimeout(
                   () => {
-                    this.$router.push({ path: '/content-teacher'}).
+                    this.$router.push({ path: '/content-teacher' }).
                     catch(
                       err => alert("跳转页面失败：" + err)
                     );
@@ -75,13 +74,14 @@
                 this.message = '管理员登陆成功';
                 setTimeout(
                   () => {
-                    this.$router.push({ path: '/content-admin'}).
+                    this.$router.push({ path: '/content-admin' }).
                     catch(
                       err => alert("跳转页面失败：" + err)
                     );
                   }, 800);
                 break;
               default:
+                this.isError = true;
                 this.message = '用户名或密码错误，或者您所选的登陆身份有误！';
             }
           })

@@ -1,10 +1,10 @@
 <template>
     <div class="container main">
       <div class="search-container">
-        <input type="text" v-model="searchQuery" placeholder="搜索课程..." />
+        <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
         <button @click="searchCourses">搜索</button>
       </div>
-      <h2>3. 选择课程</h2>
+      <h2>选择课程</h2>
       <table>
         <tr>
           <th>课程编号</th>
@@ -64,6 +64,7 @@
     width: 80%;
     margin: auto;
     overflow: hidden;
+    min-width: 70%;
   }
   .main {
     padding: 20px;

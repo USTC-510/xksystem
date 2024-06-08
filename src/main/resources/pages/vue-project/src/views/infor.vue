@@ -3,6 +3,7 @@
       <div class="card">
         <img :src="person.photo" alt="student photo" class="photo"/>
         <h2>{{ person.realName }}</h2>
+        <p>{{ person.code }}</p>
         <p>{{ person.identity }}</p>
         <p>{{ person.age }}</p>
         <p>{{ person.gender }}</p>
@@ -28,6 +29,7 @@
         person: {
           realName: '',
           identity: '',
+          code: '',
           age: 18,
           gender: '',
           faculty: '',
@@ -44,6 +46,7 @@
         api.getInfor(username, identity).
         then(response => {
             this.person.realName = "姓名：" + response.data.name;
+            this.person.code = "学号：" + response.data.code;
             this.person.age = "年龄：" + response.data.age;
             this.person.gender = "性别：" + response.data.gender;
             this.person.faculty = "学院：" + response.data.faculty;
