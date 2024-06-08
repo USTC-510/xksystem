@@ -12,7 +12,6 @@
     name: 'welcome',
     data() {
       return {
-        username: '',
         realName: null  // 初始化真实姓名为 null
       }
     },
@@ -21,7 +20,8 @@
     },
     methods: {
       fetchUserName() {
-        api.getRealName()
+        const username = localStorage.getItem(username)
+        api.getRealName(username)
           .then(response => {
             this.realName = response.data;
           })

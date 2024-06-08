@@ -22,7 +22,7 @@
         </div>
         <button type="submit">登录</button>  
       </form>  
-      <p :class="{'message': true, 'error': isError}">{{ message }}</p> 
+      <p :class="{'message': ! isError, 'error': isError}">{{ message }}</p> 
     </div>  
   </template>
   
@@ -42,6 +42,7 @@
     methods: {
       submit() {
         this.message = '';
+        localStorage.setItem(username, this.username);
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
             switch(response.data) {
@@ -50,7 +51,7 @@
                 this.isError = false;
                 setTimeout(
                   () => {
-                    this.$router.push({ path: '/content-student', query: { username: this.username } }).
+                    this.$router.push({ path: '/content-student' }).
                     catch(
                       err => alert("跳转页面失败：" + err)
                     );
@@ -60,7 +61,7 @@
                 this.message = '老师登陆成功！';
                 setTimeout(
                   () => {
-                    this.$router.push({ path: '/content-teacher', query: { username: this.username } }).
+                    this.$router.push({ path: '/content-teacher'}).
                     catch(
                       err => alert("跳转页面失败：" + err)
                     );
@@ -70,7 +71,7 @@
                 this.message = '管理员登陆成功';
                 setTimeout(
                   () => {
-                    this.$router.push({ path: '/content-admin', query: { username: this.username } }).
+                    this.$router.push({ path: '/content-admin'}).
                     catch(
                       err => alert("跳转页面失败：" + err)
                     );
@@ -131,6 +132,9 @@
   
   .error {
     color: red;
+    font-size: 24px;
+    margin-top: 10px;
+    text-align: center;
   }
   
   button {

@@ -1,7 +1,7 @@
 <template>
     <div class="student-profile">
       <div class="card">
-        <img :src="person.photo" alt="student photo" class="student-photo"/>
+        <img :src="person.photo" alt="student photo" class="photo"/>
         <h2>{{ person.realName }}</h2>
         <p>{{ person.identity }}</p>
         <p>{{ person.age }}</p>
@@ -33,19 +33,23 @@
           faculty: '',
           major: '',
           class: '',
-          photo: 'photo.jpeg',
+          photo: '../../public/assets/photo.jpeg'
         },
         showCard: false
       }
     },
     created() {
-        api.getInfor().then(response => {
+        api.getInfor().
+        then(response => {
             this.person.realName = "姓名：" + response.data.realName;
             this.person.age = "年龄：" + response.data.age;
             this.person.gender = "性别：" + response.data.gender;
             this.person.faculty = "学院：" + response.data.faculty;
             this.person.major = "专业/研究方向：" + response.data.major;
             this.person.class = "班级：" + response.data.class;
+        }).
+        catch(error => {
+          console.log(error)
         })
     }
   }
@@ -69,7 +73,7 @@
     text-align: center;
   }
   
-  .student-photo {
+  .photo {
     width: 100px;
     height: 100px;
     border-radius: 50%;
