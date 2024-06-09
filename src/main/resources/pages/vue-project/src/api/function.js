@@ -42,11 +42,6 @@ const api = {
         return axios.get(path.baseurl + path.detailedCourse, {
             course: course
         })
-    },
-    ifCanCheck(id){
-        return axios.get(path.baseurl + path.checkCourse, {
-            id: id
-        })
     }
 }
 
