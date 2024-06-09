@@ -24,6 +24,9 @@ public class UserController {
     public Result login(@RequestBody LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response) {
         //实现登录验证
 
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+
         String code = loginDTO.getUsername();
         String identity = loginDTO.getIdentity();
         String password = loginDTO.getPassword();
@@ -38,8 +41,6 @@ public class UserController {
             User user = userService.getUser(code, identity);
             //调用service层的方法获得当前用户的信息
 
-            response.setHeader("X-Content-Type-Options", "nosniff");
-            //设置请求头
 
             if (user == null) {
                 return Result.error("账号错误！", "notFound");
@@ -55,14 +56,16 @@ public class UserController {
     public Result realName(@RequestParam String username, @RequestParam String identity, HttpServletRequest request, HttpServletResponse response) {
         //获取当前用户的姓名
 
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+
         if (ObjectUtils.isEmpty(username) || ObjectUtils.isEmpty(identity)) {
             return Result.error("发生了意料之外的错误！", "notFound");
         }
         //检查请求非空
         String name = userService.getUser(username, identity).getName();
         //调用service获取结果
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
+
         if (name != null) {
             return Result.success(name);
         } else {
@@ -74,10 +77,12 @@ public class UserController {
     public Result getInfor(@RequestParam String username, @RequestParam String identity, HttpServletRequest request, HttpServletResponse response) {
         //获取当前用户的各项信息
 
-        User user = userService.getUser(username, identity);
-        //调用service的方法
         response.setHeader("X-Content-Type-Options", "nosniff");
         //设置请求头
+
+        User user = userService.getUser(username, identity);
+        //调用service的方法
+
         if (user != null) {
             return Result.success(user);
         } else {
@@ -89,6 +94,9 @@ public class UserController {
     public Result changePassword(@RequestBody ChangePasswordDTO dto, HttpServletRequest request, HttpServletResponse response) {
         //修改密码
 
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+
         String username = dto.getUsername();
         String identity = dto.getIdentity();
         String originalPassword = dto.getOriginalPassword();
@@ -98,8 +106,6 @@ public class UserController {
         int res = userService.changePassword(username, identity, originalPassword, newPassword);
         //调用service获取结果
 
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
         return Result.success(res);
     }

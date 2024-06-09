@@ -1,9 +1,7 @@
 package com.system.mapper;
-
 import com.system.pojo.Course;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
@@ -13,9 +11,12 @@ public interface CourseMapper
     List<Course> selectAll();
 
     //根据学号返回学生已选的所有课程
-    List<Course> getCoursesByStudentId(int code);
+    List<Course> getCoursesByStudentId(String code);
 
     @Select("select * from course where name = #{name}")
-    Course selectByName(String name);
+    List<Course> selectByName(String name);
+
+    @Select("select * from course where code = #{coursecode}")
+    Course selectByCode(String coursecode);
 
 }
