@@ -93,6 +93,9 @@ public class UserController {
 
         return Result.success(res);
     }
+
+    @GetMapping("/resetPassword")
+    public Result resetPassword(@RequestParam String username)
 }
 
 
