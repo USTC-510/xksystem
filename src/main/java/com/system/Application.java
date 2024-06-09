@@ -1,4 +1,7 @@
 package com.system;
+
+import com.system.service.MailService;
+import jakarta.annotation.Resource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,9 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //这是程序的启动类
 public class Application
 {
+    @Resource
+    MailService mailService;
     public static void main(String[] args) {
         SpringApplication.run(Application.class);
-//        EmailSender emailSender = new EmailSender();
-//        emailSender.sendEmailTo("1520131241@qq.com","zkr230527@mail.ustc.edu.cn","th051014","niaho","nihao");
+        int res = mailService.sendMail("haha123@mail.ustc.edu.cn","测试","测试");
     }
 }
