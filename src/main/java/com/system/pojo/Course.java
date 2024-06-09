@@ -11,7 +11,6 @@ public class Course
 {
     private String name;   //课程名字
     private String spot;   //上课地点
-    private String date;   //上课日期
     private int number; //选课人数
     private Teacher teacher;  //教课的老师
     private String code; //课程编号，作为主键
@@ -19,7 +18,13 @@ public class Course
     private int maxnum; //选课人数上限
     private int credit; //学分
     private int hour; //学时
+    private String time_1;
+    private String time_2;
+    private String time_3;
+    private String time_4;
+    private String time_5;
     public String day;//周几上课
     public String startTime;//第几节开始上课
     public String endTime;
+    public String date;
 }

@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div class="floating-card">
       <h2>重置密码</h2>
       <form @submit.prevent="submit">

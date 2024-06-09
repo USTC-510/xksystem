@@ -3,8 +3,8 @@
       <h2>修改密码</h2>
       <form @submit.prevent="submit">
       <div class="input-text">  
-          <label class="label" for="originalPassword">原密码：</label>  
-          <input type="password" name="originalPassword" v-model="originalPassword" required>  
+          <label class="label" for="originalPassword">原密码：</label>
+          <input type="password" name="originalPassword" v-model="originalPassword" required>
         </div>
       <div class="input-text">  
           <label class="label" for="newPassword">新的密码：</label>  
@@ -32,7 +32,7 @@
         const identity = localStorage.getItem('identity');
         api.changePassword(username, this.originalPassword, this.newPassword, identity).
         then(response => {
-          if(response.data.isError == 0){
+          if(response.data == 0){console.log(response);
             alert("修改成功");
           }
           else{
