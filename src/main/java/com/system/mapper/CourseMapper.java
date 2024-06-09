@@ -15,4 +15,7 @@ public interface CourseMapper
     //根据学号返回学生已选的所有课程
     List<Course> getCoursesByStudentId(int code);
 
+    @Select("select * from course where name = #{name}")
+    Course selectByName(String name);
+
 }
