@@ -104,11 +104,11 @@ public class CourseServiceImpl implements CourseService
         return 1;
     }
 
-    public int ifCanCheck(String studentCode,String courseCode)
-    {
-
-
-    }
+//    public int ifCanCheck(String studentCode,String courseCode)
+//    {
+//
+//
+//    }
 
 }
 

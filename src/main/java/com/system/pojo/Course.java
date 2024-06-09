@@ -26,4 +26,5 @@ public class Course
     public String day;//周几上课
     public String startTime;//第几节开始上课
     public String endTime;
+    public String date;
 }

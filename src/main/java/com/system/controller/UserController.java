@@ -103,11 +103,12 @@ public class UserController {
         String newPassword = dto.getNewPassword();
         //获取请求体中的参数
 
-        int res = userService.changePassword(username, identity, originalPassword, newPassword);
+        int res = userService.changePassword(username,identity,originalPassword,newPassword);
         //调用service获取结果
 
-
         return Result.success(res);
+
+
     }
 
     @GetMapping("/resetPassword")

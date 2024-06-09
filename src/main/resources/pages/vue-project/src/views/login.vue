@@ -30,11 +30,11 @@
   
   <script>
   import api from "../api/function.js";
-  import forgetPasword from "../components/forgetPasword.vue";
+  import forgetPassword from "../components/forgetPassword.vue";
   export default {
     name: 'login',
     components: {
-      forgetPasword
+      forgetPassword
     },
     data() {
       return {
@@ -167,6 +167,9 @@
   font-size: 24px;
   margin-top: 10px;
   text-align: center;
+}
+a{
+    font-size: 15px;
 }
 
 
