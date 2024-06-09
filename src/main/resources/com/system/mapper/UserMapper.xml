@@ -7,6 +7,6 @@
     <update id="updatePasswordByCode">
         UPDATE ${tableName}
         SET password = #{newPassword}
-        WHERE username = #{username}
+        WHERE code = #{username}
     </update>
 </mapper>
