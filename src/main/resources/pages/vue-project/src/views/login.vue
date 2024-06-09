@@ -20,10 +20,10 @@
           <label class="label" for="password">密码:</label>  
           <input type="password" id="password" name="password" v-model="password" required>  
         </div>
+        <button type="submit">登录</button>
       </form> 
         <a href="../components/forgetPassword.vue" @click.prevent="showCard = true">忘记密码？</a>
-        <forgetPassword v-if="showCard" @close="showCard = false" />
-        <button type="submit">登录</button>   
+        <forgetPassword v-if="showCard" @close="showCard = false" />   
       <p :class="{'message': ! isError, 'error': isError}">{{ message }}</p> 
     </div>  
   </template>
@@ -42,7 +42,8 @@
         username: '',
         password: '',
         message: '',
-        isError: false
+        isError: false,
+        showcard: false
       }
     },
     methods: {

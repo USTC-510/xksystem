@@ -11,8 +11,8 @@
           <label class="label" for="newPassword">新的密码：</label>  
           <input type="password" name="newPassword" v-model="newPassword" required>
       </div>
-      </form>
       <button type="submit">修改</button>
+      </form>
       <button @click="closeCard">关闭</button>
     </div>
   </template>
