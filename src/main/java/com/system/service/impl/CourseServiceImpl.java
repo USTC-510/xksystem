@@ -29,4 +29,8 @@ public class CourseServiceImpl implements CourseService
         else {return courses;}
     }
 
+    public List<Course> getCoursesByStudentId(int code)
+    {
+        return courseMapper.getCoursesByStudentId(code);
+    }
 }
