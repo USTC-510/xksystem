@@ -7,6 +7,12 @@
     <update id="updatePasswordByCode">
         UPDATE ${tableName}
         SET password = #{newPassword}
-        WHERE code = #{username}
+        WHERE code = #{username};
     </update>
+
+    <select id="selectMailByCode" resultType = "string">
+        SELECT mail
+        FROM ${tableName}
+        WHERE code = #{code};
+    </select>
 </mapper>

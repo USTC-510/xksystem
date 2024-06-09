@@ -35,15 +35,19 @@ public class UserController {
         //验证http请求的参数非空,否则返回错误信息
 
         else {
-            User user = userService.getUser(code,identity);
+            User user = userService.getUser(code, identity);
             //调用service层的方法获得当前用户的信息
 
             response.setHeader("X-Content-Type-Options", "nosniff");
             //设置请求头
 
-            if (user == null) {return Result.error("账号错误！", "notFound");}
-            else if(!user.getPassword().equals(password)) {return Result.error("密码错误！","notFound");}
-            else {return Result.success(user.getIdentity());}
+            if (user == null) {
+                return Result.error("账号错误！", "notFound");
+            } else if (!user.getPassword().equals(password)) {
+                return Result.error("密码错误！", "notFound");
+            } else {
+                return Result.success(user.getIdentity());
+            }
         }
     }
 
@@ -51,32 +55,38 @@ public class UserController {
     public Result realName(@RequestParam String username, @RequestParam String identity, HttpServletRequest request, HttpServletResponse response) {
         //获取当前用户的姓名
 
-        if (ObjectUtils.isEmpty(username) || ObjectUtils.isEmpty(identity)) {return Result.error("发生了意料之外的错误！", "notFound");}
+        if (ObjectUtils.isEmpty(username) || ObjectUtils.isEmpty(identity)) {
+            return Result.error("发生了意料之外的错误！", "notFound");
+        }
         //检查请求非空
         String name = userService.getUser(username, identity).getName();
         //调用service获取结果
         response.setHeader("X-Content-Type-Options", "nosniff");
         //设置请求头
-        if (name != null) {return Result.success(name);}
-        else {return Result.error("请输入正确的用户名或身份！", "notFound");}
+        if (name != null) {
+            return Result.success(name);
+        } else {
+            return Result.error("请输入正确的用户名或身份！", "notFound");
+        }
     }
 
     @GetMapping("/getInfor")
-    public Result getInfor(@RequestParam String username,@RequestParam String identity,HttpServletRequest request,HttpServletResponse response)
-    {
+    public Result getInfor(@RequestParam String username, @RequestParam String identity, HttpServletRequest request, HttpServletResponse response) {
         //获取当前用户的各项信息
 
-        User user = userService.getUser(username,identity);
+        User user = userService.getUser(username, identity);
         //调用service的方法
         response.setHeader("X-Content-Type-Options", "nosniff");
         //设置请求头
-        if (user != null) {return Result.success(user);}
-        else {return Result.error("请输入正确的用户名或身份！","notFound");}
+        if (user != null) {
+            return Result.success(user);
+        } else {
+            return Result.error("请输入正确的用户名或身份！", "notFound");
+        }
     }
 
     @PostMapping("/changePassword")
-    public Result changePassword(@RequestBody ChangePasswordDTO dto,HttpServletRequest request,HttpServletResponse response)
-    {
+    public Result changePassword(@RequestBody ChangePasswordDTO dto, HttpServletRequest request, HttpServletResponse response) {
         //修改密码
 
         String username = dto.getUsername();
@@ -85,7 +95,7 @@ public class UserController {
         String newPassword = dto.getNewPassword();
         //获取请求体中的参数
 
-        int res = userService.changePassword(username,identity,originalPassword,newPassword);
+        int res = userService.changePassword(username, identity, originalPassword, newPassword);
         //调用service获取结果
 
         response.setHeader("X-Content-Type-Options", "nosniff");
@@ -95,7 +105,18 @@ public class UserController {
     }
 
     @GetMapping("/resetPassword")
-    public Result resetPassword(@RequestParam String username)
+    public Result resetPassword(@RequestParam String username, @RequestParam String identity, HttpServletRequest request, HttpServletResponse response) {
+        //找回密码
+
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+
+        String res = userService.resetPassword(username, identity);
+        //调用service获取验证码
+
+        if (res != null) {return Result.success(res);}
+        else {return Result.error("用户名错误！", "notFound");}
+    }
 }
 
 

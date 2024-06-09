@@ -8,9 +8,9 @@ import com.system.pojo.User;
 import com.system.service.MailService;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+
+import java.util.Random;
 
 @Service
 public class UserServiceImpl implements UserService
@@ -54,15 +54,22 @@ public class UserServiceImpl implements UserService
         }
    }
 
-   public int resetPassword(String username,String title,String content)
+   public String resetPassword(String username,String identity)
    {
-        String mail = userMapper.selectMailByUsername(username);
+        String mail = userMapper.selectMailByCode(identity,username);
+        //调用mapper找到邮箱
+        String title = "找回密码";
+        Random rand = new Random();
+
+        String content = Integer.toString(rand.nextInt(9000)+1000);
+        // 生成一个 1000 到 9999 之间的随机数（包括1000和9999）作为验证码
+
         if (mail != null)
         {
-            String res = mailService.sendMail(mail,title,content);
-            if (res.equals("ok")) {return 1;}
-            else {return 0;}
+            String res = mailService.sendMail(mail,title,"您的验证码为："+content);
+            if (res.equals("ok")) {return content;}
+            else {return null;}
         }
-        else {return 0;}
+        else {return null;}
    }
 }
