@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService
         else if (!user.getPassword().equals(originalPassword)) {return 1;}
         else
         {
-            userMapper.updatePasswordByCode(newPassword,username);
+            userMapper.updatePasswordByCode(identity,newPassword,username);
             return 0;
         }
    }
