@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class CourseController
     {
         //获取所有课程的所有信息
 
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+
         List<Course> courses = courseService.getAllCourses();
         if (ObjectUtils.isEmpty(courses)) {return Result.error("发生了意料之外的错误",null);}
         //验证非空
@@ -39,7 +43,7 @@ public class CourseController
             List<String> professor = new ArrayList<>();
             List<String> time = new ArrayList<>();
             List<String> position = new ArrayList<>();
-            List<Integer> credits = new ArrayList<>();
+            List<Integer> credit = new ArrayList<>();
             List<Integer> currentPeople = new ArrayList<>();
             List<Integer> maxPeople = new ArrayList<>();
             List<Integer> hour = new ArrayList<>();
@@ -51,21 +55,48 @@ public class CourseController
                 professor.add(course.getTeacher().getName());
                 time.add(course.getDate());
                 position.add(course.getSpot());
-                credits.add(course.getCredit());
-
-
-
-
-
+                credit.add(course.getCredit());
+                currentPeople.add(course.getNumber());
+                maxPeople.add(course.getMaxnum());
+                hour.add(course.getHour());
             }
-        }
 
+
+
+            dto.setId(id);
+            dto.setName(name);
+            dto.setCredit(credit);
+            dto.setHour(hour);
+            dto.setCurrentPeople(currentPeople);
+            dto.setPosition(position);
+            dto.setTime(time);
+            dto.setMaxPeople(maxPeople);
+            dto.setProfessor(professor);
+            //封装数据到DTO类
+
+            return Result.success(dto);
+            //再度封装
+        }
     }
 
     @GetMapping("/detailedCourse")
-    public Result getDetailedCourse()
+    public Result getIntro(@RequestParam(name = "course")String name,HttpServletResponse response,HttpServletRequest request)
     {
+       //查找课程的介绍
 
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+
+        if (ObjectUtils.isEmpty(name)) {return Result.error("错误!",null);}
+        //验证参数非空
+        else
+        {
+            List<Course> courses = courseService.getCourseByName(name);
+            //调用service
+
+            if (ObjectUtils.isEmpty(courses)) {return Result.error("错误",null);}
+            else {return Result.success(courses.get(0).getIntroduction());}
+        }
     }
 
 
@@ -81,7 +112,7 @@ class AllCoursesDTO
     private List<String> professor;
     private List<String> time;
     private List<String> position;
-    private List<Integer> credits;
+    private List<Integer> credit;
     private List<Integer> currentPeople;
     private List<Integer> maxPeople;
     private List<Integer> hour;

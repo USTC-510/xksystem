@@ -14,6 +14,6 @@ public interface CourseMapper
     List<Course> getCoursesByStudentId(int code);
 
     @Select("select * from course where name = #{name}")
-    Course selectByName(String name);
+    List<Course> selectByName(String name);
 
 }
