@@ -20,13 +20,11 @@
     },
     methods: {
       fetchUserName() {
-
         const username = localStorage.getItem('username');
         const identity = localStorage.getItem('identity');
         api.getRealName(username, identity)
-
           .then(response => {
-            this.realName = response.data.realName;
+            this.realName = response.data;
           })
           .catch(error => {
             console.error('获取用户信息失败:', error);

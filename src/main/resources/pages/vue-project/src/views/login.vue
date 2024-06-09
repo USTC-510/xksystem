@@ -48,7 +48,7 @@
 
         api.getMatch(this.username, this.password, this.identity)
           .then(response => {
-            switch(response.data.username) {
+            switch(response.data) {
               case "student":
                 this.message = '学生登陆成功！';
                 this.isError = false;

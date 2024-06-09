@@ -8,5 +8,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class Administrator extends User
 {
-
+    public static final String major = "/";
+    public static final String faculty = "/";
 }

@@ -3,7 +3,7 @@ const base = {
     baseurl:"http://114.214.234.245:1969/",
     login:"api/user/login",
     realName:"api/user/realName",
-    infor:"api/user/infor",
+    infor:"api/user/getInfor",
     changePassword:"api/user/changePassword"
     allCourses:"api/user/allCourse"
     detailedCourse:"api/user/detailedCourse"

@@ -17,7 +17,7 @@ public interface StudentMapper
     @Select("select * from student where name = #{name}")
     Student selectByName(String name);
 
-    @Insert("insert into student(name,code,gender,phonenumber,password,age,level) values(#{name},#{code},#{gender},#{phonenumber},#{password},#{age},#{level}")
+    @Insert("insert into student(name,code,gender,phonenumber,password,age,level,major,faculty) values(#{name},#{code},#{gender},#{phonenumber},#{password},#{age},#{level},#{major},#{faculty}")
     void insertStudent(Student student);
 
     @Delete("delete from student where code = #{code}")

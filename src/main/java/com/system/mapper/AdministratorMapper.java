@@ -18,7 +18,7 @@ public interface AdministratorMapper
     @Select("select * from administrator where name = #{name}")
     Administrator selectByName(String name);
 
-    @Insert("insert into administrator(name,id,gender,phonenumber,password,age) values(#{name},#{code},#{gender},#{phonenumber},#{password},#{age})")
+    @Insert("insert into administrator(name,code,gender,phonenumber,password,age) values(#{name},#{code},#{gender},#{phonenumber},#{password},#{age})")
     void insertAdministrator(Administrator administrator);
 
     @Delete("delete from administrator where code = #{code}")

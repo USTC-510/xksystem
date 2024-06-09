@@ -46,12 +46,11 @@
         api.getInfor(username, identity).
         then(response => {
             this.person.realName = "姓名：" + response.data.name;
-            this.person.realName = "学号：" + response.data.code;
+            this.person.code = "学号：" + response.data.code;
             this.person.age = "年龄：" + response.data.age;
             this.person.gender = "性别：" + response.data.gender;
             this.person.faculty = "学院：" + response.data.faculty;
             this.person.major = "专业/研究方向：" + response.data.major;
-            this.person.class = "班级：" + response.data.class;
         }).
         catch(error => {
           console.log(error)
