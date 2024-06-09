@@ -4,4 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.system.mapper.CourseMapper">
 
+    <select id="getCoursesByStudentId" resultType="com.system.pojo.Course">
+        SELECT c.* FROM course c JOIN s_select_c sc ON c.id = sc.course_id WHERE sc.student_id = #{studentId}
+    </select>
 </mapper>
