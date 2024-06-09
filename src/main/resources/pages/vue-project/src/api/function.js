@@ -40,12 +40,23 @@ const api = {
     },
     getCourseIntro(course){
         return axios.get(path.baseurl + path.detailedCourse, {
-            course: course
+            params: {
+                course: course
+            }
         })
     },
     ifCanCheck(id){
         return axios.get(path.baseurl + path.checkCourse, {
-            id: id
+            params: {
+                id: id
+            }
+        })
+    },
+    forgetPassword(username, newPassword ,identity){
+        return axios.post(path.baseurl + path.forgetPassword, {
+            username: username,
+            newPassword: newPassword,
+            identity: identity
         })
     }
 }
