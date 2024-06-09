@@ -35,7 +35,6 @@
 
 <script>
 import api from "../api/function.js";
-
 export default {
   name: 'choose_student',
   data() {

@@ -3,7 +3,7 @@
       <h3>课程介绍: {{ courseName }}</h3>
       <p v-if="intro">{{ intro }}</p>
       <p v-else>加载中……</p>
-      <button @click="$router.push('/')">返回</button>
+      <button @click="$router.push('/choose-student')">返回</button>
     </div>
   </template>
   
@@ -28,26 +28,6 @@
         }).catch(error => {
             console.log(error);
         })
-      },
-      closeCard() {
-        this.$emit('close');
-      }
-    }
-  };
-  </script>
-  
-  <script>
-  import api from "../api/function.js"
-  export default {
-    name: 'courseIntro',
-    data() {
-      return{
-        intro: ''
-      }
-    },
-    methods: {
-      fetchIntro() {
-        api.getCourseIntro()
       },
       closeCard() {
         this.$emit('close');
