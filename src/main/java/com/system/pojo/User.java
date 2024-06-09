@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    public int id; //在数据库中的主键
     public String code; //学号 工号
     public String name;  //名字
     public String identity; //身份
