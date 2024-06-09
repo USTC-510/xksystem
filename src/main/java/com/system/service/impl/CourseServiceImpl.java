@@ -106,7 +106,7 @@ public class CourseServiceImpl implements CourseService
 
     public int ifCanCheck(String studentCode,String courseCode)
     {
-                
+
 
     }
 
