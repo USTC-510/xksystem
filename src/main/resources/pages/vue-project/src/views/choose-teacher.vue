@@ -4,7 +4,7 @@
       <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
       <button @click="searchCourses">搜索</button>
     </div>
-    <h2>选择课程</h2>
+    <h2>课程开设</h2>
     <table>
       <tr>
         <th>课程编号</th>
@@ -29,7 +29,6 @@
         <td>{{ course.credits }}</td>
         <td>{{ course.hour }}</td>
         <td>{{ course.currentPeople }} / {{ course.maxPeople }}</td>
-        <td><input type="checkbox" v-model="selectedCourses" :value="course.id" @change="handleCheckbox($event, course)"/></td>
       </tr>
     </table>
   </div>
@@ -38,7 +37,7 @@
 <script>
 import api from "../api/function.js";
 export default {
-  name: 'choose_student',
+  name: 'choose_teacher',
   data() {
     return {
       searchQuery: '',
@@ -49,7 +48,6 @@ export default {
   created() {
     api.getAllCourses().then(response => {
       const data = response.data;
-      //把传入的数转换成易于处理的形式
       this.courses = data.name.map((id, index) => ({
         id: id,
         name: data.name[index],
@@ -57,6 +55,7 @@ export default {
         time: data.time[index],
         position: data.position[index],
         credits: data.credits[index],
+        hour: data.hour[index],
         currentPeople: data.currentPeople[index],
         maxPeople: data.maxPeople[index]
       }));
@@ -70,34 +69,10 @@ export default {
       const query = this.searchQuery.toLowerCase();
       return this.courses.filter(course => {
         return course.name.toLowerCase().includes(query) || course.professor.toLowerCase().includes(query);
-      });//此处会将所有的字母转化为小写
-    }
-  },
-  methods: {
-    handleCheckbox(event, course){
-      api.ifCanCheck(course.id).then(response => {
-        if (response.canCheck == 1){
-          if (this.selectedCourses.includes(course.id)) {
-            // 如果已经选中，则取消选中
-            this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
-          } 
-          else {
-            // 如果未选中，则选中
-            this.selectedCourses.push(course.id);
-          }
-        }
-        else{
-          event.preventDefault();//复选框状态不会改变
-          alert("存在时间冲突！");
-        }
-      }).catch(error => {
-        alert("发生错误，请稍后再试！");
-        console.log(error);
-      })
+      });
     }
   }
 };
-  
 </script>
   
   <style scoped>
@@ -174,4 +149,3 @@ export default {
     background: #45a049;
   }
   </style>
-  

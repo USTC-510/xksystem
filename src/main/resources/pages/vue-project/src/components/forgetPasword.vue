@@ -4,7 +4,7 @@
       <div class="input-text">  
           <label class="label" for="verification">验证码：</label>
           <input type="text" name="verification" v-model="verification" required>  
-          <button :disabled="isDisabled" @click="handleClick">{{ message }}</button>
+          <button :disabled="isDisabled" :class="{ 'disabled-button': isDisabled }" @click="handleClick">{{ message }}</button>
         </div>
       <div class="input-text">  
           <label class="label" for="newPassword">新的密码：</label>  
@@ -86,6 +86,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     z-index: 1000;
+  }
+  .disabled-button {
+  background-color: grey;
+  cursor: not-allowed;
   }
   </style>
   
