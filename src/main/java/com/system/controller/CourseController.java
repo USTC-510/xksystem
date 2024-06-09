@@ -10,16 +10,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/course")
+@CrossOrigin(origins = {"http://localhost:1969","http://114.214.234.245:1969","http://localhost:8080","http://114.214.234.245:8080","http://92o66n2830.goho.co"}, methods = {RequestMethod.GET, RequestMethod.POST})
 public class CourseController
 {
     @Resource
@@ -61,8 +58,6 @@ public class CourseController
                 hour.add(course.getHour());
             }
 
-
-
             dto.setId(id);
             dto.setName(name);
             dto.setCredit(credit);
@@ -98,8 +93,6 @@ public class CourseController
             else {return Result.success(courses.get(0).getIntroduction());}
         }
     }
-
-
 }
 
 @Data
@@ -107,6 +100,7 @@ public class CourseController
 @NoArgsConstructor
 class AllCoursesDTO
 {
+    //封装响应体
     private List<String> id;
     private List<String> name;
     private List<String> professor;
