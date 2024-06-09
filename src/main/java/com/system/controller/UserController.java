@@ -88,6 +88,9 @@ public class UserController {
         int res = userService.changePassword(username,identity,originalPassword,newPassword);
         //调用service获取结果
 
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+
         return Result.success(res);
     }
 }
