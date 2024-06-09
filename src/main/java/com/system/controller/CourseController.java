@@ -1,5 +1,4 @@
 package com.system.controller;
-
 import com.system.pojo.Course;
 import com.system.pojo.Result;
 import com.system.service.CourseService;
@@ -8,7 +7,6 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -34,5 +32,6 @@ public class CourseController
     {
 
     }
+
 
 }

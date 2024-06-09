@@ -12,6 +12,7 @@ public interface CourseMapper
     @Select("select * from course")
     List<Course> selectAll();
 
-    @Select("select * from course where name = #{name}")
-    Course selectByName(String name);
+    //根据学号返回学生已选的所有课程
+    List<Course> getCoursesByStudentId(int code);
+
 }
