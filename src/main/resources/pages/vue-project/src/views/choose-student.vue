@@ -1,62 +1,80 @@
 <template>
-    <div class="container main">
-      <div class="search-container">
-        <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
-        <button @click="searchCourses">搜索</button>
-      </div>
-      <h2>选择课程</h2>
-      <table>
-        <tr>
-          <th>课程编号</th>
-          <th>课程名称</th>
-          <th>教授</th>
-          <th>上课时间</th>
-          <th>学分</th>
-          <th>选择</th>
-        </tr>
-        <tr v-for="course in filteredCourses" :key="course.id">
-          <td>{{ course.id }}</td>
-          <td>{{ course.name }}</td>
-          <td>{{ course.professor }}</td>
-          <td>{{ course.time }}</td>
-          <td>{{ course.credits }}</td>
-          <td><input type="checkbox" v-model="selectedCourses" :value="course.id" /></td>
-        </tr>
-      </table>
+  <div class="container main">
+    <div class="search-container">
+      <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
+      <button @click="searchCourses">搜索</button>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'choose_student',
-    data() {
-      return {
-        searchQuery: '',
-        courses: [],
-        selectedCourses: [],
-        confirmSelection: false
-      };
-    },
-    computed: {
-      filteredCourses() {
-        return this.courses.filter(course => {
-          return course.name.includes(this.searchQuery) || course.professor.includes(this.searchQuery);
-        });
+    <h2>选择课程</h2>
+    <table>
+      <tr>
+        <th>课程编号</th>
+        <th>课程名称</th>
+        <th>教授</th>
+        <th>上课时间</th>
+        <th>地点</th>
+        <th>学分</th>
+        <th>选择人数</th>
+        <th>选择</th>
+      </tr>
+      <tr v-for="course in filteredCourses" :key="course.id">
+        <td>{{ course.id }}</td>
+        <td>
+          {{ course.name }}
+          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }"> 介绍</router-link>
+        </td>
+        <td>{{ course.professor }}</td>
+        <td>{{ course.time }}</td>
+        <td>{{ course.position }}</td>
+        <td>{{ course.credits }}</td>
+        <td>{{ course.currentPeople }} / {{ course.maxPeople }}</td>
+        <td><input type="checkbox" v-model="selectedCourses" :value="course.id" /></td>
+      </tr>
+    </table>
+  </div>
+</template>
+
+<script>
+import api from "../api/function.js";
+
+export default {
+  name: 'choose_student',
+  data() {
+    return {
+      searchQuery: '',
+      courses: [],
+      selectedCourses: []
+    };
+  },
+  created() {
+    api.getAllCourses().then(response => {
+      const data = response.data;
+      this.courses = data.name.map((id, index) => ({
+        id: id,
+        name: data.name[index],
+        professor: data.professor[index],
+        time: data.time[index],
+        position: data.position[index],
+        credits: data.credits[index],
+        currentPeople: data.currentPeople[index],
+        maxPeople: data.maxPeople[index]
+      }));
+    });
+  },
+  computed: {
+    filteredCourses() {
+      if (!this.searchQuery) {
+        return this.courses;
       }
-    },
-    methods: {
-      searchCourses() {
-        
-      },
-      submitCourses() {
-        if (this.confirmSelection) {
-          alert('选课提交成功！');
-        } else {
-          alert('请确认所选课程无误。');
-        }
-      }
+      const query = this.searchQuery.toLowerCase();
+      return this.courses.filter(course => {
+        return course.name.toLowerCase().includes(query) || course.professor.toLowerCase().includes(query);
+      });
     }
+  }
   };
+</script>
+
+
   </script>
   
   <style scoped>

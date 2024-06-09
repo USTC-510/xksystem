@@ -5,6 +5,7 @@ import choose_student from '../views/choose-student.vue'
 import myTable_student from '../views/myTable-student.vue'
 import content_teacher from '../views/content-teacher.vue'
 import content_admin from '../views/content-admin.vue'
+import courseIntro from '../components/courseIntro.vue'
 import {createRouter, createWebHistory} from 'vue-router'
 const routes = [
     { path:"/", component: login },
@@ -13,7 +14,8 @@ const routes = [
     { path:"/choose-student", component: choose_student },
     { path:"/myTable-student", component: myTable_student },
     { path:"/content-teacher", component: content_teacher },
-    { path:"/content-admin", component: content_admin }
+    { path:"/content-admin", component: content_admin },
+    { path:"/courseIntro", component: courseIntro, props: true }
 ]
 const router = createRouter(
     {

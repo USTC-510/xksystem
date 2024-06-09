@@ -33,6 +33,15 @@ const api = {
                 newPassword: newPassword,
                 identity: identity
         })
+    },
+    getAllCourses(){
+        return axios.get(path.baseurl + path.allCourses, {
+        })
+    },
+    getCourseIntro(course){
+        return axios.get(path.baseurl + path.detailedCourse, {
+            course: course
+        })
     }
 }
 
