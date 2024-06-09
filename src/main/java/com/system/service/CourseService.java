@@ -1,4 +1,12 @@
 package com.system.service;
 
-public interface CourseService {
+import com.system.pojo.Course;
+
+import java.util.List;
+
+public interface CourseService
+{
+    List<Course> getAllCourses();
+
+    Course getCourseByName(String name);
 }

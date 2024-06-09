@@ -12,4 +12,6 @@ public interface CourseMapper
     @Select("select * from course")
     List<Course> selectAll();
 
+    @Select("select * from course where name = #{name}")
+    Course selectByName(String name);
 }
