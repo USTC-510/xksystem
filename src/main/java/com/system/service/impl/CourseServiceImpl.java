@@ -22,11 +22,15 @@ public class CourseServiceImpl implements CourseService
         else {return courses;}
     }
 
-    public Course getCourseByName(String name)
+    public List<Course> getCourseByName(String name)
     {
-        Course course = courseMapper.selectByName(name);
+        List<Course> course = courseMapper.selectByName(name);
         if (ObjectUtils.isEmpty(course)) {return null;}
         else {return course;}
     }
 
+    public List<Course> getCoursesByStudentId(int code)
+    {
+        return courseMapper.getCoursesByStudentId(code);
+    }
 }
