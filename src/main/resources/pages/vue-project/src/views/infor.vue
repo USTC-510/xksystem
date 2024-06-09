@@ -11,7 +11,7 @@
         <p>{{ person.major }}</p>
         <p>{{ person.class }}</p>
         <a href="../components/changePassword.vue" @click.prevent="showCard = true">修改密码</a>
-        <forgetPassword v-if="showCard" @close="showCard = false" />
+        <changePassword v-if="showCard" @close="showCard = false" />
       </div>
     </div>
   </template>

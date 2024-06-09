@@ -20,6 +20,8 @@
           <label class="label" for="password">密码:</label>  
           <input type="password" id="password" name="password" v-model="password" required>  
         </div>
+        <a href="../components/forgetPassword.vue" @click.prevent="showCard = true">忘记密码？</a>
+        <forgetPassword v-if="showCard" @close="showCard = false" />
         <button type="submit">登录</button>  
       </form>  
       <p :class="{'message': ! isError, 'error': isError}">{{ message }}</p> 
@@ -28,8 +30,12 @@
   
   <script>
   import api from "../api/function.js";
+  import forgetPasword from "../components/forgetPasword.vue";
   export default {
     name: 'login',
+    components: {
+      forgetPasword
+    },
     data() {
       return {
         identity: '1',
