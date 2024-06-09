@@ -1,9 +1,10 @@
 <template>
     <div class="floating-card">
       <h2>修改密码</h2>
+      <form @submit.prevent="submit">
       <div class="input-text">  
           <label class="label" for="originalPassword">原密码：</label>  
-          <input type="password" name="originalPassword" v-model="originalpassword" required>  
+          <input type="password" name="originalPassword" v-model="originalPassword" required>  
         </div>
       <div class="input-text">  
           <label class="label" for="newPassword">新的密码：</label>  
@@ -11,6 +12,7 @@
       </div>
       <button type="submit">修改</button>
       <button @click="closeCard">关闭</button>
+      </form>
     </div>
   </template>
   
