@@ -6,6 +6,7 @@
       </div>
       <h2>
         管理课程
+        <button class="button"></button>
         <button class="button" @click="toggleEditMode">{{ editMode ? '保存' : '编辑' }}</button>
         <button 
         class="button" 
