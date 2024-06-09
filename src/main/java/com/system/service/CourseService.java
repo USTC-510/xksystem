@@ -11,6 +11,4 @@ public interface CourseService {
     List<Course> getCoursesByStudentId(String code);
 
     int ifCanCheck(String studentcode,String coursecode);
-
-
 }
