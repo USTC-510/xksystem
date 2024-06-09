@@ -3,9 +3,7 @@ package com.system.mapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserMapper
+public class UserMapper
 {
-
-    void updatePasswordByCode(String identity, String newPassword, String username);
 
 }
