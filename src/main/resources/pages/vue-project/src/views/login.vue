@@ -30,8 +30,12 @@
   
   <script>
   import api from "../api/function.js";
+  import forgetPasword from "../components/forgetPasword.vue";
   export default {
     name: 'login',
+    components: {
+      forgetPasword
+    },
     data() {
       return {
         identity: '1',

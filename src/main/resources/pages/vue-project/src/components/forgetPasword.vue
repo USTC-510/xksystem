@@ -53,7 +53,7 @@
       setTimeout(() => {
             this.isDisabled = false;
         }, 60000); // 60秒后重新启用按钮
-      }
+      },
       startDecreasing() {
         var data = 60;
         //使用计时器计时60秒
@@ -63,7 +63,7 @@
                 message = data + '秒';
             } 
             else {
-                message = '发送验证码'
+                message = '发送验证码';
                 this.stopDecreasing(); // 数据减到0时停止定时器
             }
         }, 1000);
