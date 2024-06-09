@@ -13,19 +13,20 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService
 {
    @Resource
-   private CourseMapper courseMapper;
+    CourseMapper courseMapper;
 
-   public List<Course> getAllCourses()
-   {
-       List<Course> courses = courseMapper.selectAll();
-       if (ObjectUtils.isEmpty(courses)) {return null;}
-       else {return courses;}
-   }
+    public List<Course> getAllCourses()
+    {
+        List<Course> courses = courseMapper.selectAll();
+        if (ObjectUtils.isEmpty(courses)) {return null;}
+        else {return courses;}
+    }
 
-   public Course getCourseByName(String name)
-   {
+    public Course getCourseByName(String name)
+    {
         Course course = courseMapper.selectByName(name);
         if (ObjectUtils.isEmpty(course)) {return null;}
         else {return course;}
-   }
+    }
+
 }
