@@ -3,6 +3,7 @@ package com.system.service.impl;
 import com.system.mapper.AdministratorMapper;
 import com.system.mapper.StudentMapper;
 import com.system.mapper.TeacherMapper;
+import com.system.mapper.UserMapper;
 import com.system.pojo.User;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
@@ -17,6 +18,8 @@ public class UserServiceImpl implements UserService
    private TeacherMapper teacherMapper;
    @Resource
    private AdministratorMapper administratorMapper;
+   @Resource
+   private UserMapper userMapper;
 
    public User getUser(String username,String identity)
    {
@@ -33,17 +36,15 @@ public class UserServiceImpl implements UserService
        }
    }
 
-//   public int changePassword(String username,String identity,String originalPassword,String newPassword)
-//   {
-//        User user = getUser(username,identity);
-//        if (user == null) {return 0;}
-//        else if (!user.getPassword().equals(originalPassword)) {return 0;}
-//        else
-//        {
-//            switch(identity)
-//            {
-//                case
-//            }
-//        }
-//   }
+   public int changePassword(String username,String identity,String originalPassword,String newPassword)
+   {
+        User user = getUser(username,identity);
+        if (user == null) {return 1;}
+        else if (!user.getPassword().equals(originalPassword)) {return 1;}
+        else
+        {
+            userMapper.updatePasswordByCode(newPassword,username);
+            return 0;
+        }
+   }
 }

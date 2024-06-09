@@ -74,17 +74,22 @@ public class UserController {
         else {return Result.error("请输入正确的用户名或身份！","notFound");}
     }
 
-//    @PostMapping("/changePassword")
-//    public Result changePassword(@RequestBody ChangePasswordDTO dto,HttpServletRequest request,HttpServletResponse response)
-//    {
-//        //修改密码
-//
-//        String username = dto.getUsername();
-//        String identity = dto.getIdentity();
-//        String originalPassword = dto.getOriginalPassword();
-//        String newPassword = dto.getNewPassword();
-//        //获取请求体中的参数
-//    }
+    @PostMapping("/changePassword")
+    public Result changePassword(@RequestBody ChangePasswordDTO dto,HttpServletRequest request,HttpServletResponse response)
+    {
+        //修改密码
+
+        String username = dto.getUsername();
+        String identity = dto.getIdentity();
+        String originalPassword = dto.getOriginalPassword();
+        String newPassword = dto.getNewPassword();
+        //获取请求体中的参数
+
+        int res = userService.changePassword(username,identity,originalPassword,newPassword);
+        //调用service获取结果
+
+        return Result.success(res);
+    }
 }
 
 
