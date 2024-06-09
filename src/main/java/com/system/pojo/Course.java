@@ -16,5 +16,5 @@ public class Course
     private Teacher[] teachers;  //教课的老师们
     private String code; //课程编号，作为主键
     private String introduction; //课程介绍
-    private int maxnum; //选课人数上限
+    private int maxnum; //选课人数上限    
 }
