@@ -1,8 +1,10 @@
 <template>
   <div class="container main">
     <div class="search-container">
+    <form @submit.prevent="submit">
       <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
       <button @click="searchCourses">搜索</button>
+    </form>
     </div>
     <h2>课程开设</h2>
     <table>
