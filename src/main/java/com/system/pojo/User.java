@@ -17,4 +17,6 @@ public class User {
     public int age;  //年齡
     public String gender;  //性別
     public String mail;  //邮箱
+    private String major; //专业
+    private String faculty;//学院
 }

@@ -35,7 +35,7 @@
           faculty: '',
           major: '',
           class: '',
-          photo: '../../public/assets/photo.jpeg'
+          photo: 'https://pic.616pic.com/ys_bnew_img/00/10/34/Krma0Tzl8b.jpg'
         },
         showCard: false
       }

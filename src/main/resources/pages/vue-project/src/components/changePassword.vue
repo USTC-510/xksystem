@@ -3,7 +3,7 @@
       <h2>修改密码</h2>
       <div class="input-text">  
           <label class="label" for="originalPassword">原密码：</label>  
-          <input type="password" name="originalPassword" v-model="originalpassword" required>  
+          <input type="password" name="originalPassword" v-model="originalPassword" required>
         </div>
       <div class="input-text">  
           <label class="label" for="newPassword">新的密码：</label>  
@@ -28,9 +28,11 @@
       submit() {//需要和后端存的密码匹配
         const username = localStorage.getItem('username');
         const identity = localStorage.getItem('identity');
+        alert("aaaa");
         api.changePassword(username, this.originalPassword, this.newPassword, identity).
-        then(response => {
-          if(response.data.isError == 0){
+        then(response => {console.log(response);
+
+          if(response.data == 0){
             alert("修改成功");
           }
           else{
