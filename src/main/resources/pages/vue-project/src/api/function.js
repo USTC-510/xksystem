@@ -58,6 +58,16 @@ const api = {
             newPassword: newPassword,
             identity: identity
         })
+    },
+    deleteCourses(courses){
+        return axios.post(path.baseurl + path.deleteCourses, {
+            courses
+        })
+    },
+    changeCourses(changes){
+        return axios.post(path.baseurl + path.changeCourses, {
+            changes
+        })
     }
 }
 

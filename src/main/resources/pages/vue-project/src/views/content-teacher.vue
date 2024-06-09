@@ -26,17 +26,17 @@
     },
     methods: {
       handleInfor(){
-        this.$router.push({ path: '/infor', query: { username: this.username } }).catch(
+        this.$router.push({ path: '/infor' }).catch(
           err => alert("跳转页面失败：",err)
         );
       },
       handleChoose(){
-        this.$router.push({ path: '/choose-teacher', query: { username: this.username } }).catch(
+        this.$router.push({ path: '/choose-teacherOrAdmin' }).catch(
           err => alert("跳转页面失败：",err)
         );
       },
       handleMyTable(){
-        this.$router.push({ path: '/myTable-teacher', query: { username: this.username } }).catch(
+        this.$router.push({ path: '/myTable-teacher' }).catch(
           err => alert("跳转页面失败：",err)
         );
       }
