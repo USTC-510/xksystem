@@ -134,6 +134,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    margin-right: 50px;
   }
   role-selection {
     font-size: 17px;
