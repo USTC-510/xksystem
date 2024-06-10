@@ -171,6 +171,8 @@
 }
 a{
     font-size: 15px;
+    color: white;
+    cursor: pointer;
 }
 
 
