@@ -46,8 +46,6 @@ public class CourseController
             List<Integer> maxPeople = new ArrayList<>();
             List<Integer> hour = new ArrayList<>();
 
-            String time_whole = "";
-
             for (Course course: courses)
             {
                 id.add(course.getCode());
