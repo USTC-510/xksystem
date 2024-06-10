@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <h1>大学课程表</h1>
+      <h1>您的课程</h1>
       <table>
         <thead>
           <tr>
