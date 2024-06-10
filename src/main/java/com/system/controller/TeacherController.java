@@ -24,7 +24,6 @@ public class TeacherController
     public Result getCourses(@RequestParam String username, HttpRequest request, HttpResponse response)
     {
         //获得老师教授的课程信息
-
         response.setHeader("X-Content-Type-Options", "nosniff");
         //设置请求头
 
