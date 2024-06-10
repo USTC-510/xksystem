@@ -21,11 +21,9 @@ public class UserController {
     //获得service层接口的代理
 
     @PostMapping("/login")
-    public Result login(@RequestBody LoginDTO loginDTO, HttpServletRequest request, HttpServletResponse response) {
+    public Result login(@RequestBody LoginDTO loginDTO)
+    {
         //实现登录验证
-
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
         String code = loginDTO.getUsername();
         String identity = loginDTO.getIdentity();
@@ -54,11 +52,9 @@ public class UserController {
     }
 
     @GetMapping("/realName")
-    public Result realName(@RequestParam String username, @RequestParam String identity, HttpServletRequest request, HttpServletResponse response) {
+    public Result realName(@RequestParam String username, @RequestParam String identity)
+    {
         //获取当前用户的姓名
-
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
         if (ObjectUtils.isEmpty(username) || ObjectUtils.isEmpty(identity)) {
             return Result.error("发生了意料之外的错误！", "notFound");
@@ -75,11 +71,9 @@ public class UserController {
     }
 
     @GetMapping("/getInfor")
-    public Result getInfor(@RequestParam String username, @RequestParam String identity, HttpServletRequest request, HttpServletResponse response) {
+    public Result getInfor(@RequestParam String username, @RequestParam String identity)
+    {
         //获取当前用户的各项信息
-
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
         User user = userService.getUser(username, identity);
         //调用service的方法
@@ -92,11 +86,9 @@ public class UserController {
     }
 
     @PostMapping("/changePassword")
-    public Result changePassword(@RequestBody ChangePasswordDTO dto, HttpServletRequest request, HttpServletResponse response) {
+    public Result changePassword(@RequestBody ChangePasswordDTO dto)
+    {
         //修改密码
-
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
         String username = dto.getUsername();
         String identity = dto.getIdentity();

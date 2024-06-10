@@ -4,8 +4,6 @@ import com.system.pojo.Course;
 import com.system.pojo.Result;
 import com.system.service.StudentService;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +18,9 @@ public class StudentController
     StudentService studentService;
 
     @GetMapping("/getCourses")
-    public Result getCourses(@RequestParam String username, HttpServletRequest request, HttpServletResponse response)
+    public Result getCourses(@RequestParam String username)
     {
         //获得该学生选的课程
-
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
         if (ObjectUtils.isEmpty(username)) {return Result.error("错误！",null);}
         else
@@ -38,7 +33,3 @@ public class StudentController
 
 }
 
-//@Data
-//@AllArgsConstructor
-//@NoArgsConstructor
-//class
