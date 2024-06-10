@@ -27,7 +27,4 @@ public interface CourseMapper
 
     @Update("update course set number = number+1 where code = #{code}")
     void addNumber(String code);
-
-
-
 }

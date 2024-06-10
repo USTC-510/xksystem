@@ -66,6 +66,8 @@ public class CourseServiceImpl implements CourseService {
             }
         }
 
+        courseMapper.addNumber(courseCode);
+
 
 
 
