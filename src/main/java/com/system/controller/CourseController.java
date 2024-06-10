@@ -55,7 +55,7 @@ public class CourseController
     }
 
     @GetMapping("/detailedCourse")
-    public Result getIntro(@RequestParam(name = "course")String name,HttpServletResponse response,HttpServletRequest request)
+    public Result getIntro(@RequestParam(name = "courseName")String name,HttpServletResponse response,HttpServletRequest request)
     {
        //查找课程的介绍
 

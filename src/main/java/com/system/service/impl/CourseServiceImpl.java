@@ -66,7 +66,7 @@ public class CourseServiceImpl implements CourseService {
             }
         }
 
-        
+
         return 1; // 无时间冲突
     }
 
