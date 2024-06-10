@@ -29,36 +29,36 @@ public class AdministratorServiceImpl implements AdministratorService {
         return 1;
     }
 
-    public int changeCourses(ChangeCoursesDTO changeCoursesDTO){
-        int length=changeCoursesDTO.getCode().size();
-
-        for (int i=0;i<length;i++){
-            administratorMapper.changeNameByCode(changeCoursesDTO.getCode().get(i),
-                    changeCoursesDTO.getName().get(i),
-                    changeCoursesDTO.getCredit().get(i),
-                    changeCoursesDTO.getHour().get(i),
-                    changeCoursesDTO.getSpot().get(i),
-                    changeCoursesDTO.getTeacher().get(i),
-                    changeCoursesDTO.getMaxnum().get(i));
-
-            String time=changeCoursesDTO.getTime().get(i);
-
-            String[] parts = time.split("，");
-            List<TimeSlot> timeSlots = new ArrayList<>();
-
-            for (String part : parts) {
-                String[] subParts = part.split("第");
-                int dayOfWeek = getDayOfWeek(subParts[0]);
-                String[] times = subParts[1].substring(0, subParts[1].length() - 1).split(",");
-                int startTime = Integer.parseInt(times[0]);
-                int endTime = Integer.parseInt(times[1]);
-                timeSlots.add(new TimeSlot(dayOfWeek, startTime, endTime,changeCoursesDTO.getCode().get(i)));
-            }
-            administratorMapper.changeTimeByCode(changeCoursesDTO.getCode().get(i),timeSlots);
-
-        }
-
-    }
+//    public int changeCourses(ChangeCoursesDTO changeCoursesDTO){
+//        int length=changeCoursesDTO.getCode().size();
+//
+//        for (int i=0;i<length;i++){
+//            administratorMapper.changeNameByCode(changeCoursesDTO.getCode().get(i),
+//                    changeCoursesDTO.getName().get(i),
+//                    changeCoursesDTO.getCredit().get(i),
+//                    changeCoursesDTO.getHour().get(i),
+//                    changeCoursesDTO.getSpot().get(i),
+//                    changeCoursesDTO.getTeacher().get(i),
+//                    changeCoursesDTO.getMaxnum().get(i));
+//
+//            String time=changeCoursesDTO.getTime().get(i);
+//
+//            String[] parts = time.split("，");
+//            List<TimeSlot> timeSlots = new ArrayList<>();
+//
+//            for (String part : parts) {
+//                String[] subParts = part.split("第");
+//                int dayOfWeek = getDayOfWeek(subParts[0]);
+//                String[] times = subParts[1].substring(0, subParts[1].length() - 1).split(",");
+//                int startTime = Integer.parseInt(times[0]);
+//                int endTime = Integer.parseInt(times[1]);
+//                timeSlots.add(new TimeSlot(dayOfWeek, startTime, endTime,changeCoursesDTO.getCode().get(i)));
+//            }
+//            administratorMapper.changeTimeByCode(changeCoursesDTO.getCode().get(i),timeSlots);
+//
+//        }
+//
+//    }
     private static int getDayOfWeek(String dayOfWeekStr) {
         switch (dayOfWeekStr) {
             case "周一":
