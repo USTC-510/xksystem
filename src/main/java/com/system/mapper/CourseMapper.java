@@ -22,6 +22,9 @@ public interface CourseMapper
     @Select("select * from course where code = #{coursecode}")
     Course selectByCode(String coursecode);
 
+    @Insert("insert into s_select_c (studentid,courseid) values(#{studentCode},#{courseCode})")
+    void connectStudentCourse(@Param("studentCode")String studentCode,@Param("courseCode")String courseCode);
+
 
 
 }
