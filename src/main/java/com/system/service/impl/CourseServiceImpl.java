@@ -1,7 +1,9 @@
 package com.system.service.impl;
 
 import com.system.mapper.CourseMapper;
+import com.system.mapper.TimeSlotMapper;
 import com.system.pojo.Course;
+import com.system.pojo.TimeSlot;
 import com.system.service.CourseService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,11 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
     @Resource
     CourseMapper courseMapper;
+
+    @Resource
+    TimeSlotMapper timeSlotMapper;
+
+
 
     public List<Course> getAllCourses() {
         List<Course> courses = courseMapper.selectAll();
@@ -39,39 +46,33 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.getCoursesByStudentId(code);
     }
 
-    //选课时，时间冲突的判断
-    public int ifCanCheck(String studentcode, String coursecode) {
-        List<Course> courses = courseMapper.getCoursesByStudentId(studentcode);
-        Course course = courseMapper.selectByCode(coursecode);
-        HashSet<String>[] sets = new HashSet[5];
-        for (int i = 0; i < 5; i++) {
-            sets[i] = new HashSet<>();
+
+    //选课时，冲突的判断
+    public int ifCanCheck(String studentCode, String courseCode) {
+        List<Course> courses = courseMapper.getCoursesByStudentId(studentCode);
+        Course courseToCheck = courseMapper.selectByCode(courseCode);
+
+        if (courseToCheck.getNumber() >= courseToCheck.getMaxnum()) {
+            return -2; // 选课人数已达到上限
         }
 
-        for (Course selectedCourse : courses) {
-            String[] timeArrays = {selectedCourse.getTime_1(), selectedCourse.getTime_2(), selectedCourse.getTime_3(), selectedCourse.getTime_4(), selectedCourse.getTime_5()};
-            for (int i = 0; i < 5; i++) {
-                String[] strArray = timeArrays[i].split(",");
-                sets[i].addAll(Arrays.asList(strArray));
+        for (Course course : courses) {
+            if (course.getName().equals(courseToCheck.getName()) ){
+                return -1; // 有同名课程
+            }
+            for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode())) {
+                for (TimeSlot timeSlot2 : timeSlotMapper.getTimeByCourseCode(courseToCheck.getCode())) {
+                    if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek() &&
+                            (timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime())) {
+                        continue; // 无时间冲突
+                    }
+                    else{
+                        return 0;//有时间冲突
+                    }
+                }
             }
         }
-
-        String[] newArrays = {course.getTime_1(), course.getTime_2(), course.getTime_3(), course.getTime_4(), course.getTime_5()};
-        HashSet<String>[] newSets = new HashSet[5];
-        for (int i = 0; i < 5; i++) {
-            newSets[i] = new HashSet<>();
-            newSets[i].addAll(Arrays.asList(newArrays[i].split(",")));
-        }
-
-        boolean hasIntersection = true;
-        for (int i = 0; i < 5; i++) {
-            if (sets[i].retainAll(newSets[i])) {
-                hasIntersection = false;
-                break;
-            }
-        }
-
-        return hasIntersection ? 1 : 0;
+        return 1; // 无时间冲突
     }
 
 }

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,11 +20,7 @@ public class Course
     private int maxnum; //选课人数上限
     private int credit; //学分
     private int hour; //学时
-    private String time_1;
-    private String time_2;
-    private String time_3;
-    private String time_4;
-    private String time_5;
+    private List<TimeSlot> timeSlots;
 
 
 
