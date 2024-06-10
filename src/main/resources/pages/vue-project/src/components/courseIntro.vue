@@ -11,14 +11,13 @@
   import api from "../api/function.js"
   export default {
     name: 'courseIntro',
+    props: ['courseName'],
     data() {
       return{
-        intro: '',
-        courseName: ''
+        intro: ''
       }
     },
     created() {
-          this.courseName = this.$route.params.courseName;
           this.fetchIntro();
     },
     methods: {
