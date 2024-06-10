@@ -23,7 +23,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }">介绍</router-link>
+          <router-link :to="{ name: 'courseIntro' }">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>
@@ -59,7 +59,6 @@ export default {
       }
       const data = response.data;
       //把传入的数转换成易于处理的形式
-      console.log(data);
       this.courses = data.map((id, index) => ({
         id: id,
         name: data.name[index],
