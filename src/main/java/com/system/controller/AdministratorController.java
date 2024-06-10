@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-public class AdministratorController {
+public class AdministratorController
+{
+    
 
 
 }

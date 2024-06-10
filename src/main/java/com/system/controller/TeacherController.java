@@ -1,9 +1,16 @@
 package com.system.controller;
 
+import com.system.pojo.Course;
 import com.system.pojo.Result;
 import com.system.service.TeacherService;
 import jakarta.annotation.Resource;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/teacher")
@@ -14,6 +21,36 @@ public class TeacherController
     TeacherService teacherService;
 
     @GetMapping("/getCourses")
-    public Result getCourses(@RequestParam )
+    public Result getCourses(@RequestParam String username, HttpRequest request, HttpResponse response)
+    {
+        //获得老师教授的课程信息
 
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+
+        List<Course> courses = teacherService.getTeacherCourses();
+        AllCoursesDTO dto = new AllCoursesDTO();
+        List<AllCoursesDTO> dtoList = new ArrayList<>();
+
+        if (ObjectUtils.isEmpty(courses)) {return Result.error("发生了意料之外的错误",null);}
+        //验证非空
+        else
+        {
+            for (Course course: courses)
+            {
+                dto.setName(course.getName());
+                dto.setCredits(course.getCredit());
+                dto.setHour(course.getHour());
+                dto.setId(course.getCode());
+                dto.setPosition(course.getSpot());
+                dto.setMaxPeople(course.getMaxnum());
+                dto.setProfessor(course.getTeacher());
+                dto.setCurrentPeople(course.getNumber());
+                dto.setTime(courseService.connectTime(course));
+                dtoList.add(dto);
+            }
+            return Result.success(dtoList);
+            //再度封装
+        }
+    }
 }
