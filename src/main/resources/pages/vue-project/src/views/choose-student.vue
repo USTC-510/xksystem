@@ -23,7 +23,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro' }" @click.native="handleClick">介绍</router-link>
+          <router-link :to="{ name: 'courseIntro' }" @click.native="handleClick($event, course.name)">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>
@@ -78,9 +78,9 @@ export default {
     }
   },
   methods: {
-    handleClick(event) {
+    handleClick(event, courseName) {
       event.preventDefault();
-      localStorage.setItem('courseName', this.course.name);
+      localStorage.setItem('courseName', courseName);
       this.$router.push({ name: 'courseIntro' });
     },
     handleCheckbox(event, course){
