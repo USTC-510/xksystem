@@ -50,7 +50,8 @@ export default {
       searchQuery: '',
       courses: [],
       selectedCourses: [],
-      isDisabled: false
+      isDisabled: false,
+      courseName:''
     };
   },
   created() {

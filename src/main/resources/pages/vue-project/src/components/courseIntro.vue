@@ -22,7 +22,8 @@
       }
     },
     methods: {
-      fetchIntro() {console.log(this.$router.params.courseName);
+      fetchIntro() {
+        this.courseName = this.$router.params.courseName;
         api.getCourseIntro(this.$router.params.courseName).then(response => {
             this.intro = response.data.intro;
         }).catch(error => {
