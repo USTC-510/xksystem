@@ -47,7 +47,11 @@
         <td v-else><input v-model="course.credits" @input="trackChanges(course.id, 'credits', course.credits)" /></td>
         <td v-if="editMode">{{ course.hour }}</td>
         <td v-else><input v-model="course.hour" @input="trackChanges(course.id, 'hour', course.hour)" /></td>
-        <td v-if="editMode">{{ course.currentPeople }} / {{ course.maxPeople }}</td>
+        <td>
+          {{ course.currentPeople }} / 
+          <span v-if="editMode">{{ course.maxPeople }}</span>
+          <input v-else type="number" v-model="course.maxPeople" @input="trackChanges(course.id, 'maxPeople', course.maxPeople)" />
+        </td>
         <td v-if="editMode"><input type="checkbox" v-model="selectedCourses" :value="course.id"/></td>
       </tr>
     </table>
@@ -122,14 +126,14 @@ export default {
       this.courses = this.courses.filter(course => !this.selectedCourses.includes(course.id));
       api.deleteCourses(this.selectedCourses)
         .then(response => {
-          if (response.isError == 0){
+          if (response.data == 0){
             alert("保存成功！");
           } else {
             alert("保存失败！");
           }
         })
         .catch(error => {
-          alert("保存失败，请稍后再试");
+          alert("保存失败，请保证你的输入是正确的");
           console.error(error);
         });
       this.selectedCourses = []; // 清空已选中的课程
@@ -146,7 +150,7 @@ export default {
     saveChanges() {
       api.changeCourses(this.changes)
         .then(response => {
-          if (response.isError == 0){
+          if (response.data == 0){
             alert("保存成功！");
           } else {
             alert("保存失败！");
