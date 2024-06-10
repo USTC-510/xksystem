@@ -79,15 +79,13 @@ export default {
       if (this.selectedCourses.includes(course.id)) {
         // 如果已经选中，则取消选中
         this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
-        if(!this.isDisabled){
-          course.currentPeople -= 1;
-        }
+        this.updateCoursePeople(course, -1);
       } else {
         api.ifCanCheck(course.id, username).then(response => {
           switch (response.data) {
             case 1:
               // 如果未选中，则选中
-              course.currentPeople += 1;
+              this.updateCoursePeople(course, 1);
               this.selectedCourses.push(course.id);
               break;
             case 0:
@@ -108,10 +106,16 @@ export default {
           console.log(error);
         });
       }
+    },
+    updateCoursePeople(course, change) {
+      this.$nextTick(() => {
+        course.currentPeople += change;
+      });
     }
   }
 };
 </script>
+
 
 
   <style scoped>
