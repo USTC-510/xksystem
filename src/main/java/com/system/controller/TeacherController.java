@@ -2,13 +2,12 @@ package com.system.controller;
 
 import com.system.pojo.Course;
 import com.system.pojo.Result;
+import com.system.service.CourseService;
 import com.system.service.TeacherService;
 import jakarta.annotation.Resource;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +18,16 @@ public class TeacherController
 {
     @Resource
     TeacherService teacherService;
+    @Resource
+    CourseService courseService;
 
     @GetMapping("/getCourses")
-    public Result getCourses(@RequestParam String username, HttpRequest request, HttpResponse response)
+    public Result getCourses(@RequestParam String username)
     {
         //获得老师教授的课程信息
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
-        List<Course> courses = teacherService.getTeacherCourses();
+
+        List<Course> courses = teacherService.getTeacherCourses(username);
         AllCoursesDTO dto = new AllCoursesDTO();
         List<AllCoursesDTO> dtoList = new ArrayList<>();
 

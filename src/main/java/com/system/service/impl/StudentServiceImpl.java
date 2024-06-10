@@ -20,7 +20,7 @@ public class StudentServiceImpl implements StudentService{
      @Resource
      CourseMapper courseMapper;
      @Resource
-    TimeSlotMapper timeSlotMapper;
+     TimeSlotMapper timeSlotMapper;
 
      public List<Course> getCoursesByStudentId(String code) {
 

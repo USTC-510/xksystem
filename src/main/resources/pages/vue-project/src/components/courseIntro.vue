@@ -1,42 +1,44 @@
 <template>
-    <div class="course-intro">
-      <h3>课程介绍: {{ courseName }}</h3>
-      <p v-if="intro">{{ intro }}</p>
-      <p v-else>加载中……</p>
-      <button @click="$router.push('/choose-student')">返回</button>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'courseIntro',
-    props: {
-      courseName: {
-        type: String,
-        required: true
-      }
-    },
-    data() {
-      return{
-        intro: ''
-      }
-    },
-    methods: {
-      fetchIntro() {
-        const courseName = localStorage.getItem('courseName');
-        localStorage.removeItem('courseName');
-        api.getCourseIntro(courseName).then(response => {
-            this.intro = response.data.intro;
-        }).catch(error => {
-            console.log(error);
+  <div class="course-intro">
+    <h3>课程介绍: {{ courseName }}</h3>
+    <p v-if="intro">{{ intro }}</p>
+    <p v-else>加载中……</p>
+    <button @click="$router.push('/choose-student')">返回</button>
+  </div>
+</template>
+
+<script>
+import api from "../api/function.js";
+
+export default {
+  name: 'courseIntro',
+  props: ['courseName'],
+  data() {
+    return {
+      intro: ''
+    };
+  },
+  created() {
+    this.fetchIntro();
+  },
+  methods: {
+    fetchIntro() {
+      api.getCourseIntro(this.courseName)
+        .then(response => {
+          this.intro = response.data;
         })
-      },
-      closeCard() {
-        this.$emit('close');
-      }
+        .catch(error => {
+          console.error('Error fetching course intro:', error);
+          this.intro = '加载失败，请稍后重试。';
+        });
+    },
+    closeCard() {
+      this.$emit('close');
     }
-  };
-  </script>
+  }
+};
+</script>
+
   
   <style scoped>
   .floating-card {

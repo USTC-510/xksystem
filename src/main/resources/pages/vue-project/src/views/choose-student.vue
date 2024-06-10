@@ -1,10 +1,10 @@
 <template>
   <div class="container main">
     <div class="search-container">
-    <form @submit.prevent="prevent">
-      <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
-      <button @click="searchCourses">搜索</button>
-    </form>
+      <form @submit.prevent="filteredCourses">
+        <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
+        <button type="submit">搜索</button>
+      </form>
     </div>
     <h2>选择课程</h2>
     <table>
@@ -23,7 +23,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro' }" @click.native="handleClick($event, course.name)">介绍</router-link>
+          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>
@@ -31,20 +31,17 @@
         <td>{{ course.credits }}</td>
         <td>{{ course.hour }}</td>
         <td>{{ course.currentPeople }} / {{ course.maxPeople }}</td>
-        <td><input type="checkbox" v-model="selectedCourses" :value="course.id" :disabled="isDisabled" @change="handleCheckbox($event, course)"/></td>
+        <td><input type="checkbox" :value="course.id" :disabled="isDisabled" @change="handleCheckbox($event, course)" /></td>
       </tr>
     </table>
   </div>
 </template>
 
 <script>
-import courseIntro from "../components/courseIntro.vue";
 import api from "../api/function.js";
+
 export default {
   name: 'choose_student',
-  components: {
-    courseIntro
-  },
   data() {
     return {
       searchQuery: '',
@@ -62,10 +59,9 @@ export default {
         this.isDisabled = true;
       }
       this.courses = response.data;
-      console.log(this.courses)
-  })
-},
-
+      console.log(this.courses);
+    });
+  },
   computed: {
     filteredCourses() {
       if (!this.searchQuery) {
@@ -74,54 +70,54 @@ export default {
       const query = this.searchQuery.toLowerCase();
       return this.courses.filter(course => {
         return course.name.toLowerCase().includes(query) || course.professor.toLowerCase().includes(query);
-      });//此处会将所有的字母转化为小写
+      });
     }
   },
   methods: {
-    handleClick(event, courseName) {
-      event.preventDefault();
-      localStorage.setItem('courseName', courseName);
-      this.$router.push({ name: 'courseIntro' });
-    },
-    handleCheckbox(event, course){
+    handleCheckbox(event, course) {
       const username = localStorage.getItem('username');
       if (this.selectedCourses.includes(course.id)) {
-                    // 如果已经选中，则取消选中
-                    this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
-                    this.currentPeople -= 1;
-      }
-      else {
+        // 如果已经选中，则取消选中
+        this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
+        this.updateCoursePeople(course, -1);
+      } else {
         api.ifCanCheck(course.id, username).then(response => {
-        switch(response.data){
-          case 1:  
-            // 如果未选中，则选中
-            this.currentPeople += 1;
-            this.selectedCourses.push(course.id);
-            break;
-          case 0:  
-            event.preventDefault();//复选框状态不会改变
-            alert("存在时间冲突！");
-            break;
-          case -1:  
-            event.preventDefault();//复选框状态不会改变
-            alert("相同类型课程只能选择一门！");
-            break;
-          case -2:
-            event.preventDefault();//复选框状态不会改变
-            alert("选课人数已达上限！");
-            break;
-        }
-      }).catch(error => {
-        alert("发生错误，请稍后再试！");
-        console.log(error);
-      })
-    }
+          switch (response.data) {
+            case 1:
+              // 如果未选中，则选中
+              this.updateCoursePeople(course, 1);
+              this.selectedCourses.push(course.id);
+              break;
+            case 0:
+              event.preventDefault(); // 复选框状态不会改变
+              alert("存在时间冲突！");
+              break;
+            case -1:
+              event.preventDefault(); // 复选框状态不会改变
+              alert("相同类型课程只能选择一门！");
+              break;
+            case -2:
+              event.preventDefault(); // 复选框状态不会改变
+              alert("选课人数已达上限！");
+              break;
+          }
+        }).catch(error => {
+          alert("发生错误，请稍后再试！");
+          console.log(error);
+        });
+      }
+    },
+    updateCoursePeople(course, change) {
+      this.$nextTick(() => {
+        course.currentPeople += change;
+      });
     }
   }
 };
-  
 </script>
-  
+
+
+
   <style scoped>
   .container {
     width: 95%;
