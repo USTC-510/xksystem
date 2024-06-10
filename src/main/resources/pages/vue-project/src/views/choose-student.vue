@@ -1,9 +1,9 @@
 <template>
   <div class="container main">
     <div class="search-container">
-    <form @submit.prevent="prevent">
+    <form>
       <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
-      <button @click="searchCourses">搜索</button>
+      <button @click="filteredCourses">搜索</button>
     </form>
     </div>
     <h2>选择课程</h2>
@@ -83,7 +83,7 @@ export default {
       if (this.selectedCourses.includes(course.id)) {
                     // 如果已经选中，则取消选中
                     this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
-                    this.course.currentPeople -= 1;
+                    course.currentPeople -= 1;
       }
       else {
         api.ifCanCheck(course.id, username).then(response => {
