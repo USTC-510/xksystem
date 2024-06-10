@@ -77,7 +77,11 @@ export default {
     handleCheckbox(event, course) {
       const username = localStorage.getItem('username');
       if (this.selectedCourses.includes(course.id)) {
-        // 如果已经选中，则取消选中
+        api.notCheck(course.id, username).then(response => {
+          if (response.data==0) {
+            alert("取消失败，请稍后再试！");
+          }
+        })
         this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
         this.updateCoursePeople(course, -1);
       } else {
@@ -102,6 +106,7 @@ export default {
               break;
           }
         }).catch(error => {
+          event.preventDefault(); // 复选框状态不会改变
           alert("发生错误，请稍后再试！");
           console.log(error);
         });
@@ -121,15 +126,16 @@ export default {
   <style scoped>
   .container {
     width: 120%;
-    margin: auto;
+    margin: 0 auto;
     overflow: hidden;
     min-width: 80%;
   }
   .main {
-    padding: 20px;
     background: #fff;
     margin-top: 20px;
     position: relative;
+    width: 100%; /* 调整宽度 */
+    margin: 0 auto; /* 居中 */
   }
   table {
     width: 100%;
