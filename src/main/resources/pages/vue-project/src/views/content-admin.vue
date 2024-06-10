@@ -9,10 +9,6 @@
     <button class="img" id="chooseID" @click="handleChoose"></button>
     <p class="text">课程管理</p>
   </div>
-  <div class="mytable">
-    <button class="img" id="myTableID" @click="handleMyTable"></button>
-    <p class="text">人员管理</p>
-  </div>
     </div>
   </template>
   
@@ -31,17 +27,12 @@
         );
       },
       handleChoose(){
-        this.$router.push({ path: '/choose-teacherOrAdmin' }).catch(
+        this.$router.push({ path: '/choose-admin' }).catch(
           err => alert("跳转页面失败：",err)
         );
-      },
-      handleMyTable(){
-        this.$router.push({ path: '/myTable-admin' }).catch(
-          err => alert("跳转页面失败：",err)
-        );
-      }
     }
   }
+}
   </script>
   <style scoped>
     .img {
@@ -70,17 +61,12 @@
     .infor{
       position: absolute;
       top: 300px;
-      left: 650px;
+      left: 725px;
     }
     .choose{
       position: absolute;
       top: 300px;
-      left: 800px;
-    }
-    .myTable{
-      position: absolute;
-      top: 300px;
-      left: 950px;
+      left: 875px;
     }
   </style>
   
