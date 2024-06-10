@@ -8,8 +8,6 @@ public interface CourseService {
 
     List<Course> getCourseByName(String name);
 
-    List<Course> getCoursesByStudentId(String code);
-
     int ifCanCheck(String studentcode,String coursecode);
 
     String connectTime(Course course);
