@@ -36,9 +36,6 @@ public class StudentController
         }
     }
 
-    @GetMapping
-
-
 }
 
 //@Data

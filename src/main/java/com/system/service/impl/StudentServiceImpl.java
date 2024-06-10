@@ -3,15 +3,20 @@ package com.system.service.impl;
 import com.system.mapper.CourseMapper;
 import com.system.mapper.TimeSlotMapper;
 import com.system.pojo.Course;
+
 import com.system.pojo.TimeSlot;
+
+import com.system.service.StudentService;
+
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class  StudentServiceImpl
-{
+
+public class StudentServiceImpl implements StudentService{
+
      @Resource
      CourseMapper courseMapper;
      @Resource

@@ -23,7 +23,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro' ,params: { courseName: course.name }}">介绍</router-link>
+          <router-link :to="{ name: 'courseIntro' }" @click.native="handleClick($event, course.name)">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>
@@ -78,6 +78,11 @@ export default {
     }
   },
   methods: {
+    handleClick(event, courseName) {
+      event.preventDefault();
+      localStorage.setItem('courseName', courseName);
+      this.$router.push({ name: 'courseIntro' });
+    },
     handleCheckbox(event, course){
       const username = localStorage.getItem('username');
       if (this.selectedCourses.includes(course.id)) {
