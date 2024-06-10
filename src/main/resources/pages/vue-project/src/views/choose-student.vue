@@ -64,6 +64,7 @@ export default {
       this.courses = response.data;
   })
 },
+
   computed: {
     filteredCourses() {
       if (!this.searchQuery) {
