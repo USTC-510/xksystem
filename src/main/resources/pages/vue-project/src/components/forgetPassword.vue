@@ -42,14 +42,13 @@
         isDisabled: false,
         message: "发送验证码",
         username: '',
-        identity: ''
+        identity: '',
+        rightVerification: ''
       }
     },
     methods: {
       submit() {//需要和后端存的密码匹配
-        api.forgetPassword(this.username, this.identity).
-        then(response => {
-          if(response.data == this.verification){
+        if(this.rightVerification == this.verification){
             api.afterForgetPassword(this.username, this.newPassword, this.identity).then(() => {
               alert("修改成功");
             }).catch(error => {
@@ -60,20 +59,24 @@
           else{
             alert("您输入的验证码错误");
           }
-        }).
-        catch(error => {
-          console.log(error);
-          alert("修改失败，请稍后再试");
-        })
       },
       closeCard() {
         this.$emit('close');
       },
       handleClick() {
-      this.isDisabled = true;
-      setTimeout(() => {
+        this.isDisabled = true;
+        this.startDecreasing();
+        setTimeout(() => {
             this.isDisabled = false;
         }, 60000); // 60秒后重新启用按钮
+        api.forgetPassword(this.username, this.identity).
+        then(response => {
+          this.rightVerification = response.rightVerification;
+        }).
+        catch(error => {
+          console.log(error);
+          alert("修改失败，请稍后再试");
+        })
       },
       startDecreasing() {
         var data = 60;
@@ -109,6 +112,7 @@
     z-index: 1000;
   }
   .input-text {
+    height: 30px;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -118,9 +122,12 @@
   cursor: not-allowed;
   }
   .label {
-    width: 100px;
+    width: 60px;
     text-align: right;
     margin-right: 10px;
+  }
+  .role-selection {
+    font-size: 25px;
   }
   </style>
   
