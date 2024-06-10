@@ -53,9 +53,11 @@ const api = {
         })
     },
     forgetPassword(username, identity){
-        return axios.post(path.baseurl + path.forgetPassword, {
-            username: username,
-            identity: identity
+        return axios.get(path.baseurl + path.forgetPassword, {
+            params: {
+                username: username,
+                identity: identity
+            }
         })
     },
     deleteCourses(courses){
