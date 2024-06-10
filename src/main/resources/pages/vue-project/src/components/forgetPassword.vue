@@ -17,14 +17,14 @@
           <input type="text" name="username" v-model="username" required> 
         </div>
       <div class="input-text">  
+          <label class="label" for="newPassword">新的密码：</label>  
+          <input type="password" name="newPassword" v-model="newPassword" required>
+      </div>
+      <div class="input-text">  
           <label class="label" for="verification">验证码：</label>
           <input type="text" name="verification" v-model="verification" required>  
           <button :disabled="isDisabled" :class="{ 'disabled-button': isDisabled }" @click="handleClick">{{ message }}</button>
         </div>
-      <div class="input-text">  
-          <label class="label" for="newPassword">新的密码：</label>  
-          <input type="password" name="newPassword" v-model="newPassword" required>
-      </div>
       <button type="submit">修改</button>
       </form>
       <button @click="closeCard">关闭</button>
@@ -42,14 +42,13 @@
         isDisabled: false,
         message: "发送验证码",
         username: '',
-        identity: ''
+        identity: '1',
+        rightVerification: ''
       }
     },
     methods: {
       submit() {//需要和后端存的密码匹配
-        api.forgetPassword(this.username, this.identity).
-        then(response => {
-          if(response.data == this.verification){
+        if(this.rightVerification == this.verification){
             api.afterForgetPassword(this.username, this.newPassword, this.identity).then(() => {
               alert("修改成功");
             }).catch(error => {
@@ -60,20 +59,24 @@
           else{
             alert("您输入的验证码错误");
           }
-        }).
-        catch(error => {
-          console.log(error);
-          alert("修改失败，请稍后再试");
-        })
       },
       closeCard() {
         this.$emit('close');
       },
       handleClick() {
-      this.isDisabled = true;
-      setTimeout(() => {
+        this.isDisabled = true;
+        this.startDecreasing();
+        setTimeout(() => {
             this.isDisabled = false;
         }, 60000); // 60秒后重新启用按钮
+        api.forgetPassword(this.username, this.identity).
+        then(response => {
+          this.rightVerification = response.data;
+        }).
+        catch(error => {
+          console.log(error);
+          alert("修改失败，请稍后再试");
+        })
       },
       startDecreasing() {
         var data = 60;
@@ -108,19 +111,36 @@
     border-radius: 8px;
     z-index: 1000;
   }
-  .input-text {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+  input[type="password"], input[type="text"] {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    border: 1px inset #ccc;
+    border-radius: 5px;
+    font-size: 20px;
   }
+  
   .disabled-button {
   background-color: grey;
   cursor: not-allowed;
+  }
+  button{
+    width: 80px;
   }
   .label {
     width: 100px;
     text-align: right;
     margin-right: 10px;
+    font-size: 19px;
+  }
+  .input-text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-right: 50px;
+  }
+  .role-selection {
+    font-size: 17px;
   }
   </style>
   

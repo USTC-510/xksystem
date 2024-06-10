@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService
 
 
     public User getUser(String username,String identity)
-   {
+    {
        switch(identity)
        {
            case "1":
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService
            default:
                return null;
        }
-   }
+    }
 
    public int changePassword(String username,String identity,String originalPassword,String newPassword)
    {
@@ -74,6 +74,18 @@ public class UserServiceImpl implements UserService
 
    public String resetPasswordMail(String username,String identity)
    {
+        switch(identity)
+        {
+           case "1":
+               identity = "student";
+               break;
+           case "2":
+               identity = "teacher";
+               break;
+           case "3":
+               identity = "administrator";
+        }
+
         String mail = userMapper.selectMailByCode(identity,username);
         //调用mapper找到邮箱
         String title = "找回密码";
@@ -89,6 +101,7 @@ public class UserServiceImpl implements UserService
             else {return null;}
         }
         else {return null;}
+
    }
 
    public void resetPassword(String username,String newPassword,String identity)

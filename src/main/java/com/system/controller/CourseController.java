@@ -95,13 +95,13 @@ public class CourseController
         }
     }
 
-    @GetMapping("/ifCanCheck")
-    public Result ifCanCheck(@RequestParam String studentId,@RequestParam String courseId,HttpServletResponse response,HttpServletRequest request)
-    {
-        //验证课程能否选择
-
-
-    }
+//    @GetMapping("/ifCanCheck")
+//    public Result ifCanCheck(@RequestParam String studentId,@RequestParam String courseId,HttpServletResponse response,HttpServletRequest request)
+//    {
+//        //验证课程能否选择
+//
+//
+//    }
 }
 
 @Data

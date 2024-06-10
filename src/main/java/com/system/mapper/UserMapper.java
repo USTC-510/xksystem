@@ -9,6 +9,6 @@ public interface UserMapper
 
    void updatePasswordByCode(@Param("tableName")String identity, @Param("newPassword")String newPassword, @Param("username")String code);
 
-   String selectMailByCode(@Param("tableName")String identity,@Param("username")String code);
+   String selectMailByCode(@Param("tableName")String identity,@Param("code")String code);
 
 }
