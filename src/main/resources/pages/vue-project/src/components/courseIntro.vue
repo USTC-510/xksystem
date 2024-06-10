@@ -24,6 +24,7 @@
     methods: {
       fetchIntro() {
         const courseName = localStorage.getItem('courseName');
+        localStorage.removeItem('courseName');
         api.getCourseIntro(courseName).then(response => {
             this.intro = response.data.intro;
         }).catch(error => {

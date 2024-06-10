@@ -38,10 +38,10 @@ const api = {
         return axios.get(path.baseurl + path.allCourses, {
         })
     },
-    getCourseIntro(course){
+    getCourseIntro(courseName){
         return axios.get(path.baseurl + path.detailedCourse, {
             params: {
-                course: course
+                courseName: courseName
             }
         })
     },
