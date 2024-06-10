@@ -8,6 +8,7 @@ import com.system.service.CourseService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -66,11 +67,15 @@ public class CourseServiceImpl implements CourseService {
             }
         }
 
+        courseMapper.addNumber(courseCode);
+
 
 
 
         return 1; // 无时间冲突
     }
+
+    @GetMapping
 
     public String connectTime(Course course){
         List<TimeSlot> timeSlot = timeSlotMapper.getTimeByCourseCode(course.getCode());
