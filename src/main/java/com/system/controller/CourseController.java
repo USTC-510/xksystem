@@ -26,7 +26,6 @@ public class CourseController
         //获取所有课程的所有信息
 
         List<Course> courses = courseService.getAllCourses();
-        AllCoursesDTO dto = new AllCoursesDTO();
         List<AllCoursesDTO> dtoList = new ArrayList<>();
 
         if (ObjectUtils.isEmpty(courses)) {return Result.error("发生了意料之外的错误",null);}
@@ -35,6 +34,7 @@ public class CourseController
         {
             for (Course course: courses)
             {
+                AllCoursesDTO dto = new AllCoursesDTO();
                 dto.setName(course.getName());
                 dto.setCredits(course.getCredit());
                 dto.setHour(course.getHour());
@@ -56,16 +56,17 @@ public class CourseController
     {
        //查找课程的介绍
 
-        if (ObjectUtils.isEmpty(name)) {return Result.error("错误!",null);}
-        //验证参数非空
-        else
-        {
-            List<Course> courses = courseService.getCourseByName(name);
-            //调用service
-
-            if (ObjectUtils.isEmpty(courses)) {return Result.error("错误",null);}
-            else {return Result.success(courses.get(0).getIntroduction());}
-        }
+//        if (ObjectUtils.isEmpty(name)) {return Result.error("错误!",null);}
+//        //验证参数非空
+//        else
+//        {
+//            List<Course> courses = courseService.getCourseByName(name);
+//            //调用service
+//
+//            if (ObjectUtils.isEmpty(courses)) {return Result.error("错误",null);}
+//            else {return Result.success(courses.get(0).getIntroduction());}
+//        }
+        return Result.success(name);
     }
 
     @GetMapping("/ifCanCheck")
