@@ -59,15 +59,15 @@ export default {
       }
       const data = response.data;
       //把传入的数转换成易于处理的形式
-      this.courses = data.map((id, index) => ({
-        id: id,
-        name: data.name[index],
-        professor: data.professor[index],
-        time: data.time[index],
-        position: data.position[index],
-        credits: data.credit[index],
-        currentPeople: data.currentPeople[index],
-        maxPeople: data.maxPeople[index]
+      this.courses = data.map(course => ({
+        id: course.id,
+        name: course.name,
+        professor: course.professor,
+        time: course.time,
+        position: course.position,
+        credits: course.credit, // 注意这里可能是 course.credits 而不是 course.credit
+        currentPeople: course.currentPeople,
+        maxPeople: course.maxPeople
       }));
     });
   },
