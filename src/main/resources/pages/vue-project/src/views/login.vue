@@ -22,7 +22,7 @@
         </div>
         <button type="submit">登录</button>
       </form> 
-        <a href="../components/forgetPassword.vue" @click.prevent="showCard = true">忘记密码？</a>
+        <a @click.prevent="showCard = true">忘记密码？</a>
         <forgetPassword v-if="showCard" @close="showCard = false" />   
       <p :class="{'message': ! isError, 'error': isError}">{{ message }}</p> 
     </div>  

@@ -68,5 +68,39 @@ public class CourseServiceImpl implements CourseService {
         return 1; // 无时间冲突
     }
 
+    public String connectTime(Course course){
+        List<TimeSlot> timeSlot = timeSlotMapper.getTimeByCourseCode(course.getCode());
+        return convertTimeSlotsToString(timeSlot);
+    }
+    public String convertTimeSlotsToString(List<TimeSlot> timeSlots) {
+        StringBuilder result = new StringBuilder();
+        for (TimeSlot timeSlot : timeSlots) {
+            result.append(convertDayOfWeekToString(timeSlot.getDayOfWeek()));
+            result.append("第").append(timeSlot.getStartTime()).append(",").append(timeSlot.getEndTime()).append("节");
+            result.append("，");
+        }
+        // 删除最后一个逗号
+        if (result.length() > 0) {
+            result.deleteCharAt(result.length() - 1);
+        }
+        return result.toString();
+    }
+    private String convertDayOfWeekToString(int dayOfWeek) {
+        switch (dayOfWeek) {
+            case 1:
+                return "周一";
+            case 2:
+                return "周二";
+            case 3:
+                return "周三";
+            case 4:
+                return "周四";
+            case 5:
+                return "周五";
+            default:
+                return "";
+        }
+    }
+
 }
 

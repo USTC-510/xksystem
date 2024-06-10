@@ -46,7 +46,7 @@
         api.getInfor(username, identity).
         then(response => {
             this.person.realName = "姓名：" + response.data.name;
-            this.person.code = "学号：" + response.data.code;
+            this.person.code = "学号/工号：" + response.data.code;
             this.person.age = "年龄：" + response.data.age;
             this.person.gender = "性别：" + response.data.gender;
             this.person.faculty = "学院：" + response.data.faculty;

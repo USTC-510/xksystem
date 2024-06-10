@@ -34,6 +34,7 @@ public class CourseController
         else
         {
             AllCoursesDTO dto = new AllCoursesDTO();
+
             List<String> id = new ArrayList<>();
             List<String> name = new ArrayList<>();
             List<String> professor = new ArrayList<>();
@@ -43,7 +44,6 @@ public class CourseController
             List<Integer> currentPeople = new ArrayList<>();
             List<Integer> maxPeople = new ArrayList<>();
             List<Integer> hour = new ArrayList<>();
-            String time_whole = "";
 
             for (Course course: courses)
             {
@@ -55,7 +55,7 @@ public class CourseController
                 currentPeople.add(course.getNumber());
                 maxPeople.add(course.getMaxnum());
                 hour.add(course.getHour());
-                time.add(time_whole);
+                time.add(courseService.connectTime(course));
             }
 
             dto.setId(id);

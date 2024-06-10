@@ -45,10 +45,11 @@ const api = {
             }
         })
     },
-    ifCanCheck(id){
+    ifCanCheck(id, username){
         return axios.get(path.baseurl + path.checkCourse, {
             params: {
-                id: id
+                id: id,
+                username
             }
         })
     },
@@ -61,13 +62,17 @@ const api = {
         })
     },
     deleteCourses(courses){
-        return axios.post(path.baseurl + path.deleteCourses, {
-            courses: courses
+        return axios.get(path.baseurl + path.deleteCourses, {
+            params: {
+                courses: courses
+            }
         })
     },
     changeCourses(changes){
         return axios.post(path.baseurl + path.changeCourses, {
-            changes: changes
+            params: {
+                changes: changes
+            }
         })
     },
     afterForgetPassword(username, newPassword, identity){
@@ -75,6 +80,20 @@ const api = {
             username: username,
             newPassword: newPassword,
             identity: identity
+        })
+    },
+    getStudentCourses(username){
+        return axios.get(path.baseurl + path.getStudent, {
+            params: {
+                username: username
+            }
+        })
+    },
+    getTeacherCourses(username){
+        return axios.get(path.baseurl + path.getTeacherCourses, {
+            params: {
+                username: username
+            }
         })
     }
 }

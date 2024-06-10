@@ -9,4 +9,6 @@ public interface CourseService {
     List<Course> getCourseByName(String name);
 
     int ifCanCheck(String studentcode,String coursecode);
+
+    String connectTime(Course course);
 }
