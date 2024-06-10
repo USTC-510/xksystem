@@ -1,15 +1,15 @@
 package com.system.controller;
+
 import com.system.pojo.Course;
 import com.system.pojo.Result;
 import com.system.service.CourseService;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,12 +21,9 @@ public class CourseController
     @Resource
     CourseService courseService;
     @GetMapping("/allCourse")
-    public Result getAllCourses(HttpServletResponse response, HttpServletRequest request)
+    public Result getAllCourses()
     {
         //获取所有课程的所有信息
-
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
         List<Course> courses = courseService.getAllCourses();
         AllCoursesDTO dto = new AllCoursesDTO();
@@ -55,12 +52,9 @@ public class CourseController
     }
 
     @GetMapping("/detailedCourse")
-    public Result getIntro(@RequestParam(name = "courseName")String name,HttpServletResponse response,HttpServletRequest request)
+    public Result getIntro(@RequestParam(name = "courseName")String name)
     {
        //查找课程的介绍
-
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
         if (ObjectUtils.isEmpty(name)) {return Result.error("错误!",null);}
         //验证参数非空
@@ -75,12 +69,9 @@ public class CourseController
     }
 
     @GetMapping("/ifCanCheck")
-    public Result ifCanCheck(@RequestParam(name = "id") String courseId,@RequestParam(name = "username") String studentId,HttpServletResponse response,HttpServletRequest request)
+    public Result ifCanCheck(@RequestParam(name = "id") String courseId,@RequestParam(name = "username") String studentId)
     {
         //验证课程能否选择
-
-        response.setHeader("X-Content-Type-Options", "nosniff");
-        //设置请求头
 
         if (ObjectUtils.isEmpty(courseId) || ObjectUtils.isEmpty(studentId)) {return Result.error("错误！",null);}
         else {return Result.success(courseService.ifCanCheck(studentId,courseId));}
