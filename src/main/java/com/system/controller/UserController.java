@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = {"http://localhost:1969","http://114.214.234.245:1969","http://localhost:8080","http://114.214.234.245:8080","http://92o66n2830.goho.co"}, methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = {"http://ustc510.v7.idcfengye.com","http://localhost:8081","http://114.214.234.245:8081","http://localhost:8080","http://114.214.234.245:8080"}, methods = {RequestMethod.GET, RequestMethod.POST})
 public class UserController {
     @Resource
     private UserService userService;
@@ -50,6 +50,7 @@ public class UserController {
                 return Result.success(user.getIdentity());
             }
         }
+
     }
 
     @GetMapping("/realName")
@@ -171,3 +172,4 @@ class ResetPasswordDTO
     private String username;
     private String newPassword;
 }
+
