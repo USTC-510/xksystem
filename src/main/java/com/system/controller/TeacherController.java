@@ -14,6 +14,6 @@ public class TeacherController
     TeacherService teacherService;
 
     @GetMapping("/getCourses")
-    public Result getCourses(@RequestParam )
+    public Result getCourses(@RequestParam String )
 
 }
