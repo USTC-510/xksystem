@@ -44,18 +44,19 @@ public class CourseController
             List<Integer> currentPeople = new ArrayList<>();
             List<Integer> maxPeople = new ArrayList<>();
             List<Integer> hour = new ArrayList<>();
+            String time_whole = "";
 
             for (Course course: courses)
             {
                 id.add(course.getCode());
                 name.add(course.getName());
                 professor.add(course.getTeacher().getName());
-                time.add(course.getDate());
                 position.add(course.getSpot());
                 credit.add(course.getCredit());
                 currentPeople.add(course.getNumber());
                 maxPeople.add(course.getMaxnum());
                 hour.add(course.getHour());
+                time.add(time_whole);
             }
 
             dto.setId(id);
@@ -92,6 +93,14 @@ public class CourseController
             if (ObjectUtils.isEmpty(courses)) {return Result.error("错误",null);}
             else {return Result.success(courses.get(0).getIntroduction());}
         }
+    }
+
+    @GetMapping("/ifCanCheck")
+    public Result ifCanCheck(@RequestParam String studentId,@RequestParam String courseId,HttpServletResponse response,HttpServletRequest request)
+    {
+        //验证课程能否选择
+
+
     }
 }
 
