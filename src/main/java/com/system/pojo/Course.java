@@ -23,4 +23,9 @@ public class Course
     private String time_3;
     private String time_4;
     private String time_5;
+
+    public String getTime(String time){
+        return time;
+    }
+
 }
