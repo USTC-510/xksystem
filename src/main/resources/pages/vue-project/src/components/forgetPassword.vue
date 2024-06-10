@@ -17,14 +17,14 @@
           <input type="text" name="username" v-model="username" required> 
         </div>
       <div class="input-text">  
+          <label class="label" for="newPassword">新的密码：</label>  
+          <input type="password" name="newPassword" v-model="newPassword" required>
+      </div>
+      <div class="input-text">  
           <label class="label" for="verification">验证码：</label>
           <input type="text" name="verification" v-model="verification" required>  
           <button :disabled="isDisabled" :class="{ 'disabled-button': isDisabled }" @click="handleClick">{{ message }}</button>
         </div>
-      <div class="input-text">  
-          <label class="label" for="newPassword">新的密码：</label>  
-          <input type="password" name="newPassword" v-model="newPassword" required>
-      </div>
       <button type="submit">修改</button>
       </form>
       <button @click="closeCard">关闭</button>
@@ -42,7 +42,7 @@
         isDisabled: false,
         message: "发送验证码",
         username: '',
-        identity: '',
+        identity: '1',
         rightVerification: ''
       }
     },
@@ -111,12 +111,15 @@
     border-radius: 8px;
     z-index: 1000;
   }
-  .input-text {
+  input[type="password"], input[type="text"] {
+    width: 200px;
     height: 30px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px inset #ccc;
+    border-radius: 5px;
+    font-size: 20px;
   }
+  
   .disabled-button {
   background-color: grey;
   cursor: not-allowed;
@@ -125,6 +128,7 @@
     width: 60px;
     text-align: right;
     margin-right: 10px;
+    font-size: 25px;
   }
   .role-selection {
     font-size: 25px;
