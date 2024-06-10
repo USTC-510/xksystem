@@ -78,19 +78,24 @@ export default {
   methods: {
     handleCheckbox(event, course){
       api.ifCanCheck(course.id).then(response => {
-        if (response.canCheck == 1){
-          if (this.selectedCourses.includes(course.id)) {
-            // 如果已经选中，则取消选中
-            this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
-          } 
-          else {
-            // 如果未选中，则选中
-            this.selectedCourses.push(course.id);
-          }
-        }
-        else{
-          event.preventDefault();//复选框状态不会改变
-          alert("存在时间冲突！");
+        switch(response.canCheck){
+          case 1:  if (this.selectedCourses.includes(course.id)) {
+                    // 如果已经选中，则取消选中
+                    this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
+                    this.currentPeople -= 1;
+                  } 
+                  else {
+                    // 如果未选中，则选中
+                    this.currentPeople += 1;
+                    this.selectedCourses.push(course.id);
+                  }
+                  break;
+          case 2:  event.preventDefault();//复选框状态不会改变
+                   alert("存在时间冲突！");
+                   break;
+          case 3:  event.preventDefault();//复选框状态不会改变
+                   alert("相同类型课程只能选择一门！");
+                   break;
         }
       }).catch(error => {
         alert("发生错误，请稍后再试！");

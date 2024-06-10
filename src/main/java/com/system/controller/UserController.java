@@ -111,18 +111,32 @@ public class UserController {
 
     }
 
-    @GetMapping("/resetPassword")
-    public Result resetPassword(@RequestParam String username, @RequestParam String identity, HttpServletRequest request, HttpServletResponse response) {
+    @GetMapping("/resetPasswordMail")
+    public Result resetPasswordMail(@RequestParam String username, @RequestParam String identity,HttpServletRequest request, HttpServletResponse response)
+    {
         //找回密码
 
         response.setHeader("X-Content-Type-Options", "nosniff");
         //设置请求头
 
-        String res = userService.resetPassword(username, identity);
+        String res = userService.resetPasswordMail(username, identity);
         //调用service获取验证码
 
         if (res != null) {return Result.success(res);}
         else {return Result.error("用户名错误！", "notFound");}
+    }
+
+    @PostMapping("/resetPassword")
+    public Result resetPassword(@RequestBody ResetPasswordDTO dto,HttpServletRequest request,HttpServletResponse response)
+    {
+        //修改新密码，在验证码输入正确之后
+
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+        if (ObjectUtils.isEmpty(dto)) {return Result.error("错误！",null);}
+        //验证参数非空
+        userService.resetPassword(dto.getUsername(), dto.getNewPassword(), dto.getIdentity());
+        return Result.success(1);
     }
 }
 
@@ -145,5 +159,15 @@ class ChangePasswordDTO
     private String username;
     private String identity;
     private String originalPassword;
+    private String newPassword;
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+class ResetPasswordDTO
+{
+    private String identity;
+    private String username;
     private String newPassword;
 }

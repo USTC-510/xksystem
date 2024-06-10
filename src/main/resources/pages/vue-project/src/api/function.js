@@ -52,21 +52,27 @@ const api = {
             }
         })
     },
-    forgetPassword(username, newPassword ,identity){
+    forgetPassword(username, identity){
         return axios.post(path.baseurl + path.forgetPassword, {
             username: username,
-            newPassword: newPassword,
             identity: identity
         })
     },
     deleteCourses(courses){
         return axios.post(path.baseurl + path.deleteCourses, {
-            courses
+            courses: courses
         })
     },
     changeCourses(changes){
         return axios.post(path.baseurl + path.changeCourses, {
-            changes
+            changes: changes
+        })
+    },
+    afterForgetPassword(username, newPassword, identity){
+        return axios.post(path.baseurl + path.afterForgetPassword, {
+            username: username,
+            newPassword: newPassword,
+            identity: identity
         })
     }
 }

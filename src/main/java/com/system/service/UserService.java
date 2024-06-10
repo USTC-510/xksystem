@@ -8,5 +8,7 @@ public interface UserService
 
    int changePassword(String username,String identity,String originalPassword,String newPassword);
 
-   String resetPassword(String username,String identity);
+   String resetPasswordMail(String username,String identity);
+
+   void resetPassword(String username,String newPassword,String identity);
 }
