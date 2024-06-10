@@ -115,7 +115,8 @@
         this.$set(this.selectedTimeSlots, day, []);
       }
       }
-}
+    }
+  }
   </script>
   
   <style scoped>
