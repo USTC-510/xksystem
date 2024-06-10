@@ -58,7 +58,7 @@
     methods: {
       fetchSchedule() {
         const username = localStorage.getItem("username");
-        getStudentCourse(username).then(response => {
+        getStudentCourses(username).then(response => {
             const scheduleData = response.data;
             scheduleData.forEach(course => {
               const dayIndex = this.days.indexOf(course.day);

@@ -23,7 +23,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }"> 介绍</router-link>
+          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>
@@ -31,7 +31,7 @@
         <td>{{ course.credits }}</td>
         <td>{{ course.hour }}</td>
         <td>{{ course.currentPeople }} / {{ course.maxPeople }}</td>
-        <td><input type="checkbox" v-model="selectedCourses" :value="course.id" @change="handleCheckbox($event, course)"/></td>
+        <td><input type="checkbox" v-model="selectedCourses" :value="course.id" :disabled="isDisabled" @change="handleCheckbox($event, course)"/></td>
       </tr>
     </table>
   </div>
@@ -45,11 +45,18 @@ export default {
     return {
       searchQuery: '',
       courses: [],
-      selectedCourses: []
+      selectedCourses: [],
+      isDisabled: false
     };
   },
   created() {
     api.getAllCourses().then(response => {
+      const targetDate = new Date('2024-06-15'); // 目标日期为2024年6月15日
+      const currentDate = new Date(); // 获取当前日期
+      // 检查当前日期是否在目标日期之前
+      if (currentDate > targetDate) {
+        this.isDisabled = true;
+      }
       const data = response.data;
       //把传入的数转换成易于处理的形式
       this.courses = data.name.map((id, index) => ({
@@ -77,30 +84,38 @@ export default {
   },
   methods: {
     handleCheckbox(event, course){
-      api.ifCanCheck(course.id).then(response => {
-        switch(response.canCheck){
-          case 1:  if (this.selectedCourses.includes(course.id)) {
+      const username = localStorage.getItem('username');
+      if (this.selectedCourses.includes(course.id)) {
                     // 如果已经选中，则取消选中
                     this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
                     this.currentPeople -= 1;
-                  } 
-                  else {
-                    // 如果未选中，则选中
-                    this.currentPeople += 1;
-                    this.selectedCourses.push(course.id);
-                  }
-                  break;
-          case 2:  event.preventDefault();//复选框状态不会改变
-                   alert("存在时间冲突！");
-                   break;
-          case 3:  event.preventDefault();//复选框状态不会改变
-                   alert("相同类型课程只能选择一门！");
-                   break;
+      }
+      else {
+        api.ifCanCheck(course.id, username).then(response => {
+        switch(response.data){
+          case 1:  
+            // 如果未选中，则选中
+            this.currentPeople += 1;
+            this.selectedCourses.push(course.id);
+            break;
+          case 0:  
+            event.preventDefault();//复选框状态不会改变
+            alert("存在时间冲突！");
+            break;
+          case -1:  
+            event.preventDefault();//复选框状态不会改变
+            alert("相同类型课程只能选择一门！");
+            break;
+          case -2:
+            event.preventDefault();//复选框状态不会改变
+            alert("选课人数已达上限！");
+            break;
         }
       }).catch(error => {
         alert("发生错误，请稍后再试！");
         console.log(error);
       })
+    }
     }
   }
 };
