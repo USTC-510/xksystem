@@ -64,7 +64,7 @@ export default {
     {
       alert("发生错误");
       console.log(error);
-    };
+    });
   },
   computed: {
     filteredCourses() {
