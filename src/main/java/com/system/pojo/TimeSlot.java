@@ -12,6 +12,4 @@ public class TimeSlot {
     private int startTime; // 开始时间，第几节课
     private int endTime; // 结束时间，第几节课
     private String courseId;
-
-
 }

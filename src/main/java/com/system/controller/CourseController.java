@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/course")
-@CrossOrigin(origins = {"http://localhost:1969","http://114.214.234.245:1969","http://localhost:8080","http://114.214.234.245:8080","http://92o66n2830.goho.co"}, methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = {"http://ustc510.v7.idcfengye.com","http://localhost:8081","http://114.214.234.245:8081","http://localhost:8080","http://114.214.234.245:8080","http://92o66n2830.goho.co:80","http://115.236.153.170:80"}, methods = {RequestMethod.GET, RequestMethod.POST})
 public class CourseController
 {
     @Resource
@@ -29,46 +29,27 @@ public class CourseController
         //设置请求头
 
         List<Course> courses = courseService.getAllCourses();
+        AllCoursesDTO dto = new AllCoursesDTO();
+        List<AllCoursesDTO> dtoList = new ArrayList<>();
+
         if (ObjectUtils.isEmpty(courses)) {return Result.error("发生了意料之外的错误",null);}
         //验证非空
         else
         {
-            AllCoursesDTO dto = new AllCoursesDTO();
-            List<String> id = new ArrayList<>();
-            List<String> name = new ArrayList<>();
-            List<String> professor = new ArrayList<>();
-            List<String> time = new ArrayList<>();
-            List<String> position = new ArrayList<>();
-            List<Integer> credit = new ArrayList<>();
-            List<Integer> currentPeople = new ArrayList<>();
-            List<Integer> maxPeople = new ArrayList<>();
-            List<Integer> hour = new ArrayList<>();
-
             for (Course course: courses)
             {
-                id.add(course.getCode());
-                name.add(course.getName());
-                professor.add(course.getTeacher().getName());
-                position.add(course.getSpot());
-                credit.add(course.getCredit());
-                currentPeople.add(course.getNumber());
-                maxPeople.add(course.getMaxnum());
-                hour.add(course.getHour());
-                time.add(courseService.connectTime(course));
+                dto.setName(course.getName());
+                dto.setCredit(course.getCredit());
+                dto.setHour(course.getHour());
+                dto.setId(course.getCode());
+                dto.setPosition(course.getSpot());
+                dto.setMaxPeople(course.getMaxnum());
+                dto.setProfessor(course.getTeacher());
+                dto.setCurrentPeople(course.getNumber());
+                dto.setTime(courseService.connectTime(course));
+                dtoList.add(dto);
             }
-
-            dto.setId(id);
-            dto.setName(name);
-            dto.setCredit(credit);
-            dto.setHour(hour);
-            dto.setCurrentPeople(currentPeople);
-            dto.setPosition(position);
-            dto.setTime(time);
-            dto.setMaxPeople(maxPeople);
-            dto.setProfessor(professor);
-            //封装数据到DTO类
-
-            return Result.success(dto);
+            return Result.success(dtoList);
             //再度封装
         }
     }
@@ -112,14 +93,14 @@ public class CourseController
 class AllCoursesDTO
 {
     //封装响应体
-    private List<String> id;
-    private List<String> name;
-    private List<String> professor;
-    private List<String> time;
-    private List<String> position;
-    private List<Integer> credit;
-    private List<Integer> currentPeople;
-    private List<Integer> maxPeople;
-    private List<Integer> hour;
+    private String id;
+    private String name;
+    private String professor;
+    private String time;
+    private String position;
+    private Integer credit;
+    private Integer currentPeople;
+    private Integer maxPeople;
+    private Integer hour;
 }
 
