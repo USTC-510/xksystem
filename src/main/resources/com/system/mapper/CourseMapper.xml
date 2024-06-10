@@ -7,4 +7,5 @@
     <select id="getCoursesByStudentId" resultType="com.system.pojo.Course">
         SELECT c.* FROM course c JOIN s_select_c sc ON c.id = sc.course_id WHERE sc.student_id = #{studentId}
     </select>
+
 </mapper>
