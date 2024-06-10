@@ -120,7 +120,7 @@ export default {
 
   <style scoped>
   .container {
-    width: 95%;
+    width: 120%;
     margin: auto;
     overflow: hidden;
     min-width: 80%;
