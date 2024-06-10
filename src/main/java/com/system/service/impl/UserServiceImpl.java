@@ -11,6 +11,8 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Random;
+
 @Service
 public class UserServiceImpl implements UserService
 {
@@ -86,21 +88,20 @@ public class UserServiceImpl implements UserService
 
         String mail = userMapper.selectMailByCode(identity,username);
         //调用mapper找到邮箱
-//        String title = "找回密码";
-//        Random rand = new Random();
-//
-//        String content = Integer.toString(rand.nextInt(9000)+1000);
-//        // 生成一个 1000 到 9999 之间的随机数（包括1000和9999）作为验证码
-//
-//        if (mail != null)
-//        {
-//            String res = mailService.sendMail(mail,title,"您的验证码为："+content);
-//            if (res.equals("ok")) {return content;}
-//            else {return null;}
-//        }
-//        else {return null;}
+        String title = "找回密码";
+        Random rand = new Random();
 
-       return mail;
+        String content = Integer.toString(rand.nextInt(9000)+1000);
+        // 生成一个 1000 到 9999 之间的随机数（包括1000和9999）作为验证码
+
+        if (mail != null)
+        {
+            String res = mailService.sendMail(mail,title,"您的验证码为："+content);
+            if (res.equals("ok")) {return content;}
+            else {return null;}
+        }
+        else {return null;}
+
    }
 
    public void resetPassword(String username,String newPassword,String identity)

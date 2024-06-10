@@ -122,9 +122,8 @@ public class UserController {
         String res = userService.resetPasswordMail(username, identity);
         //调用service获取验证码
 
-//        if (res != null) {return Result.success(res);}
-//        else {return Result.error("用户名错误！", "notFound");}
-        return Result.success(res);
+        if (res != null) {return Result.success(res);}
+        else {return Result.error("用户名错误！", "notFound");}
     }
 
     @PostMapping("/resetPassword")
