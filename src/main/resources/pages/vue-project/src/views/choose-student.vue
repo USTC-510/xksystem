@@ -31,7 +31,7 @@
         <td>{{ course.credits }}</td>
         <td>{{ course.hour }}</td>
         <td>{{ course.currentPeople }} / {{ course.maxPeople }}</td>
-        <td><input type="checkbox" v-model="selectedCourses" :value="course.id" :disabled="isDisabled" @change="handleCheckbox($event, course)" /></td>
+        <td><input type="checkbox" :value="course.id" :disabled="isDisabled" @change="handleCheckbox($event, course)" /></td>
       </tr>
     </table>
   </div>
