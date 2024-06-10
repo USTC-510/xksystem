@@ -57,7 +57,8 @@ export default {
       if (currentDate > targetDate) {
         this.isDisabled = true;
       }
-      courses = response.data;
+      this.courses = response.data;
+      console.log(this.courses)
   })
 },
 
