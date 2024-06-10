@@ -31,7 +31,7 @@
         );
       },
       handleChoose(){
-        this.$router.push({ path: '/choose-teacherOrAdmin' }).catch(
+        this.$router.push({ path: '/choose-teacher' }).catch(
           err => alert("跳转页面失败：",err)
         );
       },
@@ -77,7 +77,7 @@
       top: 300px;
       left: 800px;
     }
-    .myTable{
+    .mytable{
       position: absolute;
       top: 300px;
       left: 950px;

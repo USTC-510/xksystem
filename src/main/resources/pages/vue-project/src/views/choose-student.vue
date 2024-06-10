@@ -60,7 +60,11 @@ export default {
       }
       this.courses = response.data;
       console.log(this.courses);
-    });
+    }).catch(error =>
+    {
+      alert("发生错误");
+      console.log(error);
+    };
   },
   computed: {
     filteredCourses() {
@@ -125,17 +129,19 @@ export default {
 
   <style scoped>
   .container {
-    width: 120%;
-    margin: 0 auto;
+    padding: 20px;
+    width: 1300px;
+    margin: 20 auto;
     overflow: hidden;
     min-width: 80%;
+    margin-left: 0 auto ; /* 居中 */
   }
   .main {
     background: #fff;
     margin-top: 20px;
     position: relative;
-    width: 100%; /* 调整宽度 */
-    margin: 0 auto; /* 居中 */
+    width: 1300px; /* 调整宽度 */
+
   }
   table {
     width: 100%;

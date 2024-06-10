@@ -1,12 +1,12 @@
 <template>
   <div class="container main">
     <div class="search-container">
-    <form @submit.prevent="submit">
-      <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
-      <button @click="searchCourses">搜索</button>
-    </form>
+      <form @submit.prevent="filteredCourses">
+        <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
+        <button type="submit">搜索</button>
+      </form>
     </div>
-    <h2>课程开设</h2>
+    <h2>选择课程</h2>
     <table>
       <tr>
         <th>课程编号</th>
@@ -23,7 +23,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }"> 介绍</router-link>
+          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>
@@ -38,31 +38,26 @@
 
 <script>
 import api from "../api/function.js";
+
 export default {
   name: 'choose_teacher',
   data() {
     return {
       searchQuery: '',
       courses: [],
-      selectedCourses: []
-    };
+      selectedCourses: [],
+      isDisabled: false
+    }
   },
-  created() {
-    api.getAllCourses().then(response => {
-      const data = response.data;
-      this.courses = data.name.map((id, index) => ({
-        id: id,
-        name: data.name[index],
-        professor: data.professor[index],
-        time: data.time[index],
-        position: data.position[index],
-        credits: data.credits[index],
-        hour: data.hour[index],
-        currentPeople: data.currentPeople[index],
-        maxPeople: data.maxPeople[index]
-      }));
-    });
-  },
+   created() {
+      api.getAllCourses().then(response => {
+        this.courses = response.data;
+        console.log(this.courses);
+      }).catch(error => {
+            alert("发生错误");
+            console.log(error);
+         });
+   },
   computed: {
     filteredCourses() {
       if (!this.searchQuery) {
@@ -76,19 +71,24 @@ export default {
   }
 };
 </script>
-  
+
+
+
   <style scoped>
   .container {
-    width: 80%;
-    margin: auto;
+    padding: 20px;
+    width: 1300px;
+    margin: 20 auto;
     overflow: hidden;
-    min-width: 70%;
+    min-width: 80%;
+    margin-left: 0 auto ; /* 居中 */
   }
   .main {
-    padding: 20px;
     background: #fff;
     margin-top: 20px;
     position: relative;
+    width: 1300px; /* 调整宽度 */
+
   }
   table {
     width: 100%;

@@ -17,6 +17,9 @@ spring:
       mail:
         smtp:
           auth: true
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 
 mybatis:
