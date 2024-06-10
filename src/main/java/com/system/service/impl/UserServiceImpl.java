@@ -7,6 +7,7 @@ import com.system.mapper.UserMapper;
 import com.system.pojo.User;
 import com.system.service.MailService;
 import com.system.service.UserService;
+import com.system.tool.Tool;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -30,18 +31,13 @@ public class UserServiceImpl implements UserService
 
     public User getUser(String username,String identity)
     {
+       identity = Tool.identityMap(identity);
        switch(identity)
        {
-           case "1":
-               return studentMapper.selectByCode(username);
            case "student":
                return studentMapper.selectByCode(username);
-           case "2":
-               return teacherMapper.selectByCode(username);
            case "teacher":
                return teacherMapper.selectByCode(username);
-           case "3":
-               return administratorMapper.selectByCode(username);
            case "administrator":
                return administratorMapper.selectByCode(username);
            default:
@@ -52,17 +48,6 @@ public class UserServiceImpl implements UserService
    public int changePassword(String username,String identity,String originalPassword,String newPassword)
    {
         User user = getUser(username,identity);
-        switch(identity)
-        {
-            case "1":
-                identity = "student";
-                break;
-            case "2":
-                identity = "teacher";
-                break;
-            case "3":
-                identity = "administrator";
-        }
         if (ObjectUtils.isEmpty(user)) {return 1;}
         else if (!user.getPassword().equals(originalPassword)) {return 1;}
         else
@@ -74,18 +59,6 @@ public class UserServiceImpl implements UserService
 
    public String resetPasswordMail(String username,String identity)
    {
-        switch(identity)
-        {
-           case "1":
-               identity = "student";
-               break;
-           case "2":
-               identity = "teacher";
-               break;
-           case "3":
-               identity = "administrator";
-        }
-
         String mail = userMapper.selectMailByCode(identity,username);
         //调用mapper找到邮箱
         String title = "找回密码";
@@ -105,18 +78,6 @@ public class UserServiceImpl implements UserService
 
    public void resetPassword(String username,String newPassword,String identity)
    {
-       switch(identity)
-       {
-           case "1":
-               identity = "student";
-               break;
-           case "2":
-               identity = "teacher";
-               break;
-           case "3":
-               identity = "administrator";
-       }
-
        userMapper.updatePasswordByCode(identity,newPassword,username);
    }
 }
