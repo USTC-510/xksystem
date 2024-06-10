@@ -38,9 +38,13 @@
 </template>
 
 <script>
+import CourseIntro from "@/components/courseIntro.vue";
 import api from "../api/function.js";
 export default {
   name: 'choose_student',
+  components: {
+    courseIntro
+  },
   data() {
     return {
       searchQuery: '',
@@ -57,7 +61,7 @@ export default {
       if (currentDate > targetDate) {
         this.isDisabled = true;
       }
-      courses = response.data;
+      this.courses = response.data;
   })
 },
   computed: {
