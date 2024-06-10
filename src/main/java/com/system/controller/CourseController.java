@@ -56,17 +56,16 @@ public class CourseController
     {
        //查找课程的介绍
 
-//        if (ObjectUtils.isEmpty(name)) {return Result.error("错误!",null);}
-//        //验证参数非空
-//        else
-//        {
-//            List<Course> courses = courseService.getCourseByName(name);
-//            //调用service
-//
-//            if (ObjectUtils.isEmpty(courses)) {return Result.error("错误",null);}
-//            else {return Result.success(courses.get(0).getIntroduction());}
-//        }
-        return Result.success(name);
+        if (ObjectUtils.isEmpty(name)) {return Result.error("错误!",null);}
+        //验证参数非空
+        else
+        {
+            List<Course> courses = courseService.getCourseByName(name);
+            //调用service
+
+            if (ObjectUtils.isEmpty(courses)) {return Result.error("错误",null);}
+            else {return Result.success(courses.get(0).getIntroduction());}
+        }
     }
 
     @GetMapping("/ifCanCheck")
