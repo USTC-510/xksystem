@@ -57,20 +57,10 @@ export default {
       if (currentDate > targetDate) {
         this.isDisabled = true;
       }
-      const data = response.data;
-      //把传入的数转换成易于处理的形式
-      this.courses = data.map(course => ({
-        id: course.id,
-        name: course.name,
-        professor: course.professor,
-        time: course.time,
-        position: course.position,
-        credits: course.credit, // 注意这里可能是 course.credits 而不是 course.credit
-        currentPeople: course.currentPeople,
-        maxPeople: course.maxPeople
-      }));
-    });
-  },
+      courses = response.data;
+  })
+},
+
   computed: {
     filteredCourses() {
       if (!this.searchQuery) {

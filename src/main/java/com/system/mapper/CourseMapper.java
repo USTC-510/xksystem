@@ -19,4 +19,6 @@ public interface CourseMapper
     @Select("select * from course where code = #{coursecode}")
     Course selectByCode(String coursecode);
 
+
+
 }
