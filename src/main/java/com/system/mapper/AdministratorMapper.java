@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface AdministratorMapper
-{
+public interface AdministratorMapper {
     //管理员信息的增删改查
     @Select("select * from administrator")
     List<Administrator> selectAll();
+
     @Select("select * from administrator where code = #{code}")
     Administrator selectByCode(String code);
 
@@ -33,15 +33,14 @@ public interface AdministratorMapper
 
 
     @Update("update administrator set phonenumber = #{phonenumber} where code = #{code}")
-    void updatePhonenumberByCode(@Param("phonenumber")String phonenumber, @Param("code")String code);
+    void updatePhonenumberByCode(@Param("phonenumber") String phonenumber, @Param("code") String code);
 
     @Update("update administrator set password = #{password} where code = #{code}")
-    void updatePasswordByCode(@Param("password")String password, @Param("code")String code);
+    void updatePasswordByCode(@Param("password") String password, @Param("code") String code);
 
     @Update("update course set name=#{name} credit=#{credit} hour=#{hour} spot=#{spot} teacher=#{teacher} maxnum=#{maxnum} where code=#{code}")
-    void changeNameByCode(@Param("code")String code,@Param("name")String name,@Param("credit")Integer credit,@Param("hour")Integer hour,@Param("spot")String spot,@Param("teacher")String teacher,@Param("maxnum")Integer maxnum);
+    void changeNameByCode(@Param("code") String code, @Param("name") String name, @Param("credit") Integer credit, @Param("hour") Integer hour, @Param("spot") String spot, @Param("teacher") String teacher, @Param("maxnum") Integer maxnum);
 
-    void changeTimeByCode(@Param("code")String code, @Param("timeSlot")List<TimeSlot> timeSlot);
+    void changeTimeByCode(@Param("code") String code, @Param("timeSlot") List<TimeSlot> timeSlot);
 
-    void changeTimeByCode（@Param("code")String code,@Param()
 }
