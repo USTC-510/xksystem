@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import CourseIntro from "@/components/courseIntro.vue";
+import courseIntro from "../components/courseIntro.vue";
 import api from "../api/function.js";
 export default {
   name: 'choose_student',
