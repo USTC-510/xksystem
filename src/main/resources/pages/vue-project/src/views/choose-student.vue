@@ -62,6 +62,7 @@ export default {
         this.isDisabled = true;
       }
       this.courses = response.data;
+      console.log(this.courses)
   })
 },
 
