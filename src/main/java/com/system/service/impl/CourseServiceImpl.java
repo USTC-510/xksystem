@@ -1,7 +1,9 @@
 package com.system.service.impl;
 
 import com.system.mapper.CourseMapper;
+import com.system.mapper.TimeSlotMapper;
 import com.system.pojo.Course;
+import com.system.pojo.TimeSlot;
 import com.system.service.CourseService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,11 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
     @Resource
     CourseMapper courseMapper;
+
+    @Resource
+    TimeSlotMapper timeSlotMapper;
+
+
 
     public List<Course> getAllCourses() {
         List<Course> courses = courseMapper.selectAll();
@@ -39,71 +46,66 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.getCoursesByStudentId(code);
     }
 
-    //选课时，时间冲突的判断
 
-    public int ifCanCheck(String studentcode, String coursecode) {
-        List<Course> courses = courseMapper.getCoursesByStudentId(studentcode);
-        Course course = courseMapper.selectByCode(coursecode);
-        HashSet<String> set1 = new HashSet<>();
-        HashSet<String> set2 = new HashSet<>();
-        HashSet<String> set3 = new HashSet<>();
-        HashSet<String> set4 = new HashSet<>();
-        HashSet<String> set5 = new HashSet<>();
-        for (Course selectedCourse : courses) {
-            String Monday = selectedCourse.getTime_1();
-            String Tuesday = selectedCourse.getTime_2();
-            String Wednesday = selectedCourse.getTime_3();
-            String Thursday = selectedCourse.getTime_4();
-            String Friday = selectedCourse.getTime_5();
+    //选课时，冲突的判断
+    public int ifCanCheck(String studentCode, String courseCode) {
+        List<Course> courses = courseMapper.getCoursesByStudentId(studentCode);
+        Course courseToCheck = courseMapper.selectByCode(courseCode);
 
-            String[] strArray1 = Monday.split(",");
-            String[] strArray2 = Tuesday.split(",");
-            String[] strArray3 = Wednesday.split(",");
-            String[] strArray4 = Thursday.split(",");
-            String[] strArray5 = Friday.split(",");
-
-            set1.addAll(Arrays.asList(strArray1));
-            set2.addAll(Arrays.asList(strArray2));
-            set3.addAll(Arrays.asList(strArray3));
-            set4.addAll(Arrays.asList(strArray4));
-            set5.addAll(Arrays.asList(strArray5));
-
+        if (courseToCheck.getNumber() >= courseToCheck.getMaxnum()) {
+            return -2; // 选课人数已达到上限
         }
-        String day1 = course.getTime_1();
-        String day2 = course.getTime_2();
-        String day3 = course.getTime_3();
-        String day4 = course.getTime_4();
-        String day5 = course.getTime_5();
 
-        String[] newArray1 = day1.split(",");
-        String[] newArray2 = day2.split(",");
-        String[] newArray3 = day3.split(",");
-        String[] newArray4 = day4.split(",");
-        String[] newArray5 = day5.split(",");
+        for (Course course : courses) {
+            if (course.getName().equals(courseToCheck.getName()) ){
+                return -1; // 有同名课程
+            }
+            for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode())) {
+                for (TimeSlot timeSlot2 : timeSlotMapper.getTimeByCourseCode(courseToCheck.getCode())) {
+                    if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek() &&
+                            (timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime())) {
+                        continue; // 无时间冲突
+                    }
+                    else{
+                        return 0;//有时间冲突
+                    }
+                }
+            }
+        }
+        return 1; // 无时间冲突
+    }
 
-
-        HashSet<String> newSet1 = new HashSet<>();
-        HashSet<String> newSet2 = new HashSet<>();
-        HashSet<String> newSet3 = new HashSet<>();
-        HashSet<String> newSet4 = new HashSet<>();
-        HashSet<String> newSet5 = new HashSet<>();
-
-        newSet1.addAll(Arrays.asList(newArray1));
-        newSet2.addAll(Arrays.asList(newArray2));
-        newSet3.addAll(Arrays.asList(newArray3));
-        newSet4.addAll(Arrays.asList(newArray4));
-        newSet5.addAll(Arrays.asList(newArray5));
-
-        boolean hasIntersection1 = set1.retainAll(newSet1);
-        boolean hasIntersection2 = set2.retainAll(newSet2);
-        boolean hasIntersection3 = set3.retainAll(newSet3);
-        boolean hasIntersection4 = set4.retainAll(newSet4);
-        boolean hasIntersection5 = set5.retainAll(newSet5);
-
-        if (hasIntersection1 == false && hasIntersection2 == false && hasIntersection3 == false && hasIntersection4 == false && hasIntersection5 == false) {
-            return 1;
-        } else {
-            return 0;
+    public String connectTime(Course course){
+        List<TimeSlot> timeSlot = timeSlotMapper.getTimeByCourseCode(course.getCode());
+        return convertTimeSlotsToString(timeSlot);
+    }
+    public String convertTimeSlotsToString(List<TimeSlot> timeSlots) {
+        StringBuilder result = new StringBuilder();
+        for (TimeSlot timeSlot : timeSlots) {
+            result.append(convertDayOfWeekToString(timeSlot.getDayOfWeek()));
+            result.append("第").append(timeSlot.getStartTime()).append(",").append(timeSlot.getEndTime()).append("节");
+            result.append("，");
+        }
+        // 删除最后一个逗号
+        if (result.length() > 0) {
+            result.deleteCharAt(result.length() - 1);
+        }
+        return result.toString();
+    }
+    private String convertDayOfWeekToString(int dayOfWeek) {
+        switch (dayOfWeek) {
+            case 1:
+                return "周一";
+            case 2:
+                return "周二";
+            case 3:
+                return "周三";
+            case 4:
+                return "周四";
+            case 5:
+                return "周五";
+            default:
+                return "";
         }
     }
 

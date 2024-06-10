@@ -27,6 +27,10 @@ public interface AdministratorMapper
     @Delete("delete from administrator where name = #{name}")
     void deleteByName(String name);
 
+    @Delete("delete from course where code = #{code}")
+    int deleteCourse(String code);
+
+
     @Update("update administrator set phonenumber = #{phonenumber} where code = #{code}")
     void updatePhonenumberByCode(@Param("phonenumber")String phonenumber, @Param("code")String code);
 

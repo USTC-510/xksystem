@@ -10,9 +10,9 @@ spring:
     name: Application
   mail:
     host: smtp.qq.com
-    port: 465
+    port: 587
     username: 1520131241@qq.com
-    password: th051014
+    password: bgfvbdnkpzdvidic
     properties:
       mail:
         smtp:
