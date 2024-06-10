@@ -1,6 +1,7 @@
-<template>
+    <template>
     <div class="floating-card">
       <h2>重置密码</h2>
+      <form @submit.prevent="submit">
       <div class="input-text">  
           <label class="label" for="verification">验证码：</label>
           <input type="text" name="verification" v-model="verification" required>  
@@ -11,6 +12,7 @@
           <input type="password" name="newPassword" v-model="newPassword" required>
       </div>
       <button type="submit">修改</button>
+      </form>
       <button @click="closeCard">关闭</button>
     </div>
   </template>

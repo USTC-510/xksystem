@@ -9,6 +9,7 @@ import com.system.service.MailService;
 import com.system.service.UserService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.Random;
 
@@ -33,9 +34,15 @@ public class UserServiceImpl implements UserService
        {
            case "1":
                return studentMapper.selectByCode(username);
+           case "student":
+               return studentMapper.selectByCode(username);
            case "2":
                return teacherMapper.selectByCode(username);
+           case "teacher":
+               return teacherMapper.selectByCode(username);
            case "3":
+               return administratorMapper.selectByCode(username);
+           case "administrator":
                return administratorMapper.selectByCode(username);
            default:
                return null;
@@ -45,7 +52,18 @@ public class UserServiceImpl implements UserService
    public int changePassword(String username,String identity,String originalPassword,String newPassword)
    {
         User user = getUser(username,identity);
-        if (user == null) {return 1;}
+        switch(identity)
+        {
+            case "1":
+                identity = "student";
+                break;
+            case "2":
+                identity = "teacher";
+                break;
+            case "3":
+                identity = "administrator";
+        }
+        if (ObjectUtils.isEmpty(user)) {return 1;}
         else if (!user.getPassword().equals(originalPassword)) {return 1;}
         else
         {
