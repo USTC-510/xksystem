@@ -48,7 +48,7 @@ public class CourseController
             {
                 id.add(course.getCode());
                 name.add(course.getName());
-                professor.add(course.getTeacher().getName());
+                professor.add(course.getTeacher());
                 position.add(course.getSpot());
                 credit.add(course.getCredit());
                 currentPeople.add(course.getNumber());

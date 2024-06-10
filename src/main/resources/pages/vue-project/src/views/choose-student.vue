@@ -59,13 +59,14 @@ export default {
       }
       const data = response.data;
       //把传入的数转换成易于处理的形式
-      this.courses = data.name.map((id, index) => ({
+      console.log(data);
+      this.courses = data.map((id, index) => ({
         id: id,
         name: data.name[index],
         professor: data.professor[index],
         time: data.time[index],
         position: data.position[index],
-        credits: data.credits[index],
+        credits: data.credit[index],
         currentPeople: data.currentPeople[index],
         maxPeople: data.maxPeople[index]
       }));
