@@ -8,7 +8,7 @@ const base = {
     allCourses:"api/course/allCourse",
     detailedCourse:"api/course/detailedCourse",
     checkCourse:"api/user/checkCourse",
-    forgetPassword:"api/user/forgetPassword",
+    forgetPassword:"api/user/resetPasswordMail",
     deleteCourses:"api/user/deleteCourses",
     changeCourses:"api/user/changeCourses",
     afterForgetPassword:"api/user/afterForgetPassword"
