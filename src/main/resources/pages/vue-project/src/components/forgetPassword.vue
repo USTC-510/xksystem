@@ -128,10 +128,13 @@
     width: 60px;
     text-align: right;
     margin-right: 10px;
-    font-size: 25px;
+    font-size: 20px;
+  }
+  input {
+    vertical-align: middle;
   }
   .role-selection {
-    font-size: 25px;
+    font-size: 18px;
   }
   </style>
   
