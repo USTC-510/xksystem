@@ -74,6 +74,18 @@ public class UserServiceImpl implements UserService
 
    public String resetPasswordMail(String username,String identity)
    {
+        switch(identity)
+        {
+           case "1":
+               identity = "student";
+               break;
+           case "2":
+               identity = "teacher";
+               break;
+           case "3":
+               identity = "administrator";
+        }
+
         String mail = userMapper.selectMailByCode(identity,username);
         //调用mapper找到邮箱
         String title = "找回密码";

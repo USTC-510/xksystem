@@ -17,8 +17,7 @@ spring:
       mail:
         smtp:
           auth: true
-          starttls:
-            enables: true
+
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
