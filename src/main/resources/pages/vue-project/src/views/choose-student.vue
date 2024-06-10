@@ -78,7 +78,7 @@ export default {
   methods: {
     handleCheckbox(event, course){
       api.ifCanCheck(course.id).then(response => {
-        switch(response.canCheck){
+        switch(response.data){
           case 1:  if (this.selectedCourses.includes(course.id)) {
                     // 如果已经选中，则取消选中
                     this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);

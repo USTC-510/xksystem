@@ -1,5 +1,4 @@
 package com.system.controller;
-
 import com.system.pojo.Course;
 import com.system.pojo.Result;
 import com.system.service.CourseService;
@@ -95,13 +94,17 @@ public class CourseController
         }
     }
 
-//    @GetMapping("/ifCanCheck")
-//    public Result ifCanCheck(@RequestParam String studentId,@RequestParam String courseId,HttpServletResponse response,HttpServletRequest request)
-//    {
-//        //验证课程能否选择
-//
-//
-//    }
+    @GetMapping("/ifCanCheck")
+    public Result ifCanCheck(@RequestParam(name = "id") String courseId,@RequestParam(name = "username") String studentId,HttpServletResponse response,HttpServletRequest request)
+    {
+        //验证课程能否选择
+
+        response.setHeader("X-Content-Type-Options", "nosniff");
+        //设置请求头
+
+        if (ObjectUtils.isEmpty(courseId) || ObjectUtils.isEmpty(studentId)) {return Result.error("错误！",null);}
+        else {return Result.success(courseService.ifCanCheck(studentId,courseId));}
+    }
 }
 
 @Data

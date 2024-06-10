@@ -9,9 +9,6 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -40,10 +37,6 @@ public class CourseServiceImpl implements CourseService {
         } else {
             return courses;
         }
-    }
-
-    public List<Course> getCoursesByStudentId(String code) {
-        return courseMapper.getCoursesByStudentId(code);
     }
 
 
