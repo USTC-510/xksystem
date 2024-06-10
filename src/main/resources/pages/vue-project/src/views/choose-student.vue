@@ -52,7 +52,7 @@ export default {
   },
   created() {
     api.getAllCourses().then(response => {
-      const targetDate = new Date('2024-05-15'); // 目标日期为2024年6月15日
+      const targetDate = new Date('2024-06-15'); // 目标日期为2024年6月15日
       const currentDate = new Date(); // 获取当前日期
       // 检查当前日期是否在目标日期之前
       if (currentDate > targetDate) {
@@ -79,15 +79,13 @@ export default {
       if (this.selectedCourses.includes(course.id)) {
         // 如果已经选中，则取消选中
         this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
-        if(!this.isDisabled){
-          course.currentPeople -= 1;
-        }
+        this.updateCoursePeople(course, -1);
       } else {
         api.ifCanCheck(course.id, username).then(response => {
           switch (response.data) {
             case 1:
               // 如果未选中，则选中
-              course.currentPeople += 1;
+              this.updateCoursePeople(course, 1);
               this.selectedCourses.push(course.id);
               break;
             case 0:
@@ -108,10 +106,16 @@ export default {
           console.log(error);
         });
       }
+    },
+    updateCoursePeople(course, change) {
+      this.$nextTick(() => {
+        course.currentPeople += change;
+      });
     }
   }
 };
 </script>
+
 
 
   <style scoped>
