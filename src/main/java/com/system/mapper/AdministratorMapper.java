@@ -42,4 +42,6 @@ public interface AdministratorMapper
     void changeNameByCode(@Param("code")String code,@Param("name")String name,@Param("credit")Integer credit,@Param("hour")Integer hour,@Param("spot")String spot,@Param("teacher")String teacher,@Param("maxnum")Integer maxnum);
 
     void changeTimeByCode(@Param("code")String code, @Param("timeSlot")List<TimeSlot> timeSlot);
+
+    void changeTimeByCode（@Param("code")String code,@Param()
 }

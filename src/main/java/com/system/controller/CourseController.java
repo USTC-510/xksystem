@@ -39,7 +39,7 @@ public class CourseController
             for (Course course: courses)
             {
                 dto.setName(course.getName());
-                dto.setCredit(course.getCredit());
+                dto.setCredits(course.getCredit());
                 dto.setHour(course.getHour());
                 dto.setId(course.getCode());
                 dto.setPosition(course.getSpot());
@@ -98,7 +98,7 @@ class AllCoursesDTO
     private String professor;
     private String time;
     private String position;
-    private Integer credit;
+    private Integer credits;
     private Integer currentPeople;
     private Integer maxPeople;
     private Integer hour;
