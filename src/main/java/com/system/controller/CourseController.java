@@ -34,7 +34,6 @@ public class CourseController
         else
         {
             AllCoursesDTO dto = new AllCoursesDTO();
-
             List<String> id = new ArrayList<>();
             List<String> name = new ArrayList<>();
             List<String> professor = new ArrayList<>();
