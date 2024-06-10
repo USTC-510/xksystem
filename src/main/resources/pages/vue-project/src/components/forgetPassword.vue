@@ -71,7 +71,7 @@
         }, 60000); // 60秒后重新启用按钮
         api.forgetPassword(this.username, this.identity).
         then(response => {
-          this.rightVerification = response.rightVerification;
+          this.rightVerification = response.data;
         }).
         catch(error => {
           console.log(error);
