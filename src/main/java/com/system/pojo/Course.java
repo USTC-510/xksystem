@@ -21,4 +21,5 @@ public class Course
     private int credit; //学分
     private int hour; //学时
     private List<TimeSlot> timeSlots;
+
 }

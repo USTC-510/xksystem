@@ -23,7 +23,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro' }" @click.native="handleClick($event, course.name)">介绍</router-link>
+          <router-link :to="{ name: 'courseIntro', params:{ courseName: course.name }}">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>
@@ -78,31 +78,26 @@ export default {
     }
   },
   methods: {
-    handleClick(event, courseName) {
-      event.preventDefault();
-      localStorage.setItem('courseName', courseName);
-      this.$router.push({ name: 'courseIntro' });
-    },
     handleCheckbox(event, course){
       const username = localStorage.getItem('username');
       if (this.selectedCourses.includes(course.id)) {
                     // 如果已经选中，则取消选中
                     this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
-                    this.currentPeople -= 1;
+                    this.course.currentPeople -= 1;
       }
       else {
         api.ifCanCheck(course.id, username).then(response => {
         switch(response.data){
-          case 1:  
+          case 1:
             // 如果未选中，则选中
-            this.currentPeople += 1;
+            this.course.currentPeople += 1;
             this.selectedCourses.push(course.id);
             break;
-          case 0:  
+          case 0:
             event.preventDefault();//复选框状态不会改变
             alert("存在时间冲突！");
             break;
-          case -1:  
+          case -1:
             event.preventDefault();//复选框状态不会改变
             alert("相同类型课程只能选择一门！");
             break;
@@ -119,9 +114,9 @@ export default {
     }
   }
 };
-  
+
 </script>
-  
+
   <style scoped>
   .container {
     width: 95%;

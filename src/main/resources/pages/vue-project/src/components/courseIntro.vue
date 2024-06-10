@@ -6,27 +6,25 @@
       <button @click="$router.push('/choose-student')">返回</button>
     </div>
   </template>
-  
+
   <script>
+  import api from "../api/function.js"
   export default {
     name: 'courseIntro',
-    props: {
-      courseName: {
-        type: String,
-        required: true
-      }
-    },
     data() {
       return{
-        intro: ''
+        intro: '',
+        courseName: ''
       }
+    },
+    created() {
+          this.courseName = this.$route.params.courseName;
+          this.fetchIntro();
     },
     methods: {
       fetchIntro() {
-        const courseName = localStorage.getItem('courseName');
-        localStorage.removeItem('courseName');
-        api.getCourseIntro(courseName).then(response => {
-            this.intro = response.data.intro;
+        api.getCourseIntro(this.courseName).then(response => {
+            this.intro = response.data;
         }).catch(error => {
             console.log(error);
         })
