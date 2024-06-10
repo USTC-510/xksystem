@@ -96,12 +96,11 @@ public class UserServiceImpl implements UserService
 
         if (mail != null)
         {
-            String res = mailService.sendMail(mail,title,"您的验证码为："+content);
-            if (res.equals("ok")) {return content;}
+            int res = mailService.sendMail(mail,title,content);
+            if (res == 1) {return content;}
             else {return null;}
         }
         else {return null;}
-
    }
 
    public void resetPassword(String username,String newPassword,String identity)
