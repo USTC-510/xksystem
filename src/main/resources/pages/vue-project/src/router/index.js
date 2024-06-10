@@ -17,7 +17,7 @@ const routes = [
     { path:"/myTable-student", component: myTable_student },
     { path:"/content-teacher", component: content_teacher },
     { path:"/content-admin", component: content_admin },
-    { path:"/courseIntro", component: courseIntro, props: true },
+    { path:"/courseIntro", component: courseIntro, props: true, name: 'courseIntro' },
     { path:"/choose-teacher", component: choose_teacher },
     { path:"/choose-admin", component: choose_admin }
 ]

@@ -23,7 +23,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro' }">介绍</router-link>
+          <router-link :to="{ name: 'courseIntro' ,params: { courseName: course.name }}">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>
@@ -38,9 +38,13 @@
 </template>
 
 <script>
+import courseIntro from "../components/courseIntro.vue";
 import api from "../api/function.js";
 export default {
   name: 'choose_student',
+  components: {
+    courseIntro
+  },
   data() {
     return {
       searchQuery: '',
@@ -57,20 +61,11 @@ export default {
       if (currentDate > targetDate) {
         this.isDisabled = true;
       }
-      const data = response.data;
-      //把传入的数转换成易于处理的形式
-      this.courses = data.map((id, index) => ({
-        id: id,
-        name: data.name[index],
-        professor: data.professor[index],
-        time: data.time[index],
-        position: data.position[index],
-        credits: data.credit[index],
-        currentPeople: data.currentPeople[index],
-        maxPeople: data.maxPeople[index]
-      }));
-    });
-  },
+      this.courses = response.data;
+      console.log(this.courses)
+  })
+},
+
   computed: {
     filteredCourses() {
       if (!this.searchQuery) {
@@ -124,10 +119,10 @@ export default {
   
   <style scoped>
   .container {
-    width: 80%;
+    width: 95%;
     margin: auto;
     overflow: hidden;
-    min-width: 70%;
+    min-width: 80%;
   }
   .main {
     padding: 20px;

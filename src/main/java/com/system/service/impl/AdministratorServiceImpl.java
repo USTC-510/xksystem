@@ -57,6 +57,7 @@ public class AdministratorServiceImpl implements AdministratorService {
             administratorMapper.changeTimeByCode(changeCoursesDTO.getCode().get(i),timeSlots);
 
         }
+        return 1;
 
     }
     private static int getDayOfWeek(String dayOfWeekStr) {

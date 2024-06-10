@@ -23,7 +23,7 @@
     },
     methods: {
       fetchIntro() {
-        api.getCourseIntro().then(response => {
+        api.getCourseIntro(this.$router.params.courseName).then(response => {
             this.intro = response.data.intro;
         }).catch(error => {
             console.log(error);
