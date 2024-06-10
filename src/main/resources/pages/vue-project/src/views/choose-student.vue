@@ -119,10 +119,10 @@ export default {
   
   <style scoped>
   .container {
-    width: 80%;
+    width: 95%;
     margin: auto;
     overflow: hidden;
-    min-width: 70%;
+    min-width: 80%;
   }
   .main {
     padding: 20px;
