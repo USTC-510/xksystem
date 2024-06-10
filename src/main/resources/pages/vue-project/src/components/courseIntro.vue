@@ -23,8 +23,8 @@
     },
     methods: {
       fetchIntro() {
-        this.courseName = this.$router.params.courseName;
-        api.getCourseIntro(this.$router.params.courseName).then(response => {
+        const courseName = localStorage.getItem('courseName');
+        api.getCourseIntro(courseName).then(response => {
             this.intro = response.data.intro;
         }).catch(error => {
             console.log(error);
