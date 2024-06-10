@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService
         }
    }
 
-   public String resetPassword(String username,String identity)
+   public String resetPasswordMail(String username,String identity)
    {
         String mail = userMapper.selectMailByCode(identity,username);
         //调用mapper找到邮箱
@@ -89,5 +89,22 @@ public class UserServiceImpl implements UserService
             else {return null;}
         }
         else {return null;}
+   }
+
+   public void resetPassword(String username,String newPassword,String identity)
+   {
+       switch(identity)
+       {
+           case "1":
+               identity = "student";
+               break;
+           case "2":
+               identity = "teacher";
+               break;
+           case "3":
+               identity = "administrator";
+       }
+
+       userMapper.updatePasswordByCode(identity,newPassword,username);
    }
 }
