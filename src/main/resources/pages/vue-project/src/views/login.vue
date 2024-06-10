@@ -43,7 +43,7 @@
         password: '',
         message: '',
         isError: false,
-        showcard: false
+        showCard: false
       }
     },
     methods: {
