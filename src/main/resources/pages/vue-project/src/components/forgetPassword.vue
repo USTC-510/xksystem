@@ -124,8 +124,11 @@
   background-color: grey;
   cursor: not-allowed;
   }
+  button{
+    width: 80px;
+  }
   .label {
-    width: 60px;
+    width: 100px;
     text-align: right;
     margin-right: 10px;
     font-size: 19px;
@@ -136,7 +139,7 @@
     margin-bottom: 10px;
     margin-right: 50px;
   }
-  role-selection {
+  .role-selection {
     font-size: 17px;
   }
   </style>
