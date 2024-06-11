@@ -68,12 +68,10 @@
               this.schedule[course.timeSlots.day][startSlotIndex] = {
                 course: course.course,
                 rowspan: rowspan
-              }.catch(error => {
-                console.log(error);
-              });
+              };
               // 标记被合并的单元格
               for (let i = startSlotIndex + 1; i <= endSlotIndex; i++) {
-                this.schedule[course.timeSlots.day][i] = { covered: true };
+                this.schedule[course.timeSlotsday][i] = { covered: true };
               }
             });
           }).catch(error => {
