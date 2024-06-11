@@ -2,6 +2,7 @@ package com.system.service.impl;
 
 import com.system.controller.ChangeCoursesDTO;
 import com.system.mapper.AdministratorMapper;
+import com.system.pojo.Course;
 import com.system.pojo.TimeSlot;
 import com.system.service.AdministratorService;
 import jakarta.annotation.Resource;
@@ -29,6 +30,12 @@ public class AdministratorServiceImpl implements AdministratorService {
             }
         }
         return 1;
+    }
+
+
+    public int addCourses(Course course) {
+        administratorMapper.addCourses(course.getCode(),course.getName(),course.getCredit(),course.getHour(),course.getSpot(),course.getTeacher(),course.getMaxnum());
+        return 0;
     }
 
     public int changeCourses(ChangeCoursesDTO changeCoursesDTO){
