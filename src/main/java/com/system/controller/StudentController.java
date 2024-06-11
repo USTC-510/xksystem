@@ -18,7 +18,7 @@ public class StudentController
     StudentService studentService;
 
     @GetMapping("/getCourses")
-    public Result getCourses(@RequestParam String username)
+    public Result getCourses(@RequestParam(name = "username") String username)
     {
         //获得该学生选的课程
 
