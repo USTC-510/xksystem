@@ -22,6 +22,7 @@
     </h2>
     <div class="table-container">
     <table>
+    <thead>
       <tr>
         <th>课程编号</th>
         <th>课程名称</th>
@@ -33,6 +34,8 @@
         <th>选择人数</th>
         <th>操作</th>
       </tr>
+      </thead>
+      <tbody>
       <tr v-for="course in filteredCourses" :key="course.id">
         <td>{{ course.id }}</td>
         <td v-if="editMode">
@@ -55,6 +58,7 @@
         </td>
         <td v-if="editMode"><input type="checkbox" v-model="selectedCourses" :value="course.id"/></td>
       </tr>
+      </tbody>
     </table>
   </div>
   </div>
