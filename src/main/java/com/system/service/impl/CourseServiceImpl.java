@@ -93,37 +93,34 @@ public class CourseServiceImpl implements CourseService {
         }
     }
     public String connectTime (Course course){
-        List<TimeSlot> timeSlot = timeSlotMapper.getTimeByCourseCode(course.getCode());
-        return convertTimeSlotsToString(timeSlot);
-    }
-    private String convertDayOfWeekToString(int dayOfWeek){
-        switch (dayOfWeek) {
-            case 1:
-                return "周一";
-            case 2:
-                return "周二";
-            case 3:
-                return "周三";
-            case 4:
-                return "周四";
-            case 5:
-                return "周五";
-            default:
-                return "";
-        }
-    }
-    public String convertTimeSlotsToString (List < TimeSlot > timeSlots) {
+        List<TimeSlot> timeSlots = timeSlotMapper.getTimeByCourseCode(course.getCode());
         StringBuilder result = new StringBuilder();
         for (TimeSlot timeSlot : timeSlots) {
-            result.append(convertDayOfWeekToString(timeSlot.getDayOfWeek()));
-            result.append("第").append(timeSlot.getStartTime()).append(",").append(timeSlot.getEndTime()).append("节");
-            result.append("，");
+            String dayOfWeekStr = "";
+            switch (timeSlot.getDayOfWeek()) {
+                case 1:
+                    dayOfWeekStr = "周一";
+                    break;
+                case 2:
+                    dayOfWeekStr = "周二";
+                    break;
+                case 3:
+                    dayOfWeekStr = "周三";
+                    break;
+                case 4:
+                    dayOfWeekStr = "周四";
+                    break;
+                case 5:
+                    dayOfWeekStr = "周五";
+                    break;
+            }
+            result.append(dayOfWeekStr).append("第").append(timeSlot.getStartTime()).append("-").append(timeSlot.getEndTime()).append("节，");
         }
-        // 删除最后一个逗号
         if (result.length() > 0) {
-            result.deleteCharAt(result.length() - 1);
+            result.setLength(result.length() - 1); // 去掉最后一个逗号
         }
         return result.toString();
     }
+
 }
 
