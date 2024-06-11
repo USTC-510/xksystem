@@ -61,11 +61,11 @@
         api.getStudentCourses(username).then(response => {
             const scheduleData = response.data;
             scheduleData.forEach(course => {
-              const dayIndex = this.days.indexOf(course.timeSlots.day);
+              const dayIndex = this.days.indexOf(course.timeSlots.dayOfWeek);
               const startSlotIndex = course.timeSlots.startTime;
               const endSlotIndex = course.timeSlots.endTime;
               const rowspan = endSlotIndex - startSlotIndex + 1;
-              this.schedule[course.timeSlots.day][startSlotIndex] = {
+              this.schedule[course.timeSlots.dayOfWeek][startSlotIndex] = {
                 course: course.course,
                 rowspan: rowspan
               };
