@@ -157,79 +157,98 @@ export default {
 };
 </script>
     
-    <style scoped>
-    .container {
-        padding: 20px;
-        width: 1000px;
-        margin: 20 auto;
-        overflow: hidden;
-        min-width: 80%;
-        margin-left: 0 auto ; /* 居中 */
-    }
-    .main {
-        background: #fff;
-        margin-top: 20px;
-        position: relative;
-        width: 1000px; /* 调整宽度 */
-    }
-    table {
-      width: 100%;
-      margin: 20px 0;
-      border-collapse: collapse;
-    }
-    table, th, td {
-      border: 1px solid #ddd;
-    }
-    th, td {
-      padding: 12px;
-      text-align: left;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-    .button {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      outline: none;
-      color: #fff;
-      background-color: #4CAF50;
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 9px #999;
-    }
-    .button:hover {
-      background-color: #3e8e41;
-    }
-    .button:active {
-      background-color: #3e8e41;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
-    .search-container {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-    }
-    .search-container input[type=text] {
-      padding: 10px;
-      font-size: 17px;
-      border: 1px solid #ddd;
-      background: #f1f1f1;
-    }
-    .search-container button {
-      padding: 10px;
-      background: #4CAF50;
-      color: white;
-      font-size: 17px;
-      border: 1px solid #ddd;
-      border-left: none;
-      cursor: pointer;
-    }
-    .search-container button:hover {
-      background: #45a049;
-    }
-    </style>
+<style scoped>
+.container {
+  padding: 20px;
+  width: 100%;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.main {
+  background: #fff;
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+}
+
+thead {
+  display: block;
+}
+
+tbody {
+  display: block;
+  height: 400px;
+  overflow-y: auto;
+}
+
+th, td {
+  width: 150px;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.search-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.search-container input[type=text] {
+  width: calc(100% - 100px);
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid #ddd;
+  background: #f1f1f1;
+}
+
+.search-container button {
+  width: 80px;
+  padding: 10px;
+  background: #4CAF50;
+  color: white;
+  font-size: 17px;
+  border: 1px solid #ddd;
+  border-left: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #45a049;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    width: 100%;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  th, td {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  th {
+    position: relative;
+  }
+}
+</style>
