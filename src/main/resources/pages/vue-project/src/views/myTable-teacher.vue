@@ -11,7 +11,7 @@
           <th>学时</th>
           <th>选择人数</th>
         </tr>
-        <tr v-for="course in filteredCourses" :key="course.id">
+        <tr v-for="course in courses" :key="course.id">
           <td>{{ course.id }}</td>
           <td>
             {{ course.name }}
@@ -38,6 +38,7 @@
     },
     created() {
       const username = localStorage.getItem("username");
+      console.log(username);
       api.getTeacherCourses(username).then(response => {
         this.courses = response.data;
       }).catch(error => {
@@ -51,17 +52,19 @@
     
     <style scoped>
     .container {
-      width: 80%;
-      margin: auto;
-      overflow: hidden;
-      min-width: 70%;
-    }
-    .main {
-      padding: 20px;
-      background: #fff;
-      margin-top: 20px;
-      position: relative;
-    }
+        padding: 20px;
+        width: 1200px;
+        margin: 20 auto;
+        overflow: hidden;
+        min-width: 80%;
+        margin-left: 0 auto ; /* 居中 */
+      }
+      .main {
+        background: #fff;
+        margin-top: 20px;
+        position: relative;
+        width: 1200px; /* 调整宽度 */
+       }
     table {
       width: 100%;
       margin: 20px 0;

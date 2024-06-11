@@ -31,7 +31,7 @@
         <td>{{ course.credits }}</td>
         <td>{{ course.hour }}</td>
         <td>{{ course.currentPeople }} / {{ course.maxPeople }}</td>
-        <td><input type="checkbox" :value="course.id" :disabled="isDisabled" @change="handleCheckbox($event, course)" /></td>
+        <td><input type="checkbox" :value="course.id" :disabled="isDisabled" @change="handleCheckbox($event, course)" v-model="selectedCourses" /></td>
       </tr>
     </table>
   </div>
@@ -52,7 +52,8 @@ export default {
     };
   },
   created() {
-    api.getAllCourses().then(response => {
+    const username = localStorage.getItem("username");
+      api.getAllCourses(username).then(response => {
       const targetDate = new Date('2024-06-15'); // 目标日期为2024年6月15日
       const currentDate = new Date(); // 获取当前日期
       // 检查当前日期是否在目标日期之前
@@ -60,6 +61,11 @@ export default {
         this.isDisabled = true;
       }
       this.courses = response.data;
+      this.courses.forEach(course => {
+        if (isChecked == 1){
+          this.selectedCourses.push(course);
+        }
+      })
       console.log(this.courses);
     }).catch(error =>
     {
@@ -93,7 +99,6 @@ export default {
           event.preventDefault();
           alert("取消失败，请稍后再试！");
         })
-        this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
         this.updateCoursePeople(course, -1);
       } else {
         api.ifCanCheck(course.id, username).then(response => {
@@ -101,7 +106,6 @@ export default {
             case 1:
               // 如果未选中，则选中
               this.updateCoursePeople(course, 1);
-              this.selectedCourses.push(course.id);
               break;
             case 0:
               event.preventDefault(); // 复选框状态不会改变
@@ -141,82 +145,98 @@ export default {
 </script>
 
 
+<style scoped>
+.container {
+  padding: 20px;
+  width: 100%;
+  margin: 20px auto;
+  overflow: hidden;
+}
 
-  <style scoped>
+.main {
+  background: #fff;
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+}
+
+thead {
+  display: block;
+}
+
+tbody {
+  display: block;
+  height: 400px;
+  overflow-y: auto;
+}
+
+th, td {
+  width: 150px;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.search-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.search-container input[type=text] {
+  width: calc(100% - 100px);
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid #ddd;
+  background: #f1f1f1;
+}
+
+.search-container button {
+  width: 80px;
+  padding: 10px;
+  background: #4CAF50;
+  color: white;
+  font-size: 17px;
+  border: 1px solid #ddd;
+  border-left: none;
+  cursor: pointer;
+}
+
+.search-container button:hover {
+  background: #45a049;
+}
+
+@media (max-width: 768px) {
   .container {
-    padding: 20px;
-    width: 1300px;
-    margin: 20 auto;
-    overflow: hidden;
-    min-width: 80%;
-    margin-left: 0 auto ; /* 居中 */
-  }
-  .main {
-    background: #fff;
-    margin-top: 20px;
-    position: relative;
-    width: 1300px; /* 调整宽度 */
-
-  }
-  table {
+    padding: 10px;
     width: 100%;
-    margin: 20px 0;
-    border-collapse: collapse;
   }
-  table, th, td {
-    border: 1px solid #ddd;
+
+  table, thead, tbody, th, td, tr {
+    display: block;
   }
+
   th, td {
-    padding: 12px;
-    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
   }
+
   th {
-    background-color: #f2f2f2;
+    position: relative;
   }
-  .button {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-  }
-  .button:hover {
-    background-color: #3e8e41;
-  }
-  .button:active {
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
-  .search-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  .search-container input[type=text] {
-    padding: 10px;
-    font-size: 17px;
-    border: 1px solid #ddd;
-    background: #f1f1f1;
-  }
-  .search-container button {
-    padding: 10px;
-    background: #4CAF50;
-    color: white;
-    font-size: 17px;
-    border: 1px solid #ddd;
-    border-left: none;
-    cursor: pointer;
-  }
-  .search-container button:hover {
-    background: #45a049;
-  }
-  </style>
-  
+}
+</style>
