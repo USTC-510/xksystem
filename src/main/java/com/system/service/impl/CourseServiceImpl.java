@@ -70,8 +70,6 @@ public class CourseServiceImpl implements CourseService {
                             else {
                                 return 0;
                             }
-
-
                     }
                 }
             }
