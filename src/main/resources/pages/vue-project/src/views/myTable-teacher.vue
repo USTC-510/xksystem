@@ -37,7 +37,6 @@
       };
     },
     created() {
-
       const username = localStorage.getItem("username");
 
       api.getTeacherCourses(username).then(response => {
