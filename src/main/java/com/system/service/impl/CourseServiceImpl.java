@@ -54,30 +54,29 @@ public class CourseServiceImpl implements CourseService {
             return -2; // 选课人数已达到上限
         }
 
-        if (!ObjectUtils.isEmpty(courses))
-        {
+        if (!ObjectUtils.isEmpty(courses)) {
             for (Course course : courses) {
-                if (course.getName().equals(courseToCheck.getName())){
+                if (course.getName().equals(courseToCheck.getName())) {
                     return -1; // 有同名课程
                 }
                 for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode())) {
                     for (TimeSlot timeSlot2 : timeSlotMapper.getTimeByCourseCode(courseToCheck.getCode())) {
 
-                        if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek()){
-                            if(timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime()){
+                        if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek()) {
+                            if (timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime()) {
                                 continue;
-                            }
-                            else {
+                            } else {
                                 return 0;
                             }
+                        }
                     }
                 }
             }
-        }
 
-        courseMapper.addNumber(courseCode);
-        courseMapper.connectStudentCourse(studentCode,courseCode);
-        return 1; // 无时间冲突
+            courseMapper.addNumber(courseCode);
+            courseMapper.connectStudentCourse(studentCode, courseCode);
+            return 1; // 无时间冲突
+        }
     }
 
 
