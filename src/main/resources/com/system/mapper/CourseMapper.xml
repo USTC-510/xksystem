@@ -5,7 +5,11 @@
 <mapper namespace="com.system.mapper.CourseMapper">
 
     <select id="getCoursesByStudentId" resultType="com.system.pojo.Course">
-        SELECT c.* FROM course c JOIN s_select_c sc ON c.id = sc.course_id WHERE sc.student_id = #{studentId}
+    SELECT * FROM course
+    JOIN s_select_c ON course.code = s_select_c.courseid
+    JOIN student ON s_select_c.studentid = student.code
+    WHERE student.code = #{code};
+
     </select>
 
 </mapper>
