@@ -62,8 +62,7 @@ public class CourseServiceImpl implements CourseService {
                 }
                 for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode())) {
                     for (TimeSlot timeSlot2 : timeSlotMapper.getTimeByCourseCode(courseToCheck.getCode())) {
-                        if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek() &&
-                                (timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime())) {
+                        if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek() && (timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime())) {
                             continue; // 无时间冲突
                         }
                         else{
