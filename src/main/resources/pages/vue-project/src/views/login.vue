@@ -173,7 +173,7 @@
 }
 a{
     font-size: 15px;
-    color: white;
+    color: purple;
     cursor: pointer;
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="container main">
     <div class="search-container">
-      <form @submit.prevent="filteredCourses">
+      <form @submit.prevent="searchCourses">
         <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
         <button type="submit">搜索</button>
       </form>
@@ -47,7 +47,8 @@ export default {
       searchQuery: '',
       courses: [],
       selectedCourses: [],
-      isDisabled: false
+      isDisabled: false,
+      isSearching: false
     };
   },
   created() {
@@ -68,7 +69,7 @@ export default {
   },
   computed: {
     filteredCourses() {
-      if (!this.searchQuery) {
+      if (!this.isSearching) {
         return this.courses;
       }
       const query = this.searchQuery.toLowerCase();
@@ -87,7 +88,7 @@ export default {
             event.preventDefault();
             alert("取消失败，请稍后再试！");
           }
-        }).catch((error, event) => {
+        }).catch((error) => {
           console.log(error);
           event.preventDefault();
           alert("取消失败，请稍后再试！");
@@ -126,6 +127,14 @@ export default {
       this.$nextTick(() => {
         course.currentPeople += change;
       });
+    },
+    searchCourses(){
+      if(!this.searchQuery){
+        this.isSearching = false;
+      }
+      else{
+        this.isSearching = true;
+      }
     }
   }
 };
