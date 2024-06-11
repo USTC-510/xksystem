@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/administrator")
 public class AdministratorController
 {
-    @
+
+
+
+
     
 }
 

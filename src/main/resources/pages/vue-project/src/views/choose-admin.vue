@@ -2,9 +2,9 @@
   <div class="container main">
     <div class="search-container">
       <form @submit.prevent="submit">
+        <button @click="searchCourses">搜索</button>
         <input type="text" v-model="searchQuery" placeholder="请输入课程或授课老师名称" />
       </form>
-      <button @click="searchCourses">搜索</button>
     </div>
     <h2>
       管理课程
@@ -20,6 +20,7 @@
         {{ deleteMode ? '取消删除' : '删除' }}
       </button>
     </h2>
+    <div class="table-container">
     <table>
       <tr>
         <th>课程编号</th>
@@ -55,6 +56,7 @@
         <td v-if="editMode"><input type="checkbox" v-model="selectedCourses" :value="course.id"/></td>
       </tr>
     </table>
+  </div>
   </div>
 </template>
 
@@ -172,22 +174,31 @@ export default {
   width: 100%;
 }
 
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
 table {
   width: 100%;
   margin: 20px 0;
   border-collapse: collapse;
-  overflow-x: auto;
-  display: block;
 }
 
 thead {
-  display: block;
+  display: table-header-group;
 }
 
 tbody {
-  display: block;
+  display: table-row-group;
   height: 400px;
   overflow-y: auto;
+}
+
+tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
 th, td {

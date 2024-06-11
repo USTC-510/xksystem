@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -82,16 +81,16 @@ public class CourseServiceImpl implements CourseService {
                             }
 
                         }
-
                     }
                 }
             }
+        }
 
             courseMapper.addNumber(courseCode);
             courseMapper.connectStudentCourse(studentCode, courseCode);
             return 1; // 无时间冲突
-        }
     }
+
     public String connectTime (Course course){
         List<TimeSlot> timeSlots = timeSlotMapper.getTimeByCourseCode(course.getCode());
         StringBuilder result = new StringBuilder();

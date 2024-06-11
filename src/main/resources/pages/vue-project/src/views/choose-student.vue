@@ -53,7 +53,7 @@ export default {
   },
   created() {
     const username = localStorage.getItem("username");
-      api.getAllCourses(username).then(response => {
+      api.getAllCoursesForStudents(username).then(response => {
       const targetDate = new Date('2024-06-15'); // 目标日期为2024年6月15日
       const currentDate = new Date(); // 获取当前日期
       // 检查当前日期是否在目标日期之前
@@ -148,16 +148,17 @@ export default {
 <style scoped>
 .container {
   padding: 20px;
-  width: 100%;
+  width: 80%;
   margin: 20px auto;
   overflow: hidden;
+  height: 90%;
 }
 
 .main {
   background: #fff;
   margin-top: 20px;
   position: relative;
-  width: 100%;
+  width: 80%;
 }
 
 table {
@@ -165,15 +166,9 @@ table {
   margin: 20px 0;
   border-collapse: collapse;
   overflow-x: auto;
-  display: block;
-}
-
-thead {
-  display: block;
 }
 
 tbody {
-  display: block;
   height: 400px;
   overflow-y: auto;
 }
@@ -223,15 +218,12 @@ th {
 @media (max-width: 768px) {
   .container {
     padding: 10px;
-    width: 100%;
+    width: 60%;
   }
 
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
 
   th, td {
-    width: 100%;
+    width: 80%;
     box-sizing: border-box;
   }
 
