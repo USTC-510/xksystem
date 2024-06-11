@@ -48,7 +48,7 @@ public class CourseServiceImpl implements CourseService {
         if (courseToCheck.getNumber() >= courseToCheck.getMaxnum()) {
             return -2; // 选课人数已达到上限
         }
-        
+
         if (!ObjectUtils.isEmpty(courses))
         {
             for (Course course : courses) {
