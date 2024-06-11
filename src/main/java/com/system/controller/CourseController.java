@@ -44,7 +44,7 @@ public class CourseController
                 dto.setProfessor(course.getTeacher());
                 dto.setCurrentPeople(course.getNumber());
                 dto.setTime(courseService.connectTime(course));
-                dto.setIsCheck()
+                dto.setIsCheck(courseService.iFSelectedByStudentId(username,dto.getId()));
                 dtoList.add(dto);
             }
             return Result.success(dtoList);
