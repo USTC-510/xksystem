@@ -83,12 +83,7 @@ public class CourseController
             //取消选课
 
             if (ObjectUtils.isEmpty(id) || ObjectUtils.isEmpty(username)) {return Result.error("错误！",null);}
-            else
-            {
-                return                 
-
-            }
-
+            else {return Result.success(courseService.ifCanCheck(username,id));}
         }
 }
 

@@ -67,9 +67,7 @@ public class CourseServiceImpl implements CourseService {
         }
 
         courseMapper.addNumber(courseCode);
-
-
-
+        
         return 1; // 无时间冲突
     }
 
