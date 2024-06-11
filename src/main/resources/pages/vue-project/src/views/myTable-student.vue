@@ -61,11 +61,11 @@
         api.getStudentCourses(username).then(response => {
             const scheduleData = response.data;
             scheduleData.forEach(course => {
-              const dayIndex = this.days.indexOf(course.day);
-              const startSlotIndex = course.startTime;
-              const endSlotIndex = course.endTime;
+              const dayIndex = this.days.indexOf(course.timeSlots.day);
+              const startSlotIndex = course.timeSlots.startTime;
+              const endSlotIndex = course.timeSlots.endTime;
               const rowspan = endSlotIndex - startSlotIndex + 1;
-              this.schedule[course.day][startSlotIndex] = {
+              this.schedule[course.timeSlots.day][startSlotIndex] = {
                 course: course.course,
                 rowspan: rowspan
               }.catch(error => {
@@ -73,7 +73,7 @@
               });
               // 标记被合并的单元格
               for (let i = startSlotIndex + 1; i <= endSlotIndex; i++) {
-                this.schedule[course.day][i] = { covered: true };
+                this.schedule[course.timeSlots.day][i] = { covered: true };
               }
             });
           }).catch(error => {
