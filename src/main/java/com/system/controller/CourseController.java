@@ -21,7 +21,7 @@ public class CourseController
     @Resource
     CourseService courseService;
     @GetMapping("/allCourse")
-    public Result getAllCourses()
+    public Result getAllCourses(@RequestParam String username)
     {
         //获取所有课程的所有信息
 
@@ -44,6 +44,7 @@ public class CourseController
                 dto.setProfessor(course.getTeacher());
                 dto.setCurrentPeople(course.getNumber());
                 dto.setTime(courseService.connectTime(course));
+                dto.setIsCheck()
                 dtoList.add(dto);
             }
             return Result.success(dtoList);
@@ -106,5 +107,6 @@ class AllCoursesDTO
     private Integer currentPeople;
     private Integer maxPeople;
     private Integer hour;
+    private Integer isCheck;
 }
 

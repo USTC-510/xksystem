@@ -8,6 +8,7 @@ import content_admin from '../views/content-admin.vue'
 import courseIntro from '../components/courseIntro.vue'
 import choose_teacher from '../views/choose-teacher.vue'
 import choose_admin from '../views/choose-admin.vue'
+import myTable_teacher from '../views/myTable-teacher.vue'
 import {createRouter, createWebHistory} from 'vue-router'
 const routes = [
     { path:"/", component: login },
@@ -19,7 +20,8 @@ const routes = [
     { path:"/content-admin", component: content_admin },
     { path: '/courseIntro/:courseName', name: 'courseIntro', component: courseIntro, props: route => ({ courseName: route.params.courseName }) },
     { path:"/choose-teacher", component: choose_teacher },
-    { path:"/choose-admin", component: choose_admin }
+    { path:"/choose-admin", component: choose_admin },
+    { path:"/myTable-teacher", component: myTable_teacher }
 ]
 const router = createRouter(
     {
