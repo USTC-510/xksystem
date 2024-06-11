@@ -33,7 +33,7 @@ public class AdministratorServiceImpl implements AdministratorService {
         int length=changeCoursesDTO.getCode().size();
 
         for (int i=0;i<length;i++){
-            administratorMapper.changeNameByCode(changeCoursesDTO.getCode().get(i),
+            administratorMapper.changeInfoByCode(changeCoursesDTO.getCode().get(i),
                     changeCoursesDTO.getName().get(i),
                     changeCoursesDTO.getCredit().get(i),
                     changeCoursesDTO.getHour().get(i),

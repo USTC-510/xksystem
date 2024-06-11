@@ -39,7 +39,7 @@ public interface AdministratorMapper {
     void updatePasswordByCode(@Param("password") String password, @Param("code") String code);
 
     @Update("update course set name=#{name} credit=#{credit} hour=#{hour} spot=#{spot} teacher=#{teacher} maxnum=#{maxnum} where code=#{code}")
-    void changeNameByCode(@Param("code") String code, @Param("name") String name, @Param("credit") Integer credit, @Param("hour") Integer hour, @Param("spot") String spot, @Param("teacher") String teacher, @Param("maxnum") Integer maxnum);
+    void changeInfoByCode(@Param("code") String code, @Param("name") String name, @Param("credit") Integer credit, @Param("hour") Integer hour, @Param("spot") String spot, @Param("teacher") String teacher, @Param("maxnum") Integer maxnum);
 
     void changeTimeByCode(@Param("code") String code, @Param("timeSlot") List<TimeSlot> timeSlot);
 
