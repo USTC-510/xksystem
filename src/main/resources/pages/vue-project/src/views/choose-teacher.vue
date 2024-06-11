@@ -22,7 +22,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }">介绍</router-link>
+          <router-link :to="{ name: 'courseIntroTeacher', params: { courseName: course.name } }">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>

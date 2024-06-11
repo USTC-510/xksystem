@@ -38,7 +38,7 @@
         <td>{{ course.id }}</td>
         <td v-if="editMode">
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }"> 介绍 </router-link>
+          <router-link :to="{ name: 'courseIntroAdmin', params: { courseName: course.name } }"> 介绍 </router-link>
         </td>
         <td v-else><input class="change" v-model="course.name" @input="trackChanges(course.id, 'name', course.name)" /></td>
         <td v-if="!editMode">{{ course.professor }}</td>

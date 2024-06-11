@@ -3,7 +3,7 @@
     <h3>课程介绍: {{ courseName }}</h3>
     <p v-if="intro">{{ intro }}</p>
     <p v-else>加载中……</p>
-    <button @click="$router.push('/choose-student')">返回</button>
+    <button @click="$router.push('/choose-teacher')">返回</button>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 import api from "../api/function.js";
 
 export default {
-  name: 'courseIntro',
+  name: 'courseIntroTeacher',
   props: ['courseName'],
   data() {
     return {
@@ -39,7 +39,7 @@ export default {
 };
 </script>
 
-  
+
   <style scoped>
   .floating-card {
     position: fixed;
@@ -53,4 +53,3 @@ export default {
     z-index: 1000;
   }
   </style>
-  

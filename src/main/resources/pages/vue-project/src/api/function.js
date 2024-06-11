@@ -38,7 +38,7 @@ const api = {
         return axios.get(path.baseurl + path.allCourses, {
         })
     },
-    getAllCoursesForStudent(username){
+    getAllCoursesForStudents(username){
         return axios.get(path.baseurl + path.allCourses, {
             params: {
                 username: username

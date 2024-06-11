@@ -24,7 +24,7 @@
         <td>{{ course.id }}</td>
         <td>
           {{ course.name }}
-          <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }">介绍</router-link>
+          <router-link :to="{ name: 'courseIntroStudent', params: { courseName: course.name } }">介绍</router-link>
         </td>
         <td>{{ course.professor }}</td>
         <td>{{ course.time }}</td>
@@ -168,6 +168,8 @@ table {
   margin: 20px 0;
   border-collapse: collapse;
   overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 tbody {

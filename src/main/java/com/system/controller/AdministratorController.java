@@ -20,8 +20,8 @@ public class AdministratorController
     {
         //管理员修改课程信息
 
-        if (ObjectUtils.isEmpty(dto)) {return Result.error("错误！".null);}
-        else {return administratorService.changeCourses(dto);}
+        if (ObjectUtils.isEmpty(dto)) {return Result.error("错误！",null);}
+        else {return Result.success(administratorService.changeCourses(dto));}
     }
 }
 

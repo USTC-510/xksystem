@@ -19,8 +19,6 @@ public class CourseServiceImpl implements CourseService {
     @Resource
     TimeSlotMapper timeSlotMapper;
 
-
-
     public List<Course> getAllCourses() {
         List<Course> courses = courseMapper.selectAll();
         if (ObjectUtils.isEmpty(courses)) {
@@ -65,21 +63,27 @@ public class CourseServiceImpl implements CourseService {
             return -2; // 选课人数已达到上限
         }
 
-        if (!ObjectUtils.isEmpty(courses)) {
-            for (Course course : courses) {
-                if (course.getName().equals(courseToCheck.getName())) {
-                    return -1; // 有同名课程
-                }
-                for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode())) {
-                    for (TimeSlot timeSlot2 : timeSlotMapper.getTimeByCourseCode(courseToCheck.getCode())) {
+        if (!ObjectUtils.isEmpty(courses))
+        {
+            for (Course course : courses)
+            {
+                if (course.getName().equals(courseToCheck.getName())) {return -1;} //有同名课程
 
-                        if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek()) {
-                            if (timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime()) {
-                                continue;
-                            } else {
-                                return 0;
-                            }
-
+                for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode()))
+                {
+                    for (TimeSlot timeSlot2 : timeSlotMapper.getTimeByCourseCode(courseToCheck.getCode()))
+                    {
+                        if ((timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek()) && ((timeSlot1.getStartTime() > timeSlot2.getEndTime()) || (timeSlot2.getEndTime() < timeSlot1.getStartTime())))
+                        {
+                            continue;
+                        }
+                        else if (timeSlot1.getDayOfWeek() != timeSlot2.getDayOfWeek())
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            return 0;
                         }
                     }
                 }
