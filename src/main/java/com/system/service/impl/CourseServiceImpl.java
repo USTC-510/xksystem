@@ -6,6 +6,7 @@ import com.system.pojo.Course;
 import com.system.pojo.TimeSlot;
 import com.system.service.CourseService;
 import jakarta.annotation.Resource;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -37,6 +38,11 @@ public class CourseServiceImpl implements CourseService {
         } else {
             return courses;
         }
+    }
+
+
+    void deleteConnection(String studentCode, String courseCode){
+        courseMapper.deleteConnection(studentCode,courseCode);
     }
 
 
@@ -73,6 +79,7 @@ public class CourseServiceImpl implements CourseService {
         courseMapper.connectStudentCourse(studentCode,courseCode);
         return 1; // 无时间冲突
     }
+
 
     public String connectTime(Course course){
         List<TimeSlot> timeSlot = timeSlotMapper.getTimeByCourseCode(course.getCode());
