@@ -41,6 +41,10 @@ public interface AdministratorMapper {
     @Update("update course set name=#{name} credit=#{credit} hour=#{hour} spot=#{spot} teacher=#{teacher} maxnum=#{maxnum} where code=#{code}")
     void changeInfoByCode(@Param("code") String code, @Param("name") String name, @Param("credit") Integer credit, @Param("hour") Integer hour, @Param("spot") String spot, @Param("teacher") String teacher, @Param("maxnum") Integer maxnum);
 
-    void changeTimeByCode(@Param("code") String code, @Param("timeSlot") List<TimeSlot> timeSlot);
+    @Delete("DELETE from timeslot where courseId =#{code}")
+    void dropTimeInfo(String code);
+
+    @Insert("INSERT INTO timeslot (courseId,dayOfWork, startTime, endTime )VALUES (#{code},#{dayOfWeek},#{startTime},#{endTime})")
+    void changeTimeByCode(@Param("code") String code, @Param("dayOfWeek") int dayOfWeek,@Param("startTime") int startTime,@Param("endTime") int endTime);
 
 }

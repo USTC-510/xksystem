@@ -54,7 +54,12 @@ public class AdministratorServiceImpl implements AdministratorService {
                 int endTime = Integer.parseInt(times[1]);
                 timeSlots.add(new TimeSlot(dayOfWeek, startTime, endTime,changeCoursesDTO.getCode().get(i)));
             }
-            administratorMapper.changeTimeByCode(changeCoursesDTO.getCode().get(i),timeSlots);
+            administratorMapper.dropTimeInfo(changeCoursesDTO.getCode().get(i));
+
+            for (int j=0;j<timeSlots.size();j++){
+                administratorMapper.changeTimeByCode(changeCoursesDTO.getCode().get(i),timeSlots.get(i).getDayOfWeek(),timeSlots.get(i).getStartTime(),timeSlots.get(i).getEndTime());
+            }
+
 
         }
         return 1;
