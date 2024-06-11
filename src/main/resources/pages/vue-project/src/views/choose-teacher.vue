@@ -17,7 +17,6 @@
         <th>学分</th>
         <th>学时</th>
         <th>选择人数</th>
-        <th>选择</th>
       </tr>
       <tr v-for="course in filteredCourses" :key="course.id">
         <td>{{ course.id }}</td>
@@ -52,7 +51,6 @@ export default {
    created() {
       api.getAllCourses().then(response => {
         this.courses = response.data;
-        console.log(this.courses);
       }).catch(error => {
             alert("发生错误");
             console.log(error);

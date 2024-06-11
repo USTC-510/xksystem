@@ -7,7 +7,7 @@
   </div>
   <div class="choose">
     <button class="img" id="chooseID" @click="handleChoose"></button>
-    <p class="text">学生选课</p>
+    <p class="text">选课界面</p>
   </div>
   <div class="mytable">
     <button class="img" id="myTableID" @click="handleMyTable"></button>

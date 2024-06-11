@@ -10,7 +10,6 @@
           <th>学分</th>
           <th>学时</th>
           <th>选择人数</th>
-          <th>选择</th>
         </tr>
         <tr v-for="course in filteredCourses" :key="course.id">
           <td>{{ course.id }}</td>
@@ -41,22 +40,13 @@
 
         const username = localStorage.getItem("")
       api.getTeacherCourses(username).then(response => {
-        const data = response.data;
-        //把传入的数转换成易于处理的形式
-        this.courses = data.name.map((id, index) => ({
-          id: id,
-          name: data.name[index],
-          time: data.time[index],
-          position: data.position[index],
-          credits: data.credits[index],
-          currentPeople: data.currentPeople[index],
-          maxPeople: data.maxPeople[index]
-        }));
+        this.courses = response.data;
       }).catch(error => {
         console.log(error);
         alert("获取信息失败，请稍后……");
       });
     }
+  }
     
   </script>
     

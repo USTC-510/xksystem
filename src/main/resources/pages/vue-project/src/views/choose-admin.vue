@@ -78,20 +78,12 @@ export default {
     addCourse
   },
   created() {
-    api.getAllCourses().then(response => {
-      const data = response.data;
-      this.courses = data.name.map((id, index) => ({
-        id: id,
-        name: data.name[index],
-        professor: data.professor[index],
-        time: data.time[index],
-        position: data.position[index],
-        credits: data.credits[index],
-        hour: data.hour[index],
-        currentPeople: data.currentPeople[index],
-        maxPeople: data.maxPeople[index]
-      }));
-    });
+      api.getAllCourses().then(response => {
+        this.courses = response.data;
+      }).catch(error => {
+            alert("发生错误");
+            console.log(error);
+         });
   },
   computed: {
     filteredCourses() {
