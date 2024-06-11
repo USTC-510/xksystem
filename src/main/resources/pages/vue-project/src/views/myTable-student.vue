@@ -57,16 +57,15 @@
     },
     methods: {
       fetchSchedule() {
-        const username = localStorage.getItem("username");
+        const username = localStorage.getItem('username');
         api.getStudentCourses(username).then(response => {
             const scheduleData = response.data;
             scheduleData.forEach(course => {
-              const dayIndex = this.days.indexOf(course.timeSlots.day);
               const startSlotIndex = course.timeSlots.startTime;
               const endSlotIndex = course.timeSlots.endTime;
               const rowspan = endSlotIndex - startSlotIndex + 1;
-              this.schedule[course.timeSlots.day][startSlotIndex] = {
-                course: course.course,
+              this.schedule[course.timeSlots.dayOfWeek][startSlotIndex] = {
+                course: course.name,
                 rowspan: rowspan
               };
               // 标记被合并的单元格

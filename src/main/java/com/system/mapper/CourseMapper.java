@@ -32,6 +32,6 @@ public interface CourseMapper
     void addNumber(String code);
 
     @Delete("delete from s_select_c where studentid = #{studentCode} and courseid = #{courseCode}")
-    void deleteConnection(@Param("studentCode")String studentCode,@Param("courseCode")String courseCode)
+    void deleteConnection(@Param("studentCode")String studentCode,@Param("courseCode")String courseCode);
 
 }
