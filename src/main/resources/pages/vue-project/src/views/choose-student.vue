@@ -53,7 +53,7 @@ export default {
   },
   created() {
     const username = localStorage.getItem("username");
-      api.getAllCourses(username).then(response => {
+      api.getAllCoursesForStudents(username).then(response => {
       const targetDate = new Date('2024-06-15'); // 目标日期为2024年6月15日
       const currentDate = new Date(); // 获取当前日期
       // 检查当前日期是否在目标日期之前
