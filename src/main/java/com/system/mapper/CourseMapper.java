@@ -1,10 +1,7 @@
 package com.system.mapper;
 
 import com.system.pojo.Course;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -33,5 +30,8 @@ public interface CourseMapper
 
     @Update("update course set number = number+1 where code = #{code}")
     void addNumber(String code);
+
+    @Delete("delete from s_select_c where studentid = #{studentCode} and courseid = #{courseCode}")
+    void deleteConnection(@Param("studentCode")String studentCode,@Param("courseCode")String courseCode)
 
 }
