@@ -50,7 +50,7 @@ public class CourseServiceImpl implements CourseService {
         }
 
         for (Course course : courses) {
-            if (course.getName().equals(courseToCheck.getName()) ){
+            if (course.getName().equals(courseToCheck.getName())){
                 return -1; // 有同名课程
             }
             for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode())) {
@@ -67,7 +67,7 @@ public class CourseServiceImpl implements CourseService {
         }
 
         courseMapper.addNumber(courseCode);
-        
+        courseMapper.connectStudentCourse(studentCode,courseCode);
         return 1; // 无时间冲突
     }
 
