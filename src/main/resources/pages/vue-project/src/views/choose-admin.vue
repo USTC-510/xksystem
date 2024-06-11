@@ -159,16 +159,18 @@ export default {
     
     <style scoped>
     .container {
-      width: 80%;
-      margin: auto;
-      overflow: hidden;
-      min-width: 70%;
+        padding: 20px;
+        width: 1000px;
+        margin: 20 auto;
+        overflow: hidden;
+        min-width: 80%;
+        margin-left: 0 auto ; /* 居中 */
     }
     .main {
-      padding: 20px;
-      background: #fff;
-      margin-top: 20px;
-      position: relative;
+        background: #fff;
+        margin-top: 20px;
+        position: relative;
+        width: 1000px; /* 调整宽度 */
     }
     table {
       width: 100%;
