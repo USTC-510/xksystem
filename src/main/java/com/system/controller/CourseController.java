@@ -21,7 +21,7 @@ public class CourseController
     @Resource
     CourseService courseService;
     @GetMapping("/allCourse")
-    public Result getAllCourses(@RequestParam String username)
+    public Result getAllCourses(@RequestParam(required = false) String username)
     {
         //获取所有课程的所有信息
 
@@ -44,7 +44,8 @@ public class CourseController
                 dto.setProfessor(course.getTeacher());
                 dto.setCurrentPeople(course.getNumber());
                 dto.setTime(courseService.connectTime(course));
-                dto.setIsCheck(courseService.iFSelectedByStudentId(username,dto.getId()));
+                if (username != null) {dto.setIsCheck(courseService.iFSelectedByStudentId(username,dto.getId()));}
+                else {dto.setIsCheck(1);}
                 dtoList.add(dto);
             }
             return Result.success(dtoList);
