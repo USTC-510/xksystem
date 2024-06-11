@@ -160,7 +160,7 @@ export default {
     <style scoped>
     .container {
         padding: 20px;
-        width: 1200px;
+        width: 1000px;
         margin: 20 auto;
         overflow: hidden;
         min-width: 80%;
@@ -170,7 +170,7 @@ export default {
         background: #fff;
         margin-top: 20px;
         position: relative;
-        width: 1200px; /* 调整宽度 */
+        width: 1000px; /* 调整宽度 */
     }
     table {
       width: 100%;

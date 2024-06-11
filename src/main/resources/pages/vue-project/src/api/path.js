@@ -10,7 +10,7 @@ const base = {
     checkCourse:"api/course/ifCanCheck",
     forgetPassword:"api/user/resetPasswordMail",
     deleteCourses:"api/user/deleteCourses",
-    changeCourses:"api/user/changeCourses",
+    changeCourses:"api/administrator/changeCourses",
     afterForgetPassword:"api/user/resetPassword",
     getStudentCourses:"api/student/getCourses",
     getTeacherCourses:"api/teacher/getCourses",
