@@ -1,7 +1,6 @@
 package com.system.service;
 
 import com.system.pojo.Course;
-import com.system.pojo.TimeSlot;
 
 import java.util.List;
 
@@ -18,8 +17,5 @@ public interface CourseService {
     void deleteConnection(String studentCode, String courseCode);
 
     int iFSelectedByStudentId(String studentId,String courseId);
-
-    String convertTimeSlotsToString (List <TimeSlot> timeSlots);
-
 
 }

@@ -19,6 +19,7 @@
         <th>选择人数</th>
         <th>选择</th>
       </tr>
+      <div class="table-body" style="max-height: 400px; overflow-y: auto;">
       <tr v-for="course in filteredCourses" :key="course.id">
         <td>{{ course.id }}</td>
         <td>
@@ -33,6 +34,7 @@
         <td>{{ course.currentPeople }} / {{ course.maxPeople }}</td>
         <td><input type="checkbox" :value="course.id" :disabled="isDisabled" @change="handleCheckbox($event, course)" v-model="selectedCourses" /></td>
       </tr>
+      </div>
     </table>
   </div>
 </template>

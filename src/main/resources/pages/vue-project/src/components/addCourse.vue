@@ -1,6 +1,6 @@
 <template>
     <div class="floating-card">
-      <h2>课程名称</h2>
+      <h2>课程添加</h2>
       <form @submit.prevent="submit">
         <div class="input-text">  
           <label class="label" for="id">课程编号：</label>
@@ -8,16 +8,24 @@
         </div>
       <div class="input-text">  
           <label class="label" for="name">课程名称：</label>  
-          <input type="name" name="name" v-model="name" required>
+          <input type="text" name="name" v-model="name" required>
       </div>
       <div class="input-text">  
           <label class="label" for="professor">教师：</label>
           <input type="text" name="professor" v-model="professor" required>  
         </div>
-        <div class="input-text">  
-          <label class="label" for="professor">教师：</label>
-          <input type="text" name="professor" v-model="professor" required>  
+        <div class="input-text">
+        <label class="label" for="credits">学分：</label>
+        <input type="text" name="credits" v-model="credits" required>
         </div>
+        <div class="input-text">  
+          <label class="label" for="hour">学时：</label>
+          <input type="text" name="hour" v-model="hour" required>
+        </div>
+        <div class="input-text">
+                  <label class="label" for="maxPeople">最大人数：</label>
+                  <input type="text" name="maxPeople" v-model="maxPeople" required>
+                </div>
         <div v-for="day in days" :key="day">
         <label>
           <input type="checkbox" :value="day" v-model="selectedDays" @change="toggleTimeSlots(day)">
@@ -49,7 +57,7 @@
         username: '',
         identity: '1',
         rightVerification: '',
-        days: [1, 2, 3, 4, 5],
+        days: ['周一', '周二', '周三', '周四', '周五'],
         timeSlots: Array.from({ length: 13 }, (_, i) => i + 1),
         selectedDays: [],
         selectedTimeSlots: {}

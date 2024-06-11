@@ -10,7 +10,7 @@
       管理课程
       <button class="button" @click.prevent="showCard = true">添加</button>
       <addCourse v-if="showCard" @close="showCard = false" />
-      <button class="button" @click="toggleEditMode">{{ editMode ? '保存' : '编辑' }}</button>
+      <button class="button" @click="toggleEditMode">{{ !editMode ? '编辑' : '保存' }}</button>
       <button 
         class="button" 
         @click="toggleDeleteMode" 
@@ -22,7 +22,6 @@
     </h2>
     <div class="table-container">
     <table>
-    <thead>
       <tr>
         <th>课程编号</th>
         <th>课程名称</th>
@@ -32,33 +31,34 @@
         <th>学分</th>
         <th>学时</th>
         <th>选择人数</th>
-        <th>操作</th>
+        <th v-if="editMode">操作</th>
       </tr>
-      </thead>
-      <tbody>
+      <div class="table-body" style="max-height: 400px; overflow-y: auto;">
       <tr v-for="course in filteredCourses" :key="course.id">
         <td>{{ course.id }}</td>
         <td v-if="editMode">
           {{ course.name }}
           <router-link :to="{ name: 'courseIntro', params: { courseName: course.name } }"> 介绍 </router-link>
         </td>
-        <td v-else><input v-model="course.name" @input="trackChanges(course.id, 'name', course.name)" /></td>
-        <td v-if="editMode">{{ course.time }}</td>
-        <td v-else><input v-model="course.time" @input="trackChanges(course.id, 'time', course.time)" /></td>
-        <td v-if="editMode">{{ course.position }}</td>
-        <td v-else><input v-model="course.position" @input="trackChanges(course.id, 'position', course.position)" /></td>
-        <td v-if="editMode">{{ course.credits }}</td>
-        <td v-else><input v-model="course.credits" @input="trackChanges(course.id, 'credits', course.credits)" /></td>
-        <td v-if="editMode">{{ course.hour }}</td>
-        <td v-else><input v-model="course.hour" @input="trackChanges(course.id, 'hour', course.hour)" /></td>
+        <td v-else><input class="change" v-model="course.name" @input="trackChanges(course.id, 'name', course.name)" /></td>
+        <td v-if="!editMode">{{ course.professor }}</td>
+        <td v-else><input class="change" v-model="course.professor" @input="trackChanges(course.id, 'professor', course.professor)" /></td>
+        <td v-if="!editMode">{{ course.time }}</td>
+        <td v-else><input class="change" v-model="course.time" @input="trackChanges(course.id, 'time', course.time)" /></td>
+        <td v-if="!editMode">{{ course.position }}</td>
+        <td v-else><input class="change" v-model="course.position" @input="trackChanges(course.id, 'position', course.position)" /></td>
+        <td v-if="!editMode">{{ course.credits }}</td>
+        <td v-else><input type="number" class="change" v-model="course.credits" @input="trackChanges(course.id, 'credits', course.credits)" /></td>
+        <td v-if="!editMode">{{ course.hour }}</td>
+        <td v-else><input type="number" class="change" v-model="course.hour" @input="trackChanges(course.id, 'hour', course.hour)" /></td>
         <td>
           {{ course.currentPeople }} / 
           <span v-if="editMode">{{ course.maxPeople }}</span>
-          <input v-else type="number" v-model="course.maxPeople" @input="trackChanges(course.id, 'maxPeople', course.maxPeople)" />
+          <input v-else type="number" class="change" v-model="course.maxPeople" @input="trackChanges(course.id, 'maxPeople', course.maxPeople)" />
         </td>
-        <td v-if="editMode"><input type="checkbox" v-model="selectedCourses" :value="course.id"/></td>
+        <td v-if="deleteMode"><input type="checkbox" v-model="selectedCourses" :value="course.id"/></td>
       </tr>
-      </tbody>
+      </div>
     </table>
   </div>
   </div>
@@ -72,6 +72,7 @@ export default {
   name: 'choose_teacher',
   data() {
     return {
+      showCard: false,
       searchQuery: '',
       courses: [],
       selectedCourses: [],
@@ -165,18 +166,20 @@ export default {
     
 <style scoped>
 .container {
-  padding: 20px;
-  width: 100%;
-  margin: 20px auto;
-  overflow: hidden;
-}
-
-.main {
-  background: #fff;
-  margin-top: 20px;
-  position: relative;
-  width: 100%;
-}
+    padding: 20px;
+    width: 80%;
+    margin: 20 auto;
+    overflow: hidden;
+    min-width: 80%;
+    margin-left: 0 auto ; /* 居中 */
+  }
+  .main {
+    background: #fff;
+    margin-top: 20px;
+    position: relative;
+    width: 80%; /* 调整宽度 */
+    margin-left: 0 auto ; /* 居中 */
+  }
 
 .table-container {
   width: 100%;
@@ -184,7 +187,7 @@ export default {
 }
 
 table {
-  width: 100%;
+  width: 80%;
   margin: 20px 0;
   border-collapse: collapse;
 }
@@ -195,7 +198,7 @@ thead {
 
 tbody {
   display: table-row-group;
-  height: 400px;
+  max-height: 10px;
   overflow-y: auto;
 }
 
@@ -206,7 +209,7 @@ tr {
 }
 
 th, td {
-  width: 150px;
+  width: 100px;
   padding: 12px;
   text-align: left;
   border: 1px solid #ddd;
@@ -220,9 +223,10 @@ th {
 }
 
 .search-container {
-  position: relative;
-  margin-bottom: 20px;
-}
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 
 .search-container input[type=text] {
   width: calc(100% - 100px);
@@ -253,7 +257,7 @@ th {
     width: 100%;
   }
 
-  table, thead, tbody, th, td, tr {
+  table, th, td, tr {
     display: block;
   }
 
@@ -266,4 +270,8 @@ th {
     position: relative;
   }
 }
+.change{
+    width: 90px;
+}
+
 </style>
