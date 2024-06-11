@@ -11,4 +11,6 @@ public interface CourseService {
     int ifCanCheck(String studentcode,String coursecode);
 
     String connectTime(Course course);
+
+    void deleteConnection(String studentCode, String courseCode);
 }
