@@ -95,6 +95,14 @@ const api = {
                 username: username
             }
         })
+    },
+    notCheck(id, username){
+        return axios.get(path.baseurl + path.notCheck, {
+            params: {
+                id: id,
+                username: username
+            }
+        })
     }
 }
 

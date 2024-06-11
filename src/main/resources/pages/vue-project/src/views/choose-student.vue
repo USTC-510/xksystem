@@ -78,13 +78,19 @@ export default {
     }
   },
   methods: {
+    
     handleCheckbox(event, course) {
       const username = localStorage.getItem('username');
       if (this.selectedCourses.includes(course.id)) {
         api.notCheck(course.id, username).then(response => {
           if (response.data==0) {
+            event.preventDefault();
             alert("取消失败，请稍后再试！");
           }
+        }).catch((error, event) => {
+          console.log(error);
+          event.preventDefault();
+          alert("取消失败，请稍后再试！");
         })
         this.selectedCourses = this.selectedCourses.filter(id => id !== course.id);
         this.updateCoursePeople(course, -1);
