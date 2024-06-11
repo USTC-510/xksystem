@@ -6,7 +6,6 @@ import com.system.pojo.Course;
 import com.system.pojo.TimeSlot;
 import com.system.service.CourseService;
 import jakarta.annotation.Resource;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -41,7 +40,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
 
-    void deleteConnection(String studentCode, String courseCode){
+    public void deleteConnection(String studentCode, String courseCode){
         courseMapper.deleteConnection(studentCode,courseCode);
     }
 
