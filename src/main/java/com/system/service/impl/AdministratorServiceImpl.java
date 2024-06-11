@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class AdministratorServiceImpl implements AdministratorService {
@@ -42,44 +44,45 @@ public class AdministratorServiceImpl implements AdministratorService {
                     changeCoursesDTO.getMaxnum().get(i));
 
             String time=changeCoursesDTO.getTime().get(i);
+            List<TimeSlot> timeSlots =parseTimeSlots(time);
 
-            String[] parts = time.split("，");
-            List<TimeSlot> timeSlots = new ArrayList<>();
-
-            for (String part : parts) {
-                String[] subParts = part.split("第");
-                int dayOfWeek = getDayOfWeek(subParts[0]);
-                String[] times = subParts[1].substring(0, subParts[1].length() - 1).split(",");
-                int startTime = Integer.parseInt(times[0]);
-                int endTime = Integer.parseInt(times[1]);
-                timeSlots.add(new TimeSlot(dayOfWeek, startTime, endTime,changeCoursesDTO.getCode().get(i)));
-            }
             administratorMapper.dropTimeInfo(changeCoursesDTO.getCode().get(i));
 
             for (int j=0;j<timeSlots.size();j++){
                 administratorMapper.changeTimeByCode(changeCoursesDTO.getCode().get(i),timeSlots.get(i).getDayOfWeek(),timeSlots.get(i).getStartTime(),timeSlots.get(i).getEndTime());
             }
-
-
         }
         return 1;
+    }
+    public static List<TimeSlot> parseTimeSlots(String time) {
+        List<TimeSlot> timeSlots = new ArrayList<>();
+        Pattern pattern = Pattern.compile("(\\w+)第(\\d+)-(\\d+)节");
+        Matcher matcher = pattern.matcher(time);
 
-    }
-    private static int getDayOfWeek(String dayOfWeekStr) {
-        switch (dayOfWeekStr) {
-            case "周一":
-                return 1;
-            case "周二":
-                return 2;
-            case "周三":
-                return 3;
-            case "周四":
-                return 4;
-            case "周五":
-                return 5;
-            default:
-                throw new IllegalArgumentException("Invalid day of week: " + dayOfWeekStr);
+        while (matcher.find()) {
+            String dayOfWeekStr = matcher.group(1);
+            int dayOfWeek = getDay(dayOfWeekStr);
+            int startTime = Integer.parseInt(matcher.group(2));
+            int endTime = Integer.parseInt(matcher.group(3));
+            TimeSlot timeSlot = new TimeSlot();
+            timeSlot.setDayOfWeek(dayOfWeek);
+            timeSlot.setEndTime(endTime);
+            timeSlot.setStartTime(startTime);
+            timeSlots.add(timeSlot);
         }
+        return timeSlots;
     }
+
+    public static int getDay(String dayOfWeekStr) {
+        String[] days = {"周一", "周二", "周三", "周四", "周五"};
+        for (int i = 0; i < days.length; i++) {
+            if (days[i].equals(dayOfWeekStr)) {
+                return i+1;
+            }
+        }
+        return 0;
+    }
+
+
 }
 
