@@ -29,6 +29,6 @@ public interface StudentMapper
     @Update("update student set phonenumber=#{phonenumber} where code = #{code}")
     void updatePhonenumberByCode(@Param("phonenumber")String phonenumber, @Param("code")String code);
 
-    @Update("update student set password=#{password} where code = #{code}")
+    @Update("update student set password= #{password} where code = #{code}")
     void updatePasswordByCode(@Param("password")String password, @Param("code")String code);
 }

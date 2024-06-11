@@ -25,20 +25,18 @@ public class UserController {
     {
         //实现登录验证
 
+
         String code = loginDTO.getUsername();
         String identity = loginDTO.getIdentity();
         String password = loginDTO.getPassword();
         //获得HTTP请求的参数
 
-        if (ObjectUtils.isEmpty(code) || ObjectUtils.isEmpty(password) || ObjectUtils.isEmpty(identity)) {
-            return Result.error("请输入账号和密码！", "notFound");
-        }
+        if (ObjectUtils.isEmpty(code) || ObjectUtils.isEmpty(password) || ObjectUtils.isEmpty(identity)) {return Result.error("请输入账号和密码！", "notFound");}
         //验证http请求的参数非空,否则返回错误信息
-
-        else {
+        else
+        {
             User user = userService.getUser(code, identity);
             //调用service层的方法获得当前用户的信息
-
 
             if (user == null) {
                 return Result.error("账号错误！", "notFound");
@@ -48,7 +46,6 @@ public class UserController {
                 return Result.success(user.getIdentity());
             }
         }
-
     }
 
     @GetMapping("/realName")

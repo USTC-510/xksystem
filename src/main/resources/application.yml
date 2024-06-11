@@ -3,7 +3,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mybatis?useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/mybatis?useSSL=false
     username: root
     password: 123456
   application:

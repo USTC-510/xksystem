@@ -49,27 +49,28 @@ public class CourseServiceImpl implements CourseService {
             return -2; // 选课人数已达到上限
         }
 
-        for (Course course : courses) {
-            if (course.getName().equals(courseToCheck.getName()) ){
-                return -1; // 有同名课程
-            }
-            for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode())) {
-                for (TimeSlot timeSlot2 : timeSlotMapper.getTimeByCourseCode(courseToCheck.getCode())) {
-                    if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek() &&
-                            (timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime())) {
-                        continue; // 无时间冲突
-                    }
-                    else{
-                        return 0;//有时间冲突
+        if (!ObjectUtils.isEmpty(courses))
+        {
+            for (Course course : courses) {
+                if (course.getName().equals(courseToCheck.getName())){
+                    return -1; // 有同名课程
+                }
+                for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode())) {
+                    for (TimeSlot timeSlot2 : timeSlotMapper.getTimeByCourseCode(courseToCheck.getCode())) {
+                        if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek() &&
+                                (timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime())) {
+                            continue; // 无时间冲突
+                        }
+                        else{
+                            return 0;//有时间冲突
+                        }
                     }
                 }
             }
         }
 
         courseMapper.addNumber(courseCode);
-
-
-
+        courseMapper.connectStudentCourse(studentCode,courseCode);
         return 1; // 无时间冲突
     }
 
