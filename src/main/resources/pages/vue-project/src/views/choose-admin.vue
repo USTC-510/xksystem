@@ -193,7 +193,12 @@ tbody {
   display: table-row-group;
   height: 400px;
   overflow-y: auto;
-  display: block;
+}
+
+tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
 th, td {
