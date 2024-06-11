@@ -19,4 +19,5 @@ public class User {
     public String mail;  //邮箱
     private String major; //专业
     private String faculty;//学院
+    private String level;
 }

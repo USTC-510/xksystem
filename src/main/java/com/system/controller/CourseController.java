@@ -77,18 +77,19 @@ public class CourseController
         else {return Result.success(courseService.ifCanCheck(studentId,courseId));}
     }
 
-    //    @GetMapping("/cancelChoose")
-    //    public Result cancelChoose(@RequestParam String id, @RequestParam String username)
-    //    {
-    //        //取消选课
-    //
-    //        if (ObjectUtils.isEmpty(id) || ObjectUtils.isEmpty(username)) {return Result.error("错误！",null);}
-    //        else
-    //        {
-    //
-    //        }
-    //
-    //    }
+        @GetMapping("/cancelChoose")
+        public Result cancelChoose(@RequestParam String id, @RequestParam String username)
+        {
+            //取消选课
+
+            if (ObjectUtils.isEmpty(id) || ObjectUtils.isEmpty(username)) {return Result.error("错误！",null);}
+            else
+            {
+                return                 
+
+            }
+
+        }
 }
 
 @Data
