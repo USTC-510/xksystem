@@ -30,6 +30,17 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
+    public int iFSelectedByStudentId(String studentId,String courseId){
+        List<Course> list=courseMapper.getCoursesByStudentId(studentId);
+        for (Course course:list){
+            if(courseId.equals(course.getCode())){
+                return 1;//该课程已经被选过了
+            }
+        }
+        return 0;//未选
+    }
+
+
     public List<Course> getCourseByName(String name) {
         List<Course> courses = courseMapper.selectByName(name);
         if (ObjectUtils.isEmpty(courses)) {
@@ -54,51 +65,37 @@ public class CourseServiceImpl implements CourseService {
             return -2; // 选课人数已达到上限
         }
 
-        if (!ObjectUtils.isEmpty(courses))
-        {
+        if (!ObjectUtils.isEmpty(courses)) {
             for (Course course : courses) {
-                if (course.getName().equals(courseToCheck.getName())){
+                if (course.getName().equals(courseToCheck.getName())) {
                     return -1; // 有同名课程
                 }
                 for (TimeSlot timeSlot1 : timeSlotMapper.getTimeByCourseCode(course.getCode())) {
                     for (TimeSlot timeSlot2 : timeSlotMapper.getTimeByCourseCode(courseToCheck.getCode())) {
 
-                        if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek()){
-                            if(timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime()){
+                        if (timeSlot1.getDayOfWeek() == timeSlot2.getDayOfWeek()) {
+                            if (timeSlot1.getStartTime() > timeSlot2.getEndTime() || timeSlot1.getEndTime() < timeSlot2.getStartTime()) {
                                 continue;
-                            }
-                            else {
+                            } else {
                                 return 0;
                             }
+
+                        }
                     }
                 }
             }
         }
 
-        courseMapper.addNumber(courseCode);
-        courseMapper.connectStudentCourse(studentCode,courseCode);
-        return 1; // 无时间冲突
+            courseMapper.addNumber(courseCode);
+            courseMapper.connectStudentCourse(studentCode, courseCode);
+            return 1; // 无时间冲突
     }
 
-
-    public String connectTime(Course course){
+    public String connectTime (Course course){
         List<TimeSlot> timeSlot = timeSlotMapper.getTimeByCourseCode(course.getCode());
         return convertTimeSlotsToString(timeSlot);
     }
-    public String convertTimeSlotsToString(List<TimeSlot> timeSlots) {
-        StringBuilder result = new StringBuilder();
-        for (TimeSlot timeSlot : timeSlots) {
-            result.append(convertDayOfWeekToString(timeSlot.getDayOfWeek()));
-            result.append("第").append(timeSlot.getStartTime()).append(",").append(timeSlot.getEndTime()).append("节");
-            result.append("，");
-        }
-        // 删除最后一个逗号
-        if (result.length() > 0) {
-            result.deleteCharAt(result.length() - 1);
-        }
-        return result.toString();
-    }
-    private String convertDayOfWeekToString(int dayOfWeek) {
+    private String convertDayOfWeekToString(int dayOfWeek){
         switch (dayOfWeek) {
             case 1:
                 return "周一";
@@ -114,6 +111,18 @@ public class CourseServiceImpl implements CourseService {
                 return "";
         }
     }
-
+    public String convertTimeSlotsToString (List < TimeSlot > timeSlots) {
+        StringBuilder result = new StringBuilder();
+        for (TimeSlot timeSlot : timeSlots) {
+            result.append(convertDayOfWeekToString(timeSlot.getDayOfWeek()));
+            result.append("第").append(timeSlot.getStartTime()).append(",").append(timeSlot.getEndTime()).append("节");
+            result.append("，");
+        }
+        // 删除最后一个逗号
+        if (result.length() > 0) {
+            result.deleteCharAt(result.length() - 1);
+        }
+        return result.toString();
+    }
 }
 

@@ -81,6 +81,5 @@ public class AdministratorServiceImpl implements AdministratorService {
                 throw new IllegalArgumentException("Invalid day of week: " + dayOfWeekStr);
         }
     }
-
-    }
+}
 
