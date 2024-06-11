@@ -32,7 +32,7 @@
   </template>
   
   <script>
-  import axios from 'axios';
+  import api from '../api/function.js';
   
   export default {
     data() {
@@ -58,7 +58,7 @@
     methods: {
       fetchSchedule() {
         const username = localStorage.getItem("username");
-        getStudentCourses(username).then(response => {
+        api.getStudentCourses(username).then(response => {
             const scheduleData = response.data;
             scheduleData.forEach(course => {
               const dayIndex = this.days.indexOf(course.day);

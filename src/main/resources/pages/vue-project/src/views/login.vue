@@ -69,6 +69,7 @@
                 break;
               case "teacher":
                 this.message = '老师登陆成功！';
+                this.isError = false;
                 setTimeout(
                   () => {
                     this.$router.push({ path: '/content-teacher' }).
@@ -79,6 +80,7 @@
                 break;
               case "administrator":
                 this.message = '管理员登陆成功';
+                this.isError = false;
                 setTimeout(
                   () => {
                     this.$router.push({ path: '/content-admin' }).
