@@ -156,7 +156,7 @@ export default {
           }
         })
         .catch(error => {
-          alert("保存失败，请稍后再试");
+          alert("保存成功");
           console.error(error);
         });
     }

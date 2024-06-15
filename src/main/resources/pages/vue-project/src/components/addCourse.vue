@@ -33,7 +33,7 @@
         </label>
         <div v-if="selectedDays.includes(day)" class="time-slots">
           <label v-for="time in timeSlots" :key="time">
-            <input type="checkbox" :value="time" v-model="selectedTimeSlots[day]">
+            <input type="checkbox" :value="time" v-model="selectedTimeSlots[time]">
             {{ time }}
           </label>
         </div>

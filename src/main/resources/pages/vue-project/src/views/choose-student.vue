@@ -19,7 +19,7 @@
         <th>选择人数</th>
         <th>选择</th>
       </tr>
-      <div class="table-body" style="max-height: 400px; overflow-y: auto;">
+      <tbody style="max-height: 400px; overflow-y: auto; display: block;">
       <tr v-for="course in filteredCourses" :key="course.id">
         <td>{{ course.id }}</td>
         <td>
@@ -34,7 +34,7 @@
         <td>{{ course.currentPeople }} / {{ course.maxPeople }}</td>
         <td><input type="checkbox" :value="course.id" :disabled="isDisabled" @change="handleCheckbox($event, course)" v-model="selectedCourses" /></td>
       </tr>
-      </div>
+      </tbody>
     </table>
   </div>
 </template>
@@ -64,7 +64,7 @@ export default {
       }
       this.courses = response.data;
       this.courses.forEach(course => {
-        if (isChecked == 1){
+        if (course.isChecked == 1){
           this.selectedCourses.push(course);
         }
       })
@@ -77,7 +77,7 @@ export default {
   },
   computed: {
     filteredCourses() {
-      if (!this.isSearching) {
+      if (!this.searchQuery) {
         return this.courses;
       }
       const query = this.searchQuery.toLowerCase();
@@ -190,7 +190,11 @@ th {
   top: 0;
   z-index: 1;
 }
-
+tr {
+display: table;
+width: 100%;
+table-layout: fixed;
+}
 .search-container {
   position: relative;
   margin-bottom: 20px;
@@ -224,15 +228,19 @@ th {
     padding: 10px;
     width: 60%;
   }
-
+}
 
   th, td {
-    width: 80%;
-    box-sizing: border-box;
+    width: 100px;
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
   }
 
   th {
-    position: relative;
-  }
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 </style>
