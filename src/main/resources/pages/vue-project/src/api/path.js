@@ -1,6 +1,6 @@
 
 const base = {
-    baseurl:"http://114.214.234.245:8081/",
+    baseurl:"http://localhost:8081/",
     login:"api/user/login",
     realName:"api/user/realName",
     infor:"api/user/getInfor",
